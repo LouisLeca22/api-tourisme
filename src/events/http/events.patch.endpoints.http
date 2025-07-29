@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "id": "fe179e9c-3fa0-4184-a660-bcc02fbae548",
+    "type": "festival"
+}

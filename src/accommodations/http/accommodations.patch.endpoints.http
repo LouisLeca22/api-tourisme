@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/accommodations
+Content-Type: application/json
+
+{
+    "id": "1c8bdebc-cd06-4c08-856e-75826a4378c1",
+    "amenities": ["wifi", "parking"]
+}

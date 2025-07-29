@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/owners
+Content-Type: application/json
+
+{
+    "id": "614e0d8f-478a-4b07-8bf9-34decd750417",
+    "websiteUrl": "http://new-url.fr"
+}

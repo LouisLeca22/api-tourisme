@@ -1,0 +1,18 @@
+POST http://localhost:3000/activities
+Content-Type: application/json
+
+{
+    "name": "Balade en paddle dans la baie",
+    "description": "Découvrez les criques en paddle encadré par un moniteur diplômé.",
+    "type": "nautical_sport",
+    "address": "10 Rue de la Paix, 75002 Paris, France",
+    "priceRange": "50-80",
+    "duration": 2,
+    "requiredAge": 10,
+    "languages": ["en", "fr"],
+    "from": 2,
+    "to": 5,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+}

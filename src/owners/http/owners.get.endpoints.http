@@ -1,0 +1,11 @@
+# Récupère tous les propriétaires
+GET http://localhost:3000/owners
+
+# Pagination
+GET http://localhost:3000/owners?limit=2&page=1
+
+
+# Récupère un propriétaire par son identifiant
+GET http://localhost:3000/owners/single/614e0d8f-478a-4b07-8bf9-34decd750417
+
+

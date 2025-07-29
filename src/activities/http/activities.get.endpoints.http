@@ -1,0 +1,13 @@
+# Récupère toutes les activités
+GET http://localhost:3000/activities
+
+# Pagination
+GET http://localhost:3000/activities?limit=2&page=1
+
+# Récupère les activités associés à un propriétaire
+GET http://localhost:3000/activities/614e0d8f-478a-4b07-8bf9-34decd750417
+
+# Récupère une activité par son identifiant
+GET http://localhost:3000/activities/single/802f7f4f-64e1-4a55-a2cf-70d0636e1b5f
+
+

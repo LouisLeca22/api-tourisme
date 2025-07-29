@@ -1,0 +1,13 @@
+# Récupère tous les sites touristiques
+GET http://localhost:3000/places
+
+# Pagination
+GET http://localhost:3000/places?limit=2&page=1
+
+# Récupère les sites touristiques associés à un propriétaire
+GET http://localhost:3000/places/614e0d8f-478a-4b07-8bf9-34decd750417
+
+# Récupère un site touristique par son identifiant
+GET http://localhost:3000/places/single/76482ca5-6288-4568-b069-72a5ea2cab2b
+
+

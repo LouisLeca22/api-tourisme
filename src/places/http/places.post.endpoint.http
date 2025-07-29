@@ -1,0 +1,17 @@
+POST http://localhost:3000/places
+Content-Type: application/json
+
+{
+    "name": "Musée d'Art Moderne de Céret",
+    "description": "Un musée emblématique dédié aux artistes du XXe siècle.",
+    "type": "museum",
+    "address": "8 Bd Maréchal Joffre, Céret (66400)",
+    "priceRange": "0-0",
+    "languages" : ["fr", "en", "es"],
+    "requiredAge": 0,
+    "from": 2,
+    "to": 6,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+}

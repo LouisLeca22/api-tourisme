@@ -1,0 +1,13 @@
+# Récupère tous les événements
+GET http://localhost:3000/events
+
+# Pagination
+GET http://localhost:3000/events?limit=2&page=1
+
+# Récupère les événements associés à un propriétaire
+GET http://localhost:3000/events/614e0d8f-478a-4b07-8bf9-34decd750417
+
+# Récupère un événement par son identifiant
+GET http://localhost:3000/events/single/802f7f4f-64e1-4a55-a2cf-70d0636e1b5f
+
+

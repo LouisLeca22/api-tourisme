@@ -1,0 +1,8 @@
+PATCH http://localhost:3000/activities
+Content-Type: application/json
+
+{
+    "id": "802f7f4f-64e1-4a55-a2cf-70d0636e1b5f",
+    "languages": ["fr", "es"],
+    "address": "275 boulevard François 1er, 76600 Le Havre"
+}

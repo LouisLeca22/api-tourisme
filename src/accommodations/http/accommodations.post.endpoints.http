@@ -1,0 +1,17 @@
+POST http://localhost:3000/accommodations
+Content-Type: application/json
+
+{
+    "name": "Hôtel du Vieux Por",
+    "description": "Petit hôtel charmant avec terrasse sur le port.",
+    "type": "hotel",
+    "address": "5 quai Saint-Pierre, Marseille (13001)",
+    "priceRange": "70-130",
+    "stars": 2,
+    "amenities": ["wifi", "terrace", "parking", "breakfast"],
+    "from": 1,
+    "to": 6,
+    "open": "08:00",
+    "close": "20:00",
+    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+}

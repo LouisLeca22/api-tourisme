@@ -1,0 +1,16 @@
+export enum RestaurantType {
+  BISTRO = 'bistro',
+  BREWERY = 'brewery',
+  PIZZERIA = 'pizzeria',
+  CAFE = 'cafe',
+  FOOD_TRUCK = 'food_truck',
+  CATERER = 'caterer',
+  SNACK_BAR = 'snack bar',
+  CANTEEN = 'canteen',
+  TEA_ROOM = 'tea room',
+  WINE_BAR = 'wine bar',
+  CREPERIE = 'creperie',
+  INN = 'inn',
+  BUFFET = 'buffet',
+  GASTROPUB = 'gastropub',
+}

@@ -1,0 +1,17 @@
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+    "name": "Le Bistrot Artistique",
+    "description": "Bistrot chaleureux proposant une cuisine locale et des vins naturels.",
+    "type": "bistro",
+    "address": " 12 Place Sainte-Catherine, Honfleur (14600)",
+    "priceRange": "25-45",
+    "stars": 3,
+    "cuisines": ["french", "local", "vegetarian"],
+    "from": 1,
+    "to": 5,
+    "open": "12:00",
+    "close": "14:30",
+    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+}

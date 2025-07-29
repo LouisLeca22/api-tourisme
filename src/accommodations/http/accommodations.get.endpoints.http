@@ -1,0 +1,13 @@
+# Récupère tous les hébergements
+GET http://localhost:3000/accommodations
+
+# Pagination
+GET http://localhost:3000/accommodations?limit=2&page=4
+
+# Récupère les hébergements associés à un propriétaire
+GET http://localhost:3000/accommodations/4630dbf8-e1bb-4d2f-99f5-1c99ba3ad528
+
+# Récupère un hébergement par son identifiant
+GET http://localhost:3000/accommodations/single/69c43c37-7c48-40e4-85b4-b8926d8e8407
+
+
