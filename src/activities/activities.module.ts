@@ -5,10 +5,11 @@ import { OwnersModule } from 'src/owners/owners.module';
 import { GeocodingModule } from 'src/geocoding/geocoding.module';
 import { ActivitiesService } from './providers/activities.service';
 import { Activity } from './activity.entity';
+import { ActivitiesCreateManyProvider } from './providers/activities-create-many.provider';
 
 @Module({
   controllers: [ActivitiesController],
-  providers: [ActivitiesService],
+  providers: [ActivitiesService, ActivitiesCreateManyProvider],
   imports: [
     TypeOrmModule.forFeature([Activity]),
     OwnersModule,

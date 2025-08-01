@@ -20,6 +20,7 @@ import {
 } from '@nestjs/swagger';
 import { CreateEventDto } from './dtos/create-event.dto';
 import { PatchEventDto } from './dtos/patch-event.dto';
+import { CreateManyEventsDto } from './dtos/create-many-events.dto';
 
 @Controller('events')
 @ApiTags('Événemments')
@@ -90,6 +91,18 @@ export class EventsController {
   @Post()
   public createEvent(@Body() createEventDto: CreateEventDto) {
     return this.eventsService.create(createEventDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs événements',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Réponse 201 lorsque les événements ont été créés avec succès',
+  })
+  @Post('create-many')
+  public createManyEvents(@Body() createManyEventsDto: CreateManyEventsDto) {
+    return this.eventsService.createMany(createManyEventsDto);
   }
 
   @ApiOperation({

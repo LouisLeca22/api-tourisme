@@ -16,10 +16,17 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  it('/ (GET) should return the HTML homepage', async () => {
+    const response = await request(app.getHttpServer()).get('/');
+
+    expect(response.status).toBe(200);
+    expect(response.type).toBe('text/html');
+    expect(response.text).toContain('<title>api-tourisme</title>');
+    expect(response.text).toContain('<h1>api-tourisme</h1>');
+    expect(response.text).toContain('<a href="/doc">Voir la documentation</a>');
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

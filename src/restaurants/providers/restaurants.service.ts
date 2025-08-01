@@ -7,6 +7,8 @@ import { Restaurant } from '../restaurant.entity';
 import { CreateRestaurantDto } from '../dtos/create-restaurant.dto';
 import { validate as isUuid } from 'uuid';
 import { PatchRestaurantDto } from '../dtos/patch-restaurant.dto';
+import { RestaurantsCreateManyProvider } from './restaurants-create-many.provider';
+import { CreateManyRestaurantsDto } from '../dtos/create-many-restaurants.dto';
 
 @Injectable()
 export class RestaurantsService {
@@ -15,6 +17,7 @@ export class RestaurantsService {
     private restaurantRepository: Repository<Restaurant>,
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
+    private readonly restaurantsCreateManyProvider: RestaurantsCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number, ownerId?: string) {
@@ -64,6 +67,12 @@ export class RestaurantsService {
     });
     await this.restaurantRepository.save(newRestaurant);
     return newRestaurant;
+  }
+
+  public async createMany(createManyRestaurantsDto: CreateManyRestaurantsDto) {
+    return await this.restaurantsCreateManyProvider.createMany(
+      createManyRestaurantsDto,
+    );
   }
 
   public async update(patchRestaurantDto: PatchRestaurantDto) {

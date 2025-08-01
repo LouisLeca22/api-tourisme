@@ -11,6 +11,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateOwnerDto } from '../dtos/create-owner.dto';
 import { validate as isUuid } from 'uuid';
 import { PatchOwnerDto } from '../dtos/patch-owner.dto';
+import { OnwersCreateManyProvider } from './onwers-create-many.provider';
+import { CreateManyOwnersDto } from '../dtos/create-mny-owners.dto';
 
 @Injectable()
 export class OwnersService {
@@ -20,6 +22,8 @@ export class OwnersService {
 
     @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
+
+    private readonly ownersCreateManyProvider: OnwersCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number) {
@@ -62,6 +66,10 @@ export class OwnersService {
     return newOwner;
   }
 
+  public async createMany(createManyOwnersDto: CreateManyOwnersDto) {
+    return await this.ownersCreateManyProvider.createMany(createManyOwnersDto);
+  }
+
   public async update(patchOwnerDto: PatchOwnerDto) {
     const owner = await this.ownerRepository.findOneBy({
       id: patchOwnerDto.id,
@@ -80,7 +88,7 @@ export class OwnersService {
       const existingOwner = await this.ownerRepository.findOne({
         where: { email: patchOwnerDto.email },
       });
-      console.log(existingOwner);
+
       if (existingOwner) {
         throw new BadRequestException('Cet utilisateur existe déjà');
       } else {

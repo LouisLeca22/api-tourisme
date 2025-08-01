@@ -16,3 +16,148 @@ Content-Type: application/json
     "close": "18:00",
     "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
 }
+
+
+
+POST http://localhost:3000/activities/create-many
+Content-Type: application/json
+
+{"activities" : [
+  {
+    "name": "Balade en paddle dans la baie",
+    "description": "Découvrez les criques en paddle encadré par un moniteur diplômé.",
+    "type": "nautical_sport",
+    "duration": 2,
+    "priceRange": "50-80",
+    "address": "Plage des Coussoules Basses, 11370 Leucate",
+    "languages": ["fr", "en"],
+    "requiredAge": 10,
+    "from": 2,
+    "to": 5,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  },
+  {
+    "name": "Randonnée guidée en montagne",
+    "description": "Explorez les sentiers avec un guide local passionné.",
+    "type": "hiking",
+    "duration": 4,
+    "priceRange": "30-60",
+    "address": "Chemin des Crêtes, Font-Romeu, Pyrénées-Orientales",
+    "languages": ["fr"],
+    "requiredAge": 12,
+    "from": 1,
+    "to": 5,
+    "open": "08:00",
+    "close": "16:00",
+    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+  },
+  {
+    "name": "Cours de cuisine catalane",
+    "description": "Apprenez à préparer des plats traditionnels catalans.",
+    "type": "cooking_class",
+    "duration": 3,
+    "priceRange": "40-70",
+    "address": "45 avenue de la République, 66000 Perpignan",
+    "languages": ["fr", "en", "es"],
+    "requiredAge": 16,
+    "from": 3,
+    "to": 6,
+    "open": "14:00",
+    "close": "17:00",
+    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+  },
+  {
+    "name": "Visite historique du centre-ville",
+    "description": "Découvrez l’histoire locale avec un guide expert.",
+    "type": "cultural_tour",
+    "duration": 1,
+    "priceRange": "15-25",
+    "address": "Place de la Révolution Française, 66190 Collioure",
+    "languages": ["fr", "en"],
+    "requiredAge": 0,
+    "from": 1,
+    "to": 6,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+  },
+  {
+    "name": "Initiation au kite surf",
+    "description": "Premiers pas en kite surf avec un moniteur qualifié.",
+    "type": "nautical_sport",
+    "duration": 2,
+    "priceRange": "70-120",
+    "address": "Route de Leucate‑plage, 11370 Leucate",
+    "languages": ["fr", "en"],
+    "requiredAge": 14,
+    "from": 3,
+    "to": 6,
+    "open": "09:00",
+    "close": "17:00",
+    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+  },
+  {
+    "name": "Atelier de poterie artisanale",
+    "description": "Créez vos propres pièces en argile.",
+    "type": "art_craft",
+    "duration": 2,
+    "priceRange": "30-45",
+    "address": "24 rue du Puig Carroitg, 66290 Cerbère",
+    "languages": ["fr", "en"],
+    "requiredAge": 10,
+    "from": 5,
+    "to": 6,
+    "open": "10:00",
+    "close": "16:00",
+    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+  },
+  {
+    "name": "Découverte de la faune marine en snorkeling",
+    "description": "Explorez la vie sous‑marine avec un guide expérimenté.",
+    "type": "nautical_sport",
+    "duration": 2,
+    "priceRange": "55-90",
+    "address": "Plage de la Marenda, 66700 Argelès‑sur‑Mer",
+    "languages": ["fr", "en"],
+    "requiredAge": 12,
+    "from": 2,
+    "to": 6,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+  },
+  {
+    "name": "Dégustation de vins locaux",
+    "description": "Goûtez aux meilleurs vins du Roussillon avec un sommelier.",
+    "type": "food_and_drink",
+    "duration": 1,
+    "priceRange": "20-40",
+    "address": "Domaine des Vignes, 11510 Fitou",
+    "languages": ["fr", "en"],
+    "requiredAge": 18,
+    "from": 4,
+    "to": 6,
+    "open": "14:00",
+    "close": "19:00",
+    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+  },
+  {
+    "name": "Balade à vélo le long de la côte",
+    "description": "Parcourez la côte avec un guide local.",
+    "type": "cycling",
+    "duration": 3,
+    "priceRange": "25-50",
+    "address": "Promenade du Littoral, 66650 Banyuls‑sur‑Mer",
+    "languages": ["fr"],
+    "requiredAge": 8,
+    "from": 1,
+    "to": 5,
+    "open": "09:00",
+    "close": "15:00",
+    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+  }
+]
+
+}

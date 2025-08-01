@@ -7,6 +7,8 @@ import { CreateAccommodationDto } from '../dtos/create-accommodation-dto';
 import { Accommodation } from '../accommodation.entity';
 import { validate as isUuid } from 'uuid';
 import { PatchAccommodationDto } from '../dtos/patch-accommodation-dto';
+import { AccommodationsCreateManyProvider } from './accommodations-create-many.provider';
+import { CreateManyAccommodationsDto } from '../dtos/create-many-accommodations.dto';
 
 @Injectable()
 export class AccommodationsService {
@@ -15,6 +17,7 @@ export class AccommodationsService {
     private accommodationRepository: Repository<Accommodation>,
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
+    private readonly accommodationsCreateManyProvider: AccommodationsCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number, ownerId?: string) {
@@ -68,6 +71,14 @@ export class AccommodationsService {
     return newAccommodation;
   }
 
+  public async createMany(
+    createManyAccommodationsDto: CreateManyAccommodationsDto,
+  ) {
+    return await this.accommodationsCreateManyProvider.createMany(
+      createManyAccommodationsDto,
+    );
+  }
+
   public async update(patchAccommodationDto: PatchAccommodationDto) {
     const accommodation = await this.accommodationRepository.findOneBy({
       id: patchAccommodationDto.id,
@@ -84,7 +95,6 @@ export class AccommodationsService {
     accommodation.stars = patchAccommodationDto.stars ?? accommodation.stars;
     accommodation.amenities =
       patchAccommodationDto.amenities ?? accommodation.amenities;
-
     accommodation.priceRange =
       patchAccommodationDto.priceRange ?? accommodation.priceRange;
     accommodation.from = patchAccommodationDto.from ?? accommodation.from;

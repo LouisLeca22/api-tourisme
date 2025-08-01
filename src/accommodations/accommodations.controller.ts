@@ -20,6 +20,7 @@ import {
 import { AccommodationsService } from './providers/acommodations.service';
 import { CreateAccommodationDto } from './dtos/create-accommodation-dto';
 import { PatchAccommodationDto } from './dtos/patch-accommodation-dto';
+import { CreateManyAccommodationsDto } from './dtos/create-many-accommodations.dto';
 
 @Controller('accommodations')
 @ApiTags('Hébergements')
@@ -93,6 +94,21 @@ export class AccommodationsController {
     @Body() createAccommodationDto: CreateAccommodationDto,
   ) {
     return this.accommodationsService.create(createAccommodationDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs hébergements',
+  })
+  @ApiResponse({
+    status: 201,
+    description:
+      'Réponse 201 lorsque les hébergements ont été créés avec succès',
+  })
+  @Post('create-many')
+  public createManyAccommodations(
+    @Body() createManyAccommodationsDto: CreateManyAccommodationsDto,
+  ) {
+    return this.accommodationsService.createMany(createManyAccommodationsDto);
   }
 
   @ApiOperation({

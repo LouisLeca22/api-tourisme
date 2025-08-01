@@ -4,10 +4,11 @@ import { OwnersService } from './providers/owners.service';
 import { AuthModule } from 'src/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Owner } from './owner.entity';
+import { OnwersCreateManyProvider } from './providers/onwers-create-many.provider';
 
 @Module({
   controllers: [OwnersController],
-  providers: [OwnersService],
+  providers: [OwnersService, OnwersCreateManyProvider],
   exports: [OwnersService],
   imports: [TypeOrmModule.forFeature([Owner]), forwardRef(() => AuthModule)],
 })

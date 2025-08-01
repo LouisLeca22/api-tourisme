@@ -7,6 +7,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateEventDto } from '../dtos/create-event.dto';
 import { validate as isUuid } from 'uuid';
 import { PatchEventDto } from '../dtos/patch-event.dto';
+import { EventsCreateManyProvider } from './events-create-many.provider';
+import { CreateManyEventsDto } from '../dtos/create-many-events.dto';
 
 @Injectable()
 export class EventsService {
@@ -15,6 +17,7 @@ export class EventsService {
     private eventRepository: Repository<Event>,
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
+    private readonly eventsCreateManyProvider: EventsCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number, ownerId?: string) {
@@ -64,6 +67,10 @@ export class EventsService {
     });
     await this.eventRepository.save(newEvent);
     return newEvent;
+  }
+
+  public async createMany(createManyEventsDto: CreateManyEventsDto) {
+    return await this.eventsCreateManyProvider.createMany(createManyEventsDto);
   }
 
   public async update(patchEventDto: PatchEventDto) {

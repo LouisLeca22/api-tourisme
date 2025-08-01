@@ -20,6 +20,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreateManyOwnersDto } from './dtos/create-mny-owners.dto';
 
 @Controller('owners')
 @ApiTags('Propriétaires')
@@ -84,6 +85,19 @@ export class OwnersController {
   @Post()
   public createOwner(@Body() createOwnerDto: CreateOwnerDto) {
     return this.ownersService.create(createOwnerDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs propriétaires',
+  })
+  @ApiResponse({
+    status: 201,
+    description:
+      'Réponse 201 lorsque les propriétaires ont été créés avec succès',
+  })
+  @Post('create-many')
+  public createManyOwners(@Body() createManyOwnersDto: CreateManyOwnersDto) {
+    return this.ownersService.createMany(createManyOwnersDto);
   }
 
   @ApiOperation({

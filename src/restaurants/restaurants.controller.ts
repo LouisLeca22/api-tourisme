@@ -20,6 +20,7 @@ import {
 import { RestaurantsService } from './providers/restaurants.service';
 import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import { PatchRestaurantDto } from './dtos/patch-restaurant.dto';
+import { CreateManyRestaurantsDto } from './dtos/create-many-restaurants.dto';
 
 @Controller('restaurants')
 @ApiTags('Restaurants')
@@ -89,6 +90,21 @@ export class RestaurantsController {
   @Post()
   public createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto) {
     return this.restaurantsService.create(createRestaurantDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs restaurants',
+  })
+  @ApiResponse({
+    status: 201,
+    description:
+      'Réponse 201 lorsque les restaurants ont été créés avec succès',
+  })
+  @Post('create-many')
+  public createManyRestaurants(
+    @Body() createManyRestaurantsDto: CreateManyRestaurantsDto,
+  ) {
+    return this.restaurantsService.createMany(createManyRestaurantsDto);
   }
 
   @ApiOperation({

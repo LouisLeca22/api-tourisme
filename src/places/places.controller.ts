@@ -20,6 +20,7 @@ import {
 import { PatchPlaceDto } from './dtos/patch-place.dto';
 import { CreatePlaceDto } from './dtos/create-place.dto';
 import { PlacesService } from './providers/places.service';
+import { CreateManyPlacesDto } from './dtos/create-many-places.dto';
 
 @Controller('places')
 @ApiTags('Sites touristiques')
@@ -91,6 +92,19 @@ export class PlacesController {
   @Post()
   public createPlace(@Body() createPlaceDto: CreatePlaceDto) {
     return this.placesService.create(createPlaceDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs sites touristiques',
+  })
+  @ApiResponse({
+    status: 201,
+    description:
+      'Réponse 201 lorsque les sites touristiques ont été créés avec succès',
+  })
+  @Post('create-many')
+  public createManyPlaces(@Body() createManyPlacesDto: CreateManyPlacesDto) {
+    return this.placesService.createMany(createManyPlacesDto);
   }
 
   @ApiOperation({

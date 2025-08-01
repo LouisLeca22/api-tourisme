@@ -7,6 +7,8 @@ import { Activity } from '../activity.entity';
 import { CreateActivityDto } from '../dtos/create-activity.dto';
 import { validate as isUuid } from 'uuid';
 import { PatchActivityDto } from '../dtos/patch-activity.dto';
+import { ActivitiesCreateManyProvider } from './activities-create-many.provider';
+import { CreateManyActivitiesDto } from '../dtos/create-many-activities.dto';
 
 @Injectable()
 export class ActivitiesService {
@@ -15,6 +17,7 @@ export class ActivitiesService {
     private activityRepository: Repository<Activity>,
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
+    private readonly activitiesCreateManyProvider: ActivitiesCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number, ownerId?: string) {
@@ -64,6 +67,12 @@ export class ActivitiesService {
     });
     await this.activityRepository.save(newActivity);
     return newActivity;
+  }
+
+  public async createMany(createManyActivitiesDto: CreateManyActivitiesDto) {
+    return await this.activitiesCreateManyProvider.createMany(
+      createManyActivitiesDto,
+    );
   }
 
   public async update(patchActivityDto: PatchActivityDto) {

@@ -20,6 +20,7 @@ import {
 import { ActivitiesService } from './providers/activities.service';
 import { CreateActivityDto } from './dtos/create-activity.dto';
 import { PatchActivityDto } from './dtos/patch-activity.dto';
+import { CreateManyActivitiesDto } from './dtos/create-many-activities.dto';
 
 @Controller('activities')
 @ApiTags('Activités')
@@ -90,6 +91,20 @@ export class ActivitiesController {
   @Post()
   public createActivity(@Body() createActivityDto: CreateActivityDto) {
     return this.activitiesService.create(createActivityDto);
+  }
+
+  @ApiOperation({
+    summary: 'Crée plusieurs activités',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Réponse 201 lorsque les activités ont été créées avec succès',
+  })
+  @Post('create-many')
+  public createManyActivities(
+    @Body() createManyActivitiesDto: CreateManyActivitiesDto,
+  ) {
+    return this.activitiesService.createMany(createManyActivitiesDto);
   }
 
   @ApiOperation({

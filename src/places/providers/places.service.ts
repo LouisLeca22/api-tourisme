@@ -7,6 +7,8 @@ import { Place } from '../place.entity';
 import { CreatePlaceDto } from '../dtos/create-place.dto';
 import { validate as isUuid } from 'uuid';
 import { PatchPlaceDto } from '../dtos/patch-place.dto';
+import { PlacesCreateManyProvider } from './places-create-many.provider';
+import { CreateManyPlacesDto } from '../dtos/create-many-places.dto';
 
 @Injectable()
 export class PlacesService {
@@ -15,6 +17,7 @@ export class PlacesService {
     private placeRepository: Repository<Place>,
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
+    private readonly placesCreateManyProvider: PlacesCreateManyProvider,
   ) {}
 
   public async findAll(limit: number, page: number, ownerId?: string) {
@@ -64,6 +67,10 @@ export class PlacesService {
     });
     await this.placeRepository.save(newPlace);
     return newPlace;
+  }
+
+  public async createMany(createManyPlacesDto: CreateManyPlacesDto) {
+    return await this.placesCreateManyProvider.createMany(createManyPlacesDto);
   }
 
   public async update(patchPlaceDto: PatchPlaceDto) {

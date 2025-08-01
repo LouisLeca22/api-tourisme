@@ -5,10 +5,11 @@ import { OwnersModule } from 'src/owners/owners.module';
 import { GeocodingModule } from 'src/geocoding/geocoding.module';
 import { RestaurantsService } from './providers/restaurants.service';
 import { Restaurant } from './restaurant.entity';
+import { RestaurantsCreateManyProvider } from './providers/restaurants-create-many.provider';
 
 @Module({
   controllers: [RestaurantsController],
-  providers: [RestaurantsService],
+  providers: [RestaurantsService, RestaurantsCreateManyProvider],
   imports: [
     TypeOrmModule.forFeature([Restaurant]),
     OwnersModule,

@@ -15,3 +15,152 @@ Content-Type: application/json
     "close": "20:00",
     "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
 }
+
+
+
+POST http://localhost:3000/accommodations/create-many
+Content-Type: application/json
+
+{"accommodations" : [
+     {
+    "name": "Villa des Roses",
+    "description": "Charmante villa avec jardin et piscine.",
+    "type": "guest_house",
+    "stars": 4,
+    "address": "45 avenue des Fleurs, Cannes",
+    "amenities": ["wifi", "pool", "parking", "air_conditioning"],
+    "priceRange": "120-250",
+    "from": 1,
+    "to": 6,
+    "open": "09:00",
+    "close": "20:00",
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  },
+  {
+    "name": "Auberge du Mont",
+    "description": "Auberge traditionnelle au cœur des montagnes.",
+    "type": "auberge",
+    "stars": 2,
+    "address": "Chemin du Lai 74400 Chamonix-Mont-Blanc",
+    "amenities": ["wifi", "breakfast", "parking", "fireplace"],
+    "priceRange": "60-120",
+    "from": 3,
+    "to": 6,
+    "open": "08:00",
+    "close": "17:00",
+    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+  },
+  {
+    "name": "Hôtel Belle Étoile",
+    "description": "Hôtel confortable au centre-ville avec restaurant.",
+    "type": "hotel",
+    "stars": 3,
+    "address": "10 Boulevard Saint-Michel, 75006 Paris",
+    "amenities": ["wifi", "restaurant", "parking", "air_conditioning"],
+    "priceRange": "90-180",
+    "from": 1,
+    "to": 5,
+    "open" : "07:00",
+    "close": "22:00",
+    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+  },
+  {
+    "name": "Chalet des Neiges",
+    "description": "Chalet cosy avec vue sur les pistes de ski.",
+    "type": "guest_house",
+    "stars": 4,
+    "address": "Impasse des Balcons des Pistes 38860 Les Deux Alpes",
+    "amenities": ["wifi", "parking", "fireplace", "ski_storage"],
+    "priceRange": "150-300",
+    "from": 2,
+    "to": 5,
+    "open": "08:00",
+    "close": "21:00",
+    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+  },
+  {
+    "name": "Résidence La Mer",
+    "description": "Appartements modernes à deux pas de la plage.",
+    "type": "residence",
+    "stars": 3,
+    "address": "23 Promenade des Anglais, 06000 Nice",
+    "amenities": ["wifi", "parking", "sea_view", "air_conditioning"],
+    "priceRange": "100-200",
+    "from": 1,
+    "to": 6,
+    "open": "09:00",
+    "close": "19:00",
+    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+  },
+  {
+    "name": "Hôtel du Vieux Port",
+    "description": "Petit hôtel charmant avec terrasse sur le port.",
+    "type": "hotel",
+    "stars": 2,
+    "address": "Quai du port 13007 Marseille",
+    "amenities": ["wifi", "terrace", "parking", "breakfast"],
+    "priceRange": "70-130",
+    "from": 1,
+    "to": 6,
+    "open": "08:00",
+    "close": "20:00",
+    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+  },
+  {
+    "name": "Maison du Lac",
+    "description": "Maison de charme avec accès direct au lac.",
+    "type": "vacation_rental",
+    "stars": 4,
+    "address": "8 Rue du Lac, 74000 Annecy",
+    "amenities": ["wifi", "parking", "lake_view", "fireplace"],
+    "priceRange": "130-270",
+    "from": 1,
+    "to": 6,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+  },
+  {
+    "name": "Hôtel du Parc",
+    "description": "Hôtel calme à proximité du parc central.",
+    "type": "hotel",
+    "stars": 3,
+    "address": "15 Avenue Maréchal de Saxe, 69006 Lyon",
+    "amenities": ["wifi", "parking", "breakfast", "air_conditioning"],
+    "priceRange": "80-150",
+    "from": 1,
+    "to": 4,
+    "open": "07:00",
+    "close": "22:00",
+    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+  },
+  {
+    "name": "Chambres d'hôtes La Lavande",
+    "description": "Charmantes chambres d'hôtes en campagne.",
+    "type": "bed_and_breakfast",
+    "stars": 2,
+    "address": "Rue de la Lavande 84160 Lourmarin",
+    "amenities": ["wifi", "breakfast", "garden", "parking"],
+    "priceRange": "55-110",
+    "from": 2,
+    "to": 6,
+    "open": "08:00",
+    "close": "19:00",
+    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+  },
+  {
+    "name": "Hôtel La Côte d'Azur",
+    "description": "Hôtel avec piscine et accès direct à la plage.",
+    "type": "hotel",
+    "stars": 4,
+    "address": "Chemin de la Plage 83990 Saint-Tropez",
+    "amenities": ["wifi", "pool", "sea_view", "parking", "air_conditioning"],
+    "priceRange": "180-350",
+    "from": 1,
+    "to": 6,
+    "open": "08:00",
+    "close": "22:00",
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  }
+]
+}

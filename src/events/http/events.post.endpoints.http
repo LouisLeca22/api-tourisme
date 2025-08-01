@@ -13,3 +13,132 @@ Content-Type: application/json
     "requiredAge": 12,
     "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
 }
+
+
+
+POST http://localhost:3000/events/create-many
+Content-Type: application/json
+
+{"events" : [
+  {
+    "name": "Nuits de la Guitare",
+    "description": "Concerts de guitare dans un cadre intimiste au cœur de Patrimonio.",
+    "type": "concert",
+    "address": "10 rue de la Paix, 75000 Paris",
+    "startDate": "2025-07-20T21:00:00+02:00",
+    "endDate": "2025-07-20T23:30:00+02:00",
+    "priceRange": "20-50",
+    "languages": ["fr", "it"],
+    "requiredAge": 12,
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  },
+  {
+    "name": "Festival des Lumières",
+    "description": "Un festival visuel et sonore illuminant les rues du vieux Lyon.",
+    "type": "festival",
+    "address": "Place des Terreaux, 69001 Lyon",
+    "startDate": "2025-12-06T18:00:00+01:00",
+    "endDate": "2025-12-06T23:00:00+01:00",
+    "priceRange": "0-0",
+    "languages": ["fr", "en", "de"],
+    "requiredAge": 0,
+    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+  },
+  {
+    "name": "Atelier de peinture contemporaine",
+    "description": "Participez à un atelier créatif avec une artiste renommée.",
+    "type": "workshop",
+    "address": "21 boulevard de Strasbourg, 75010 Paris",
+    "startDate": "2025-08-03T14:00:00+02:00",
+    "endDate": "2025-08-03T17:00:00+02:00",
+    "priceRange": "35-60",
+    "languages": ["fr", "en"],
+    "requiredAge": 16,
+    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+  },
+  {
+    "name": "Salon des vins bio du Languedoc",
+    "description": "Dégustation de vins naturels avec des producteurs locaux.",
+    "type": "wine_tasting",
+    "address": "Domaine de l’Hortus, 34270 Valflaunès",
+    "startDate": "2025-09-15T11:00:00+02:00",
+    "endDate": "2025-09-15T18:00:00+02:00",
+    "priceRange": "10-25",
+    "languages": ["fr", "en", "de", "nl"],
+    "requiredAge": 18,
+    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+  },
+  {
+    "name": "Open de pétanque de Marseille",
+    "description": "Tournoi international de pétanque sur le Vieux-Port.",
+    "type": "sporting_event",
+    "address": "Quai de Rive Neuve, 13007 Marseille",
+    "startDate": "2025-08-10T09:00:00+02:00",
+    "endDate": "2025-08-10T19:00:00+02:00",
+    "priceRange": "5-10",
+    "languages": ["fr", "it", "es"],
+    "requiredAge": 10,
+    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+  },
+  {
+    "name": "Projection plein air – Cinéma italien",
+    "description": "Film culte projeté en plein air sur grand écran au bord de l’eau.",
+    "type": "film_festival",
+    "address": "Parc André Citroën, 75015 Paris",
+    "startDate": "2025-07-28T21:30:00+02:00",
+    "endDate": "2025-07-28T23:15:00+02:00",
+    "priceRange": "0-0",
+    "languages": ["fr", "it"],
+    "requiredAge": 8,
+    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+  },
+  {
+    "name": "Marché des créateurs de Collioure",
+    "description": "Créateurs et artisans locaux réunis sur le front de mer.",
+    "type": "market",
+    "address": "Rue de la Démocratie, 66190 Collioure",
+    "startDate": "2025-08-12T10:00:00+02:00",
+    "endDate": "2025-08-12T18:00:00+02:00",
+    "priceRange": "0-0",
+    "languages": ["fr", "en"],
+    "requiredAge": 0,
+    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+  },
+  {
+    "name": "Festival de théâtre en plein air",
+    "description": "Troupe itinérante jouant Molière dans les jardins d’un château.",
+    "type": "theatre",
+    "address": "Château de Flaugergues, 1744 Avenue Albert Einstein, 34000 Montpellier",
+    "startDate": "2025-08-05T20:30:00+02:00",
+    "endDate": "2025-08-05T22:30:00+02:00",
+    "priceRange": "15-35",
+    "languages": ["fr"],
+    "requiredAge": 6,
+    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+  },
+  {
+    "name": "Expo photo – Regards croisés",
+    "description": "Photographies de jeunes talents sur le thème de la mémoire.",
+    "type": "exhibition",
+    "address": "Palais des Congrès, 31770 Colomiers",
+    "startDate": "2025-10-10T09:00:00+02:00",
+    "endDate": "2025-10-10T17:00:00+02:00",
+    "priceRange": "5-15",
+    "languages": ["fr", "en", "pt"],
+    "requiredAge": 0,
+    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+  },
+  {
+    "name": "Forum citoyen – Vivre ensemble",
+    "description": "Rencontres, débats et ateliers pour renforcer le lien social.",
+    "type": "community_meeting",
+    "address": "Maison des Associations, 20 rue Émile Zola, 21000 Dijon",
+    "startDate": "2025-09-05T14:00:00+02:00",
+    "endDate": "2025-09-05T18:30:00+02:00",
+    "priceRange": "0-0",
+    "languages": ["fr"],
+    "requiredAge": 14,
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  }
+]
+}

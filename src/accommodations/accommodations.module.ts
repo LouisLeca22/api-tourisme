@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Accommodation } from './accommodation.entity';
 import { OwnersModule } from 'src/owners/owners.module';
 import { GeocodingModule } from 'src/geocoding/geocoding.module';
+import { AccommodationsCreateManyProvider } from './providers/accommodations-create-many.provider';
 
 @Module({
   controllers: [AccommodationsController],
-  providers: [AccommodationsService],
+  providers: [AccommodationsService, AccommodationsCreateManyProvider],
   imports: [
     TypeOrmModule.forFeature([Accommodation]),
     OwnersModule,

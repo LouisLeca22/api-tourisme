@@ -15,3 +15,153 @@ Content-Type: application/json
     "close": "18:00",
     "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
 }
+
+
+
+POST http://localhost:3000/places/create-many
+Content-Type: application/json
+
+{"places" : [
+  {
+    "name": "Musée d'Art Moderne de Céret",
+    "description": "Un musée emblématique dédié aux artistes du XXe siècle.",
+    "type": "museum",
+    "address": "8 Bd Maréchal Joffre, Céret (66400)",
+    "priceRange": "0-0",
+    "languages": ["fr", "en", "es"],
+    "requiredAge": 0,
+    "from": 2,
+    "to": 6,
+    "open": "10:00",
+    "close": "18:00",
+    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+  },
+  {
+    "name": "Jardin des Plantes de Montpellier",
+    "description": "Un jardin botanique historique fondé au XVIe siècle.",
+    "type": "garden",
+    "address": "Blvd Henri IV, 34000 Montpellier",
+    "priceRange": "0-0",
+    "languages": ["fr", "en"],
+    "requiredAge": 0,
+    "from": 1,
+    "to": 6,
+    "open": "08:00",
+    "close": "18:30",
+    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+  },
+  {
+    "name": "Plage de l’Ouille",
+    "description": "Une plage sauvage et discrète entre Collioure et Argelès.",
+    "type": "beach",
+    "address": "Chemin de la Galère, 66700 Argelès-sur-Mer",
+    "priceRange": "0-0",
+    "languages": ["fr", "en"],
+    "requiredAge": 0,
+    "from": 1,
+    "to": 6,
+    "open": "07:00",
+    "close": "21:00",
+    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+  },
+  {
+    "name": "Parc de Valmy",
+    "description": "Parc ombragé avec vue sur la mer et aires de pique-nique.",
+    "type": "park",
+    "address": "Chemin de Valmy, 66700 Argelès-sur-Mer",
+    "priceRange": "0-0",
+    "languages": ["fr", "en", "de"],
+    "requiredAge": 0,
+    "from": 1,
+    "to": 6,
+    "open": "08:00",
+    "close": "20:00",
+    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+  },
+  {
+    "name": "Fort Saint-Elme",
+    "description": "Fort militaire surplombant la baie de Collioure.",
+    "type": "historic_site",
+    "address": "Chemin du Fort, 66190 Collioure",
+    "priceRange": "8-10",
+    "languages": ["fr", "en", "es"],
+    "requiredAge": 0,
+    "from": 3,
+    "to": 6,
+    "open": "10:30",
+    "close": "18:30",
+    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+  },
+  {
+    "name": "Théâtre de l’Archipel",
+    "description": "Scène nationale à l’architecture audacieuse.",
+    "type": "theater",
+    "address": "Avenue Général Leclerc, 66000 Perpignan",
+    "priceRange": "10-40",
+    "languages": ["fr", "es"],
+    "requiredAge": 6,
+    "from": 3,
+    "to": 6,
+    "open": "14:00",
+    "close": "22:00",
+    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+  },
+  {
+    "name": "Bibliothèque Louis Nucéra",
+    "description": "Grande médiathèque moderne au cœur de Nice.",
+    "type": "library",
+    "address": "2 Place Yves Klein, 06300 Nice",
+    "priceRange": "0-0",
+    "languages": ["fr", "en", "it"],
+    "requiredAge": 0,
+    "from": 2,
+    "to": 6,
+    "open": "09:00",
+    "close": "19:00",
+    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+  },
+  {
+    "name": "Monument aux Morts du Plateau de Glières",
+    "description": "Lieu de mémoire de la Résistance en Haute-Savoie.",
+    "type": "monument",
+    "address": "Plateau des Glières, 74570 Thorens-Glières",
+    "priceRange": "0-0",
+    "languages": ["fr", "en"],
+    "requiredAge": 0,
+    "from": 3,
+    "to": 6,
+    "open": "09:00",
+    "close": "17:00",
+    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+  },
+  {
+    "name": "Zoo de la Barben",
+    "description": "Un des plus grands zoos du sud de la France.",
+    "type": "zoo",
+    "address": "Route du Château, 13330 La Barben",
+    "priceRange": "12-20",
+    "languages": ["fr", "en", "nl"],
+    "requiredAge": 0,
+    "from": 2,
+    "to": 6,
+    "open": "09:30",
+    "close": "18:00",
+    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+  },
+  {
+    "name": "Marché couvert de Narbonne",
+    "description": "Marché alimentaire animé dans une halle Belle Époque.",
+    "type": "marketplace",
+    "address": "1 Boulevard Dr Ferroul, 11100 Narbonne",
+    "priceRange": "0-0",
+    "languages": ["fr", "en", "es"],
+    "requiredAge": 0,
+    "from": 1,
+    "to": 6,
+    "open": "07:00",
+    "close": "13:30",
+    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+  }
+]
+
+}
