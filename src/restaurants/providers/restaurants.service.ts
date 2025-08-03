@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Restaurant } from '../restaurant.entity';
 import { CreateRestaurantDto } from '../dtos/create-restaurant.dto';
@@ -9,6 +9,9 @@ import { validate as isUuid } from 'uuid';
 import { PatchRestaurantDto } from '../dtos/patch-restaurant.dto';
 import { RestaurantsCreateManyProvider } from './restaurants-create-many.provider';
 import { CreateManyRestaurantsDto } from '../dtos/create-many-restaurants.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class RestaurantsService {
@@ -18,19 +21,29 @@ export class RestaurantsService {
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
     private readonly restaurantsCreateManyProvider: RestaurantsCreateManyProvider,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public async findAll(limit: number, page: number, ownerId?: string) {
+  public async findAll(
+    restaurantsQuery: PaginationQueryDto,
+    ownerId?: string,
+  ): Promise<Paginated<Restaurant>> {
     if (ownerId) await this.ownersService.findOne(ownerId);
-    const where = ownerId ? { owner: { id: ownerId } } : {};
 
-    const skip = (page - 1) * limit;
+    const where: FindOptionsWhere<Restaurant> = {};
 
-    return await this.restaurantRepository.find({
+    if (ownerId) {
+      where.owner = { id: ownerId };
+    }
+
+    return this.paginationProvider.paginateQuey(
       where,
-      take: limit,
-      skip,
-    });
+      {
+        limit: restaurantsQuery.limit,
+        page: restaurantsQuery.page,
+      },
+      this.restaurantRepository,
+    );
   }
 
   public async findOne(restaurantId: string) {

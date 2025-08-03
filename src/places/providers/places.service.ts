@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Place } from '../place.entity';
 import { CreatePlaceDto } from '../dtos/create-place.dto';
@@ -9,6 +9,9 @@ import { validate as isUuid } from 'uuid';
 import { PatchPlaceDto } from '../dtos/patch-place.dto';
 import { PlacesCreateManyProvider } from './places-create-many.provider';
 import { CreateManyPlacesDto } from '../dtos/create-many-places.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 
 @Injectable()
 export class PlacesService {
@@ -18,19 +21,29 @@ export class PlacesService {
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
     private readonly placesCreateManyProvider: PlacesCreateManyProvider,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public async findAll(limit: number, page: number, ownerId?: string) {
+  public async findAll(
+    placesQuery: PaginationQueryDto,
+    ownerId?: string,
+  ): Promise<Paginated<Place>> {
     if (ownerId) await this.ownersService.findOne(ownerId);
-    const where = ownerId ? { owner: { id: ownerId } } : {};
 
-    const skip = (page - 1) * limit;
+    const where: FindOptionsWhere<Place> = {};
 
-    return await this.placeRepository.find({
+    if (ownerId) {
+      where.owner = { id: ownerId };
+    }
+
+    return this.paginationProvider.paginateQuey(
       where,
-      take: limit,
-      skip,
-    });
+      {
+        limit: placesQuery.limit,
+        page: placesQuery.page,
+      },
+      this.placeRepository,
+    );
   }
 
   public async findOne(placeId: string) {

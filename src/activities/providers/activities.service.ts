@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Activity } from '../activity.entity';
 import { CreateActivityDto } from '../dtos/create-activity.dto';
@@ -9,6 +9,9 @@ import { validate as isUuid } from 'uuid';
 import { PatchActivityDto } from '../dtos/patch-activity.dto';
 import { ActivitiesCreateManyProvider } from './activities-create-many.provider';
 import { CreateManyActivitiesDto } from '../dtos/create-many-activities.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 
 @Injectable()
 export class ActivitiesService {
@@ -18,19 +21,29 @@ export class ActivitiesService {
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
     private readonly activitiesCreateManyProvider: ActivitiesCreateManyProvider,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public async findAll(limit: number, page: number, ownerId?: string) {
+  public async findAll(
+    activitiesQuery: PaginationQueryDto,
+    ownerId?: string,
+  ): Promise<Paginated<Activity>> {
     if (ownerId) await this.ownersService.findOne(ownerId);
-    const where = ownerId ? { owner: { id: ownerId } } : {};
 
-    const skip = (page - 1) * limit;
+    const where: FindOptionsWhere<Activity> = {};
 
-    return await this.activityRepository.find({
+    if (ownerId) {
+      where.owner = { id: ownerId };
+    }
+
+    return this.paginationProvider.paginateQuey(
       where,
-      take: limit,
-      skip,
-    });
+      {
+        limit: activitiesQuery.limit,
+        page: activitiesQuery.page,
+      },
+      this.activityRepository,
+    );
   }
 
   public async findOne(activityId: string) {

@@ -6,7 +6,7 @@ import {
 import { DataSource } from 'typeorm';
 import { CreateManyPlacesDto } from '../dtos/create-many-places.dto';
 import { Place } from '../place.entity';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 
 @Injectable()

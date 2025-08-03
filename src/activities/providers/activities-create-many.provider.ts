@@ -6,7 +6,7 @@ import {
 import { DataSource } from 'typeorm';
 import { CreateManyActivitiesDto } from '../dtos/create-many-activities.dto';
 import { Activity } from '../activity.entity';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 
 @Injectable()

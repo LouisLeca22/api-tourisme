@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,6 +19,7 @@ import { ActivitiesService } from './providers/activities.service';
 import { CreateActivityDto } from './dtos/create-activity.dto';
 import { PatchActivityDto } from './dtos/patch-activity.dto';
 import { CreateManyActivitiesDto } from './dtos/create-many-activities.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 
 @Controller('activities')
 @ApiTags('Activités')
@@ -56,11 +55,10 @@ export class ActivitiesController {
   })
   @Get('{/:ownerId}')
   public getActivities(
-    @Query('limit', new DefaultValuePipe(3), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query() activitiesQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
   ) {
-    return this.activitiesService.findAll(limit, page, ownerId);
+    return this.activitiesService.findAll(activitiesQuery, ownerId);
   }
 
   @ApiOperation({

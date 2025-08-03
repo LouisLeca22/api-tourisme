@@ -9,6 +9,7 @@ import { AccommodationsModule } from './accommodations/accommodations.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { PlacesModule } from './places/places.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
+import { PaginationModule } from './common/pagination/pagination.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -34,6 +35,7 @@ const ENV = process.env.NODE_ENV;
     ActivitiesModule,
     PlacesModule,
     RestaurantsModule,
+    PaginationModule,
   ],
   controllers: [AppController],
   providers: [],

@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,6 +19,7 @@ import { RestaurantsService } from './providers/restaurants.service';
 import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import { PatchRestaurantDto } from './dtos/patch-restaurant.dto';
 import { CreateManyRestaurantsDto } from './dtos/create-many-restaurants.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 
 @Controller('restaurants')
 @ApiTags('Restaurants')
@@ -55,11 +54,10 @@ export class RestaurantsController {
   })
   @Get('{/:ownerId}')
   public getRestaurants(
-    @Query('limit', new DefaultValuePipe(3), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query() restaurantsQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
   ) {
-    return this.restaurantsService.findAll(limit, page, ownerId);
+    return this.restaurantsService.findAll(restaurantsQuery, ownerId);
   }
 
   @ApiOperation({

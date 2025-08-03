@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,6 +19,7 @@ import {
 import { CreateEventDto } from './dtos/create-event.dto';
 import { PatchEventDto } from './dtos/patch-event.dto';
 import { CreateManyEventsDto } from './dtos/create-many-events.dto';
+import { GetEventsDto } from './dtos/get-events.dto';
 
 @Controller('events')
 @ApiTags('Événemments')
@@ -54,13 +53,26 @@ export class EventsController {
     description: "position de la page retournée par l'API",
     example: 1,
   })
+  @ApiQuery({
+    name: 'startDate',
+    type: 'string',
+    required: false,
+    description: "date de début de l'évenemen",
+    example: 'Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)',
+  })
+  @ApiQuery({
+    name: 'endDate',
+    type: 'string',
+    required: false,
+    description: "date de début de l'évenemen",
+    example: 'Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)',
+  })
   @Get('{/:ownerId}')
   public getEvents(
-    @Query('limit', new DefaultValuePipe(3), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query() eventsQuery: GetEventsDto,
     @Param('ownerId') ownerId?: string,
   ) {
-    return this.eventsService.findAll(limit, page, ownerId);
+    return this.eventsService.findAll(eventsQuery, ownerId);
   }
 
   @ApiOperation({

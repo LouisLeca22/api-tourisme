@@ -5,9 +5,9 @@ GET http://localhost:3000/activities
 GET http://localhost:3000/activities?limit=2&page=1
 
 # Récupère les activités associés à un propriétaire
-GET http://localhost:3000/activities/614e0d8f-478a-4b07-8bf9-34decd750417
+GET http://localhost:3000/activities/11aa2a70-d409-4961-8f14-ddb84a225ddf
 
 # Récupère une activité par son identifiant
-GET http://localhost:3000/activities/single/802f7f4f-64e1-4a55-a2cf-70d0636e1b5f
+GET http://localhost:3000/activities/single/0f0cf7b9-843f-4013-a387-08fc2adec825
 
 

@@ -1,13 +1,20 @@
+
+
 # Récupère tous les événements
 GET http://localhost:3000/events
 
 # Pagination
-GET http://localhost:3000/events?limit=2&page=1
+GET http://localhost:3000/events?limit=2&page=2
 
 # Récupère les événements associés à un propriétaire
-GET http://localhost:3000/events/614e0d8f-478a-4b07-8bf9-34decd750417
+GET http://localhost:3000/events/11aa2a70-d409-4961-8f14-ddb84a225ddf
+
+# Récupère les événements à partir d'une rangée de date
+GET http://localhost:3000/events
+    ?startDate="Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)"
+    &endDate="Tue Aug 05 2025 22:30:00 GMT+0200 (Central European Summer Time)"
 
 # Récupère un événement par son identifiant
-GET http://localhost:3000/events/single/802f7f4f-64e1-4a55-a2cf-70d0636e1b5f
+GET http://localhost:3000/events/single/0af752f9-c0a6-424d-80e1-c5dc85546107
 
 

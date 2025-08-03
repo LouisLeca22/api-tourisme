@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { Event } from '../event.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateEventDto } from '../dtos/create-event.dto';
@@ -9,7 +9,10 @@ import { validate as isUuid } from 'uuid';
 import { PatchEventDto } from '../dtos/patch-event.dto';
 import { EventsCreateManyProvider } from './events-create-many.provider';
 import { CreateManyEventsDto } from '../dtos/create-many-events.dto';
-
+import { GetEventsDto } from '../dtos/get-events.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
 @Injectable()
 export class EventsService {
   constructor(
@@ -18,19 +21,38 @@ export class EventsService {
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
     private readonly eventsCreateManyProvider: EventsCreateManyProvider,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public async findAll(limit: number, page: number, ownerId?: string) {
+  public async findAll(
+    eventsQuery: GetEventsDto,
+    ownerId?: string,
+  ): Promise<Paginated<Event>> {
     if (ownerId) await this.ownersService.findOne(ownerId);
-    const where = ownerId ? { owner: { id: ownerId } } : {};
 
-    const skip = (page - 1) * limit;
+    const where: FindOptionsWhere<Event> = {};
 
-    return await this.eventRepository.find({
+    if (ownerId) {
+      where.owner = { id: ownerId };
+    }
+
+    if (eventsQuery.startDate && eventsQuery.endDate) {
+      where.startDate = LessThanOrEqual(new Date(eventsQuery.endDate));
+      where.endDate = MoreThanOrEqual(new Date(eventsQuery.startDate));
+    } else if (eventsQuery.startDate) {
+      where.endDate = MoreThanOrEqual(new Date(eventsQuery.startDate));
+    } else if (eventsQuery.endDate) {
+      where.startDate = LessThanOrEqual(new Date(eventsQuery.endDate));
+    }
+
+    return this.paginationProvider.paginateQuey(
       where,
-      take: limit,
-      skip,
-    });
+      {
+        limit: eventsQuery.limit,
+        page: eventsQuery.page,
+      },
+      this.eventRepository,
+    );
   }
 
   public async findOne(eventId: string) {

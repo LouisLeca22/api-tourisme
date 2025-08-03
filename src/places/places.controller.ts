@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,6 +19,7 @@ import { PatchPlaceDto } from './dtos/patch-place.dto';
 import { CreatePlaceDto } from './dtos/create-place.dto';
 import { PlacesService } from './providers/places.service';
 import { CreateManyPlacesDto } from './dtos/create-many-places.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 
 @Controller('places')
 @ApiTags('Sites touristiques')
@@ -57,11 +56,10 @@ export class PlacesController {
   })
   @Get('{/:ownerId}')
   public getPlaces(
-    @Query('limit', new DefaultValuePipe(3), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query() placesQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
   ) {
-    return this.placesService.findAll(limit, page, ownerId);
+    return this.placesService.findAll(placesQuery, ownerId);
   }
 
   @ApiOperation({

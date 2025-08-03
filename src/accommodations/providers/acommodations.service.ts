@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { GeocodingService } from 'src/geocoding/providers/geocoding.service';
+import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateAccommodationDto } from '../dtos/create-accommodation-dto';
 import { Accommodation } from '../accommodation.entity';
@@ -9,6 +9,9 @@ import { validate as isUuid } from 'uuid';
 import { PatchAccommodationDto } from '../dtos/patch-accommodation-dto';
 import { AccommodationsCreateManyProvider } from './accommodations-create-many.provider';
 import { CreateManyAccommodationsDto } from '../dtos/create-many-accommodations.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class AccommodationsService {
@@ -18,19 +21,29 @@ export class AccommodationsService {
     private readonly geocodingService: GeocodingService,
     private readonly ownersService: OwnersService,
     private readonly accommodationsCreateManyProvider: AccommodationsCreateManyProvider,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public async findAll(limit: number, page: number, ownerId?: string) {
+  public async findAll(
+    accommdationsQuery: PaginationQueryDto,
+    ownerId?: string,
+  ): Promise<Paginated<Accommodation>> {
     if (ownerId) await this.ownersService.findOne(ownerId);
-    const where = ownerId ? { owner: { id: ownerId } } : {};
 
-    const skip = (page - 1) * limit;
+    const where: FindOptionsWhere<Accommodation> = {};
 
-    return await this.accommodationRepository.find({
+    if (ownerId) {
+      where.owner = { id: ownerId };
+    }
+
+    return this.paginationProvider.paginateQuey(
       where,
-      take: limit,
-      skip,
-    });
+      {
+        limit: accommdationsQuery.limit,
+        page: accommdationsQuery.page,
+      },
+      this.accommodationRepository,
+    );
   }
 
   public async findOne(accommodationId: string) {

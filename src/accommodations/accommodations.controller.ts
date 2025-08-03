@@ -1,11 +1,9 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Param,
-  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -21,6 +19,7 @@ import { AccommodationsService } from './providers/acommodations.service';
 import { CreateAccommodationDto } from './dtos/create-accommodation-dto';
 import { PatchAccommodationDto } from './dtos/patch-accommodation-dto';
 import { CreateManyAccommodationsDto } from './dtos/create-many-accommodations.dto';
+import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 
 @Controller('accommodations')
 @ApiTags('Hébergements')
@@ -57,11 +56,10 @@ export class AccommodationsController {
   })
   @Get('{/:ownerId}')
   public getAccommodations(
-    @Query('limit', new DefaultValuePipe(3), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query() accommodationsQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
   ) {
-    return this.accommodationsService.findAll(limit, page, ownerId);
+    return this.accommodationsService.findAll(accommodationsQuery, ownerId);
   }
 
   @ApiOperation({

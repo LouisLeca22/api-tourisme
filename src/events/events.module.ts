@@ -2,14 +2,20 @@ import { Module } from '@nestjs/common';
 import { EventsController } from './events.controller';
 import { EventsService } from './providers/events.service';
 import { OwnersModule } from 'src/owners/owners.module';
-import { GeocodingModule } from 'src/geocoding/geocoding.module';
+import { GeocodingModule } from 'src/common/geocoding/geocoding.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './event.entity';
 import { EventsCreateManyProvider } from './providers/events-create-many.provider';
+import { PaginationModule } from 'src/common/pagination/pagination.module';
 
 @Module({
   controllers: [EventsController],
   providers: [EventsService, EventsCreateManyProvider],
-  imports: [TypeOrmModule.forFeature([Event]), OwnersModule, GeocodingModule],
+  imports: [
+    TypeOrmModule.forFeature([Event]),
+    OwnersModule,
+    GeocodingModule,
+    PaginationModule,
+  ],
 })
 export class EventsModule {}
