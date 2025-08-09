@@ -1,5 +1,6 @@
 POST http://localhost:3000/activities
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MmFkYzVkNC03ZGVkLTQ5Y2UtYTI2NC0xMjBmMmZiYTNiZmEiLCJlbWFpbCI6InVzZXJAbWFpbC5mciIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0NzIxMDA3LCJleHAiOjE3NTQ3MjQ2MDcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.pte__xiG7CCsw8eqDMLDCoGXOzytkZEahqMww3AugMI
 
 {
     "name": "Balade en paddle dans la baie",
@@ -13,14 +14,14 @@ Content-Type: application/json
     "from": 2,
     "to": 5,
     "open": "10:00",
-    "close": "18:00",
-    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+    "close": "18:00"
 }
 
 
 
 POST http://localhost:3000/activities/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZC1lNjBkLTRjMGEtYWJiNS01OWNiYjgwMDE4ZTMiLCJlbWFpbCI6ImFkbWluQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTQ3MjEyMDAsImV4cCI6MTc1NDcyNDgwMCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.fMjRscDrIZvnCtuEW5w4wZ8-9IXLZuapebqLPVaVCJM
 
 {"activities" : [
   {
@@ -36,7 +37,7 @@ Content-Type: application/json
     "to": 5,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Randonnée guidée en montagne",
@@ -51,8 +52,8 @@ Content-Type: application/json
     "to": 5,
     "open": "08:00",
     "close": "16:00",
-    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
-  },
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+},
   {
     "name": "Cours de cuisine catalane",
     "description": "Apprenez à préparer des plats traditionnels catalans.",
@@ -66,7 +67,7 @@ Content-Type: application/json
     "to": 6,
     "open": "14:00",
     "close": "17:00",
-    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Visite historique du centre-ville",
@@ -81,7 +82,7 @@ Content-Type: application/json
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Initiation au kite surf",
@@ -96,7 +97,7 @@ Content-Type: application/json
     "to": 6,
     "open": "09:00",
     "close": "17:00",
-    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Atelier de poterie artisanale",
@@ -111,7 +112,7 @@ Content-Type: application/json
     "to": 6,
     "open": "10:00",
     "close": "16:00",
-    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Découverte de la faune marine en snorkeling",
@@ -126,7 +127,7 @@ Content-Type: application/json
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Dégustation de vins locaux",
@@ -141,7 +142,7 @@ Content-Type: application/json
     "to": 6,
     "open": "14:00",
     "close": "19:00",
-    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Balade à vélo le long de la côte",
@@ -156,7 +157,7 @@ Content-Type: application/json
     "to": 5,
     "open": "09:00",
     "close": "15:00",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   }
 ]
 

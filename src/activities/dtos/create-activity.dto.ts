@@ -6,7 +6,6 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
-  IsUUID,
   Matches,
   Max,
   MaxLength,
@@ -23,14 +22,6 @@ import { ActivityType } from '../enums/activity-type.enum';
 import { Language, LANGUAGES } from 'src/common/constants/languages.constants';
 
 export class CreateActivityDto {
-  @ApiProperty({
-    description: 'identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
-  })
-  @IsNotEmpty()
-  @IsUUID()
-  ownerId: string;
-
   @ApiProperty({
     description: "Nom de l'activité",
     example: 'Balade en paddle dans la baie',

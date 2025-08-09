@@ -6,10 +6,15 @@ import {
 import { Owner } from '../owner.entity';
 import { DataSource } from 'typeorm';
 import { CreateManyOwnersDto } from '../dtos/create-mny-owners.dto';
+import { HashingProvider } from 'src/auth/providers/hashing.provider';
 
 @Injectable()
 export class OnwersCreateManyProvider {
-  constructor(private readonly dataSource: DataSource) {}
+  constructor(
+    private readonly dataSource: DataSource,
+
+    private readonly hasingProvider: HashingProvider,
+  ) {}
   public async createMany(createManyOwnersDto: CreateManyOwnersDto) {
     const newOwners: Owner[] = [];
     const queryRunner = this.dataSource.createQueryRunner();
@@ -23,7 +28,10 @@ export class OnwersCreateManyProvider {
     }
     try {
       for (const owner of createManyOwnersDto.owners) {
-        const newOwner = queryRunner.manager.create(Owner, owner);
+        const newOwner = queryRunner.manager.create(Owner, {
+          ...owner,
+          password: await this.hasingProvider.hashPssword(owner.password),
+        });
         const result = await queryRunner.manager.save(newOwner);
         newOwners.push(result);
       }

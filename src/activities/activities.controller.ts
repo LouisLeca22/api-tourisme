@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -20,6 +21,12 @@ import { CreateActivityDto } from './dtos/create-activity.dto';
 import { PatchActivityDto } from './dtos/patch-activity.dto';
 import { CreateManyActivitiesDto } from './dtos/create-many-activities.dto';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Controller('activities')
 @ApiTags('Activités')
@@ -54,6 +61,7 @@ export class ActivitiesController {
     example: 1,
   })
   @Get('{/:ownerId}')
+  @Auth(AuthType.None)
   public getActivities(
     @Query() activitiesQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
@@ -74,6 +82,7 @@ export class ActivitiesController {
     description: "identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @Auth(AuthType.None)
   @Get('/single/:activityId')
   public getActivity(@Param('activityId') activityId: string) {
     return this.activitiesService.findOne(activityId);
@@ -86,9 +95,13 @@ export class ActivitiesController {
     status: 201,
     description: "Réponse 201 lorsque l'activité est créée avec succès",
   })
+  @ApiBearerAuth('bearerAuth')
   @Post()
-  public createActivity(@Body() createActivityDto: CreateActivityDto) {
-    return this.activitiesService.create(createActivityDto);
+  public createActivity(
+    @Body() createActivityDto: CreateActivityDto,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.activitiesService.create(createActivityDto, user);
   }
 
   @ApiOperation({
@@ -98,7 +111,9 @@ export class ActivitiesController {
     status: 201,
     description: 'Réponse 201 lorsque les activités ont été créées avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
   @Post('create-many')
+  @Roles(RoleType.Admin)
   public createManyActivities(
     @Body() createManyActivitiesDto: CreateManyActivitiesDto,
   ) {
@@ -112,6 +127,7 @@ export class ActivitiesController {
     status: 200,
     description: "Réponse 200 lorsque l'activité est modifiée avec succès",
   })
+  @ApiBearerAuth('bearerAuth')
   @Patch()
   public updateActivity(@Body() patchActivityDto: PatchActivityDto) {
     return this.activitiesService.update(patchActivityDto);
@@ -130,6 +146,7 @@ export class ActivitiesController {
     description: "identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @ApiBearerAuth('bearerAuth')
   @Delete('/:activityId')
   public deleteActivity(@Param('activityId') activityId: string) {
     return this.activitiesService.delete(activityId);

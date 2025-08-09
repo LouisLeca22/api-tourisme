@@ -1,5 +1,6 @@
 import { Accommodation } from 'src/accommodations/accommodation.entity';
 import { Activity } from 'src/activities/activity.entity';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 import { Event } from 'src/events/event.entity';
 import { Place } from 'src/places/place.entity';
 import { Restaurant } from 'src/restaurants/restaurant.entity';
@@ -45,6 +46,14 @@ export class Owner {
     nullable: true,
   })
   websiteUrl?: string;
+
+  @Column({
+    type: 'enum',
+    enum: RoleType,
+    nullable: false,
+    default: RoleType.User,
+  })
+  role: RoleType;
 
   @CreateDateColumn()
   createdAt: Date;

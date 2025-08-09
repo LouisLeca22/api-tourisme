@@ -6,7 +6,6 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  IsUUID,
   Matches,
   Max,
   MaxLength,
@@ -24,14 +23,6 @@ import { Cuisine, CUISINES } from 'src/common/constants/cuisines.constants';
 import { IsOpenCloseTimePair } from 'src/common/validators/is-open-close-time-pair.validator';
 
 export class CreateRestaurantDto {
-  @ApiProperty({
-    description: 'identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
-  })
-  @IsNotEmpty()
-  @IsUUID()
-  ownerId: string;
-
   @ApiProperty({
     description: 'Nom du restaurant',
     example: 'Le Bistrot Artistiqu',

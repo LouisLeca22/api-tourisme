@@ -4,7 +4,7 @@ import { CreateAccommodationDto } from './create-accommodation-dto';
 
 export class PatchAccommodationDto extends PartialType(CreateAccommodationDto) {
   @ApiProperty({
-    description: "Identifiant de l'événement qui doit être modifié",
+    description: "Identifiant de l'activité qui doit être modifiée",
     example: 101,
   })
   @IsUUID()

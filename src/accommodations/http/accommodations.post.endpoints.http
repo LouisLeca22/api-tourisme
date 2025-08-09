@@ -1,9 +1,10 @@
 POST http://localhost:3000/accommodations
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MmFkYzVkNC03ZGVkLTQ5Y2UtYTI2NC0xMjBmMmZiYTNiZmEiLCJlbWFpbCI6InVzZXJAbWFpbC5mciIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0NzIxMDA3LCJleHAiOjE3NTQ3MjQ2MDcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.pte__xiG7CCsw8eqDMLDCoGXOzytkZEahqMww3AugMI
 
 {
-    "name": "Hôtel du Vieux Por",
-    "description": "Petit hôtel charmant avec terrasse sur le port.",
+    "name": "Test",
+    "description": "Test de la description avec cinq mots",
     "type": "hotel",
     "address": "5 quai Saint-Pierre, Marseille (13001)",
     "priceRange": "70-130",
@@ -12,14 +13,14 @@ Content-Type: application/json
     "from": 1,
     "to": 6,
     "open": "08:00",
-    "close": "20:00",
-    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+    "close": "20:00"
 }
 
 
 
 POST http://localhost:3000/accommodations/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZC1lNjBkLTRjMGEtYWJiNS01OWNiYjgwMDE4ZTMiLCJlbWFpbCI6ImFkbWluQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTQ3MjEyMDAsImV4cCI6MTc1NDcyNDgwMCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.fMjRscDrIZvnCtuEW5w4wZ8-9IXLZuapebqLPVaVCJM
 
 {"accommodations" : [
      {
@@ -34,7 +35,7 @@ Content-Type: application/json
     "to": 6,
     "open": "09:00",
     "close": "20:00",
-    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Auberge du Mont",
@@ -48,7 +49,7 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "17:00",
-    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Hôtel Belle Étoile",
@@ -62,7 +63,7 @@ Content-Type: application/json
     "to": 5,
     "open" : "07:00",
     "close": "22:00",
-    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Chalet des Neiges",
@@ -76,7 +77,7 @@ Content-Type: application/json
     "to": 5,
     "open": "08:00",
     "close": "21:00",
-    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Résidence La Mer",
@@ -90,7 +91,7 @@ Content-Type: application/json
     "to": 6,
     "open": "09:00",
     "close": "19:00",
-    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Hôtel du Vieux Port",
@@ -104,7 +105,7 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "20:00",
-    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Maison du Lac",
@@ -118,7 +119,7 @@ Content-Type: application/json
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Hôtel du Parc",
@@ -132,7 +133,7 @@ Content-Type: application/json
     "to": 4,
     "open": "07:00",
     "close": "22:00",
-    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Chambres d'hôtes La Lavande",
@@ -146,7 +147,7 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "19:00",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   },
   {
     "name": "Hôtel La Côte d'Azur",
@@ -160,7 +161,7 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "22:00",
-    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
   }
 ]
 }

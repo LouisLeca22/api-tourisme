@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -20,6 +21,12 @@ import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import { PatchRestaurantDto } from './dtos/patch-restaurant.dto';
 import { CreateManyRestaurantsDto } from './dtos/create-many-restaurants.dto';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Controller('restaurants')
 @ApiTags('Restaurants')
@@ -52,6 +59,7 @@ export class RestaurantsController {
     description: "position de la page retournée par l'API",
     example: 1,
   })
+  @Auth(AuthType.None)
   @Get('{/:ownerId}')
   public getRestaurants(
     @Query() restaurantsQuery: PaginationQueryDto,
@@ -73,6 +81,7 @@ export class RestaurantsController {
     description: 'identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @Auth(AuthType.None)
   @Get('/single/:restaurantId')
   public getRestaurant(@Param('restaurantId') restaurantId: string) {
     return this.restaurantsService.findOne(restaurantId);
@@ -85,9 +94,13 @@ export class RestaurantsController {
     status: 201,
     description: 'Réponse 201 lorsque le restaurant est créé avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
   @Post()
-  public createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto) {
-    return this.restaurantsService.create(createRestaurantDto);
+  public createRestaurant(
+    @Body() createRestaurantDto: CreateRestaurantDto,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.restaurantsService.create(createRestaurantDto, user);
   }
 
   @ApiOperation({
@@ -98,6 +111,7 @@ export class RestaurantsController {
     description:
       'Réponse 201 lorsque les restaurants ont été créés avec succès',
   })
+  @Roles(RoleType.Admin)
   @Post('create-many')
   public createManyRestaurants(
     @Body() createManyRestaurantsDto: CreateManyRestaurantsDto,
@@ -112,6 +126,7 @@ export class RestaurantsController {
     status: 200,
     description: 'Réponse 200 lorsque le restaurant est modifié avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
   @Patch()
   public updateRestaurant(@Body() patchRestaurantDto: PatchRestaurantDto) {
     return this.restaurantsService.update(patchRestaurantDto);
@@ -130,6 +145,7 @@ export class RestaurantsController {
     description: 'identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @ApiBearerAuth('bearerAuth')
   @Delete('/:restaurantId')
   public deleteRestaurant(@Param('restaurantId') restaurantId: string) {
     return this.restaurantsService.delete(restaurantId);

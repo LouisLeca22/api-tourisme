@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -20,6 +21,12 @@ import { CreateAccommodationDto } from './dtos/create-accommodation-dto';
 import { PatchAccommodationDto } from './dtos/patch-accommodation-dto';
 import { CreateManyAccommodationsDto } from './dtos/create-many-accommodations.dto';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Controller('accommodations')
 @ApiTags('Hébergements')
@@ -55,6 +62,7 @@ export class AccommodationsController {
     example: 1,
   })
   @Get('{/:ownerId}')
+  @Auth(AuthType.None)
   public getAccommodations(
     @Query() accommodationsQuery: PaginationQueryDto,
     @Param('ownerId') ownerId?: string,
@@ -76,6 +84,7 @@ export class AccommodationsController {
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Get('/single/:accommodationId')
+  @Auth(AuthType.None)
   public getAccommodation(@Param('accommodationId') accommidationId: string) {
     return this.accommodationsService.findOne(accommidationId);
   }
@@ -88,20 +97,25 @@ export class AccommodationsController {
     description: "Réponse 201 lorsque l'hébergement est créé avec succès",
   })
   @Post()
+  @ApiBearerAuth('bearerAuth')
   public createAccommodation(
     @Body() createAccommodationDto: CreateAccommodationDto,
+    @ActiveUser() user: ActiveUserData,
   ) {
-    return this.accommodationsService.create(createAccommodationDto);
+    return this.accommodationsService.create(createAccommodationDto, user);
   }
 
   @ApiOperation({
     summary: 'Crée plusieurs hébergements',
+    description: 'Cette route est réservée aux administrateurs',
   })
   @ApiResponse({
     status: 201,
     description:
       'Réponse 201 lorsque les hébergements ont été créés avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
+  @Roles(RoleType.Admin)
   @Post('create-many')
   public createManyAccommodations(
     @Body() createManyAccommodationsDto: CreateManyAccommodationsDto,
@@ -116,6 +130,7 @@ export class AccommodationsController {
     status: 200,
     description: "Réponse 200 lorsque l'hébergement est modifié avec succès",
   })
+  @ApiBearerAuth('bearerAuth')
   @Patch()
   public updateAccommodation(
     @Body() patchAccommodationDto: PatchAccommodationDto,
@@ -136,6 +151,7 @@ export class AccommodationsController {
     description: "identifiant de l'hébergement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @ApiBearerAuth('bearerAuth')
   @Delete('/:accommodationId')
   public deleteAccommodation(
     @Param('accommodationId') accommodationId: string,

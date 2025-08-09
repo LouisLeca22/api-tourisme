@@ -5,7 +5,6 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
-  IsUUID,
   Matches,
   Max,
   MaxLength,
@@ -22,14 +21,6 @@ import { IsToAfterFrom } from 'src/common/validators/is-to-after-from.validator'
 import { IsCloseAfterOpen } from 'src/common/validators/is-close-after-open.validator';
 
 export class CreateAccommodationDto {
-  @ApiProperty({
-    description: 'identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
-  })
-  @IsNotEmpty()
-  @IsUUID()
-  ownerId: string;
-
   @ApiProperty({
     description: "Nom de l'hébergement",
     example: 'Villa des Roses',

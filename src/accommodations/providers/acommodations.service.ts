@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 import { FindOptionsWhere, Repository } from 'typeorm';
@@ -12,6 +16,8 @@ import { CreateManyAccommodationsDto } from '../dtos/create-many-accommodations.
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { Owner } from 'src/owners/owner.entity';
 
 @Injectable()
 export class AccommodationsService {
@@ -62,10 +68,16 @@ export class AccommodationsService {
     return accommodation;
   }
 
-  public async create(createAccommodationDto: CreateAccommodationDto) {
-    const owner = await this.ownersService.findOne(
-      createAccommodationDto.ownerId,
-    );
+  public async create(
+    createAccommodationDto: CreateAccommodationDto,
+    user: ActiveUserData,
+  ) {
+    let owner: Owner | undefined = undefined;
+    try {
+      owner = await this.ownersService.findOne(user.sub);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
 
     const validdAddress = await this.geocodingService.lookupAddress(
       createAccommodationDto.address,
@@ -81,6 +93,7 @@ export class AccommodationsService {
       owner: owner,
     });
     await this.accommodationRepository.save(newAccommodation);
+
     return newAccommodation;
   }
 

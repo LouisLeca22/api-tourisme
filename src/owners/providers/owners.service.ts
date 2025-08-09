@@ -13,6 +13,8 @@ import { validate as isUuid } from 'uuid';
 import { PatchOwnerDto } from '../dtos/patch-owner.dto';
 import { OnwersCreateManyProvider } from './onwers-create-many.provider';
 import { CreateManyOwnersDto } from '../dtos/create-mny-owners.dto';
+import { CreateOwnerProvider } from './create-owner.provider';
+import { FindOneOwnerByEmailProvider } from './find-one-owner-by-email.provider';
 
 @Injectable()
 export class OwnersService {
@@ -24,6 +26,9 @@ export class OwnersService {
     private readonly authService: AuthService,
 
     private readonly ownersCreateManyProvider: OnwersCreateManyProvider,
+
+    private readonly createOwnerProvider: CreateOwnerProvider,
+    private readonly findOneOwnerByEmailProvider: FindOneOwnerByEmailProvider,
   ) {}
 
   public async findAll(limit: number, page: number) {
@@ -51,19 +56,12 @@ export class OwnersService {
     return owner;
   }
 
+  public async findOneByEmail(email: string) {
+    return this.findOneOwnerByEmailProvider.findOneByEmail(email);
+  }
+
   public async create(createOwnerDto: CreateOwnerDto) {
-    const existingOwner = await this.ownerRepository.findOne({
-      where: { email: createOwnerDto.email },
-    });
-
-    if (existingOwner) {
-      throw new BadRequestException('Cet utilisateur existe déjà');
-    }
-
-    let newOwner = this.ownerRepository.create(createOwnerDto);
-    newOwner = await this.ownerRepository.save(newOwner);
-
-    return newOwner;
+    return this.createOwnerProvider.create(createOwnerDto);
   }
 
   public async createMany(createManyOwnersDto: CreateManyOwnersDto) {

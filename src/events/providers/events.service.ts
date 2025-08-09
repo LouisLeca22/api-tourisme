@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 import { FindOptionsWhere, Repository } from 'typeorm';
@@ -13,6 +17,8 @@ import { GetEventsDto } from '../dtos/get-events.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 import { LessThanOrEqual, MoreThanOrEqual } from 'typeorm';
+import { Owner } from 'src/owners/owner.entity';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 @Injectable()
 export class EventsService {
   constructor(
@@ -71,8 +77,13 @@ export class EventsService {
     return event;
   }
 
-  public async create(createEventDto: CreateEventDto) {
-    const owner = await this.ownersService.findOne(createEventDto.ownerId);
+  public async create(createEventDto: CreateEventDto, user: ActiveUserData) {
+    let owner: Owner | undefined = undefined;
+    try {
+      owner = await this.ownersService.findOne(user.sub);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
 
     const validdAddress = await this.geocodingService.lookupAddress(
       createEventDto.address,

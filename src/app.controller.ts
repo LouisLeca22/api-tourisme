@@ -2,11 +2,14 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { Response } from 'express';
 
 import { ApiExcludeController } from '@nestjs/swagger';
+import { Auth } from './auth/decorators/auth.decorator';
+import { AuthType } from './auth/enums/auth-type.enum';
 
 @Controller()
 @ApiExcludeController()
 export class AppController {
   @Get()
+  @Auth(AuthType.None)
   getRoot(@Res() res: Response) {
     const html = `
       <!DOCTYPE html>

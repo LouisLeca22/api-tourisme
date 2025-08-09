@@ -1,7 +1,17 @@
-import { IsArray, IsNotEmpty, ValidateNested } from 'class-validator';
+import { IsArray, IsNotEmpty, IsUUID, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateActivityDto } from './create-activity.dto';
+
+class CreateActivityWithOwnerDto extends CreateActivityDto {
+  @ApiProperty({
+    description: 'identifiant du propriétaire (UUID)',
+    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+  })
+  @IsNotEmpty()
+  @IsUUID()
+  ownerId: string;
+}
 
 export class CreateManyActivitiesDto {
   @ApiProperty({
@@ -14,6 +24,6 @@ export class CreateManyActivitiesDto {
   @IsNotEmpty()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => CreateActivityDto)
-  activities: CreateActivityDto[];
+  @Type(() => CreateActivityWithOwnerDto)
+  activities: CreateActivityWithOwnerDto[];
 }

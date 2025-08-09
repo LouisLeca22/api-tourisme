@@ -2,81 +2,37 @@ POST http://localhost:3000/owners
 Content-Type: application/json
 
 {
-    "name": "Test",
+    "name": "user",
     "phoneNumber": "+33479551234",
     "password": "Test1234!",
-    "email": "test@mail.fr",
-    "websiteUrl": "https://test.fr"
+    "email": "user@mail.fr",
+    "websiteUrl": "https://user.fr"
 }
 
 
 POST http://localhost:3000/owners/create-many
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWUxZGIwNy1mZGU1LTRhZDktOGM5YS03MmNmOWZmZWVmYzkiLCJlbWFpbCI6InRlc3RAbWFpbC5mciIsImlhdCI6MTc1NDQyMzc3OCwiZXhwIjoxNzU0NDI3Mzc4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.4eeG8871jC-x0JCYnJxtF57BTklBdvY--UAP3d4lXlk
 {"owners" : [{
-    "name": "Montagne Aventure",
+    "name": "Test1",
     "phoneNumber": "+33479551234",
-    "email": "info@montagneaventure.fr",
+    "email": "test1@mail.fr",
     "password": "MontagneAventure1234!",
     "websiteUrl": "https://montagneaventure.fr" }
 ,
   {
-    "name": "Randos Pyrénées",
+    "name": "Test2",
     "phoneNumber": "+33688997755",
-    "email": "contact@randospyrenees.fr",
+    "email": "test2@mail.fr",
     "websiteUrl": "https://randospyrenees.fr",
     "password": "RandoPyrenees1234!"
   },
   {
-    "name": "Terres Sauvages",
+    "name": "Test 3",
     "phoneNumber": "+33344668899",
-    "email": "contact@terressauvages.fr",
+    "email": "test3@mail.fr",
     "password": "TerresSauvages1234!",
     "websiteUrl": "https://terressauvages.fr"
-  },
-  {
-    "name": "Escapades Alpines",
-    "phoneNumber": "+33712345678",
-    "email": "contact@escapadesalpines.fr",
-    "password": "EscapadesAlpines1234!",
-    "websiteUrl": "https://escapadesalpines.fr"
-  },
-  {
-    "name": "Nature & Découverte",
-    "phoneNumber": "+33450201525",
-    "email": "contact@naturedecouverte.fr",
-    "password": "Nature&Decouverte1234!",
-    "websiteUrl": "https://naturedecouverte.fr"
-  },
-  {
-    "name": "Sentiers d’Aventure",
-    "phoneNumber": "+33645678901",
-    "email": "info@sentiersaventure.fr",
-    "password": "SentiersdAventure1234!",
-    "websiteUrl": "https://sentiersaventure.fr"
-  },
-  {
-    "name": "Rando Provence",
-    "phoneNumber": "+33490123456",
-    "email": "contact@randoprovence.fr",
-    "password": "RandoProvence1234!",
-    "websiteUrl": "https://randoprovence.fr"
-  },
-  {
-
-    "name": "Explorations Bretonnes",
-    "phoneNumber": "+33298765432",
-    "email": "contact@explobretonne.fr",
-    "password": "ExplorationsBretonnes1234!",
-    "websiteUrl": "https://explobretonne.fr"
-
-  },
-  {
-    "name": "Aventures Cévenoles",
-    "phoneNumber": "+33466778899",
-    "email": "contact@aventurescevenoles.fr",
-    "password": "AventuresCevenoles1234!",
-    "websiteUrl": "https://aventurescevenoles.fr"
   }
 ]
 }

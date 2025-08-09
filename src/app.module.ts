@@ -10,6 +10,15 @@ import { ActivitiesModule } from './activities/activities.module';
 import { PlacesModule } from './places/places.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { PaginationModule } from './common/pagination/pagination.module';
+import jwtConfig from './auth/config/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import appConfig from './config/app.config';
+import databaseConfig from './config/database.config';
+import environmentValidation from './config/environment.validation';
+import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
+import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
+// import { RolesGuard } from './auth/guards/roles/roles.guard';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -21,6 +30,8 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
+      load: [appConfig, databaseConfig],
+      validationSchema: environmentValidation,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -29,15 +40,27 @@ const ENV = process.env.NODE_ENV;
         type: 'postgres',
         autoLoadEntities: true,
         synchronize: true,
-        url: configService.get('DATABASE_URL'),
+        url: configService.get('database.url'),
       }),
     }),
     ActivitiesModule,
     PlacesModule,
     RestaurantsModule,
     PaginationModule,
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthenticationGuard,
+    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+    AccessTokenGuard,
+  ],
 })
 export class AppModule {}

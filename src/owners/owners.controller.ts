@@ -14,6 +14,7 @@ import { CreateOwnerDto } from './dtos/create-owner.dto';
 import { PatchOwnerDto } from './dtos/patch-owner.dto';
 import { OwnersService } from './providers/owners.service';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -21,6 +22,10 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CreateManyOwnersDto } from './dtos/create-mny-owners.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Controller('owners')
 @ApiTags('Propriétaires')
@@ -49,7 +54,8 @@ export class OwnersController {
     description: "position de la page retournée par l'API",
     example: 1,
   })
-  @Get('')
+  @Auth(AuthType.None)
+  @Get()
   public getOwners(
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
@@ -70,6 +76,7 @@ export class OwnersController {
     description: 'identifiant du propriétaire',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @Auth(AuthType.None)
   @Get('/single/:ownerId')
   public getOwner(@Param('ownerId') eventId: string) {
     return this.ownersService.findOne(eventId);
@@ -83,6 +90,7 @@ export class OwnersController {
     description: 'Réponse 201 lorsque le propriétaire a été créé avec succès',
   })
   @Post()
+  @Auth(AuthType.None)
   public createOwner(@Body() createOwnerDto: CreateOwnerDto) {
     return this.ownersService.create(createOwnerDto);
   }
@@ -95,6 +103,8 @@ export class OwnersController {
     description:
       'Réponse 201 lorsque les propriétaires ont été créés avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
+  @Roles(RoleType.Admin)
   @Post('create-many')
   public createManyOwners(@Body() createManyOwnersDto: CreateManyOwnersDto) {
     return this.ownersService.createMany(createManyOwnersDto);
@@ -108,6 +118,7 @@ export class OwnersController {
     description:
       'Réponse 200 lorsque le propriétaire a été modifié avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
   @Patch()
   public patchOwner(@Body() patchOwnerDto: PatchOwnerDto) {
     return this.ownersService.update(patchOwnerDto);
@@ -126,6 +137,7 @@ export class OwnersController {
     description: 'identifiant du propriétaire',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @ApiBearerAuth('bearerAuth')
   @Delete('/:ownerId')
   public deleteOwner(@Param('ownerId') ownerId: string) {
     return this.ownersService.delete(ownerId);

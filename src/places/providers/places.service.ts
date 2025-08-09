@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 import { FindOptionsWhere, Repository } from 'typeorm';
@@ -12,6 +16,8 @@ import { CreateManyPlacesDto } from '../dtos/create-many-places.dto';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Owner } from 'src/owners/owner.entity';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class PlacesService {
@@ -62,9 +68,13 @@ export class PlacesService {
     return place;
   }
 
-  public async create(createPlaceDto: CreatePlaceDto) {
-    const owner = await this.ownersService.findOne(createPlaceDto.ownerId);
-
+  public async create(createPlaceDto: CreatePlaceDto, user: ActiveUserData) {
+    let owner: Owner | undefined = undefined;
+    try {
+      owner = await this.ownersService.findOne(user.sub);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
     const validdAddress = await this.geocodingService.lookupAddress(
       createPlaceDto.address,
     );

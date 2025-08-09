@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { GeocodingService } from 'src/common/geocoding/providers/geocoding.service';
 import { OwnersService } from 'src/owners/providers/owners.service';
 import { FindOptionsWhere, Repository } from 'typeorm';
@@ -12,6 +16,8 @@ import { CreateManyRestaurantsDto } from '../dtos/create-many-restaurants.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { Owner } from 'src/owners/owner.entity';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class RestaurantsService {
@@ -62,8 +68,16 @@ export class RestaurantsService {
     return restaurant;
   }
 
-  public async create(createRestaurantDto: CreateRestaurantDto) {
-    const owner = await this.ownersService.findOne(createRestaurantDto.ownerId);
+  public async create(
+    createRestaurantDto: CreateRestaurantDto,
+    user: ActiveUserData,
+  ) {
+    let owner: Owner | undefined = undefined;
+    try {
+      owner = await this.ownersService.findOne(user.sub);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
 
     const validdAddress = await this.geocodingService.lookupAddress(
       createRestaurantDto.address,

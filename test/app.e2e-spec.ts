@@ -18,7 +18,7 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET) should return the HTML homepage', async () => {
     const response = await request(app.getHttpServer()).get('/');
-
+    console.log(process.env.NODE_ENV);
     expect(response.status).toBe(200);
     expect(response.type).toBe('text/html');
     expect(response.text).toContain('<title>api-tourisme</title>');

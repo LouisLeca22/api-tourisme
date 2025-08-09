@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { EventsService } from './providers/events.service';
 import {
+  ApiBearerAuth,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -20,6 +21,12 @@ import { CreateEventDto } from './dtos/create-event.dto';
 import { PatchEventDto } from './dtos/patch-event.dto';
 import { CreateManyEventsDto } from './dtos/create-many-events.dto';
 import { GetEventsDto } from './dtos/get-events.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Controller('events')
 @ApiTags('Événemments')
@@ -67,6 +74,7 @@ export class EventsController {
     description: "date de début de l'évenemen",
     example: 'Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)',
   })
+  @Auth(AuthType.None)
   @Get('{/:ownerId}')
   public getEvents(
     @Query() eventsQuery: GetEventsDto,
@@ -88,6 +96,7 @@ export class EventsController {
     description: "identifiant de l'événement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @Auth(AuthType.None)
   @Get('/single/:eventId')
   public getEvent(@Param('eventId') eventId: string) {
     return this.eventsService.findOne(eventId);
@@ -100,9 +109,13 @@ export class EventsController {
     status: 201,
     description: "Réponse 201 lorsque l'événement est créé avec succès",
   })
+  @ApiBearerAuth('bearerAuth')
   @Post()
-  public createEvent(@Body() createEventDto: CreateEventDto) {
-    return this.eventsService.create(createEventDto);
+  public createEvent(
+    @Body() createEventDto: CreateEventDto,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.eventsService.create(createEventDto, user);
   }
 
   @ApiOperation({
@@ -112,6 +125,8 @@ export class EventsController {
     status: 201,
     description: 'Réponse 201 lorsque les événements ont été créés avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
+  @Roles(RoleType.Admin)
   @Post('create-many')
   public createManyEvents(@Body() createManyEventsDto: CreateManyEventsDto) {
     return this.eventsService.createMany(createManyEventsDto);
@@ -124,6 +139,7 @@ export class EventsController {
     status: 200,
     description: "Réponse 200 lorsque l'événement est modifié avec succès",
   })
+  @ApiBearerAuth('bearerAuth')
   @Patch()
   public updateEvent(@Body() patchEventDto: PatchEventDto) {
     return this.eventsService.update(patchEventDto);
@@ -142,6 +158,7 @@ export class EventsController {
     description: "identifiant de l'évenement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
+  @ApiBearerAuth('bearerAuth')
   @Delete('/:eventId')
   public deleteEvent(@Param('eventId') eventId: string) {
     return this.eventsService.delete(eventId);

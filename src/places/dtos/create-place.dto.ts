@@ -6,7 +6,6 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
-  IsUUID,
   Matches,
   Max,
   MaxLength,
@@ -23,14 +22,6 @@ import { Language, LANGUAGES } from 'src/common/constants/languages.constants';
 import { PlaceType } from '../enums/place-type.enum';
 
 export class CreatePlaceDto {
-  @ApiProperty({
-    description: 'identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
-  })
-  @IsNotEmpty()
-  @IsUUID()
-  ownerId: string;
-
   @ApiProperty({
     description: 'Nom du site touristique',
     example: "Musée d'Art Moderne de Céret",

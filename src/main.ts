@@ -21,6 +21,14 @@ async function bootstrap() {
     .setDescription('Votre passerelle vers les données touristiques')
     .setVersion('1.0')
     .addServer('http://localhost:3000')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'bearerAuth',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
