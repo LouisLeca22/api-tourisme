@@ -18,7 +18,7 @@ import databaseConfig from './config/database.config';
 import environmentValidation from './config/environment.validation';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
 import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
-// import { RolesGuard } from './auth/guards/roles/roles.guard';
+import { RolesGuard } from './auth/guards/roles/roles.guard';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -56,10 +56,10 @@ const ENV = process.env.NODE_ENV;
       provide: APP_GUARD,
       useClass: AuthenticationGuard,
     },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RolesGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
     AccessTokenGuard,
   ],
 })

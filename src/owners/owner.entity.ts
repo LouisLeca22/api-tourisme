@@ -32,8 +32,14 @@ export class Owner {
 
   @Column({
     length: 255,
+    nullable: true,
   })
-  password: string;
+  password?: string;
+
+  @Column({
+    nullable: true,
+  })
+  googleId?: string;
 
   @Column({
     length: 20,

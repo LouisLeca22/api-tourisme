@@ -7,6 +7,8 @@ import { Owner } from './owner.entity';
 import { OnwersCreateManyProvider } from './providers/onwers-create-many.provider';
 import { CreateOwnerProvider } from './providers/create-owner.provider';
 import { FindOneOwnerByEmailProvider } from './providers/find-one-owner-by-email.provider';
+import { FindOneByGoogleIdProvider } from './providers/find-one-by-google-id.provider';
+import { CreateGoogleOwnerProvider } from './providers/create-google-owner.provider';
 
 @Module({
   controllers: [OwnersController],
@@ -15,6 +17,8 @@ import { FindOneOwnerByEmailProvider } from './providers/find-one-owner-by-email
     OnwersCreateManyProvider,
     CreateOwnerProvider,
     FindOneOwnerByEmailProvider,
+    FindOneByGoogleIdProvider,
+    CreateGoogleOwnerProvider,
   ],
   exports: [OwnersService],
   imports: [TypeOrmModule.forFeature([Owner]), forwardRef(() => AuthModule)],

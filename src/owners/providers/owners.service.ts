@@ -15,6 +15,9 @@ import { OnwersCreateManyProvider } from './onwers-create-many.provider';
 import { CreateManyOwnersDto } from '../dtos/create-mny-owners.dto';
 import { CreateOwnerProvider } from './create-owner.provider';
 import { FindOneOwnerByEmailProvider } from './find-one-owner-by-email.provider';
+import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
+import { CreateGoogleOwnerProvider } from './create-google-owner.provider';
+import { GoogleOwner } from '../interfaces/google-owner.interface';
 
 @Injectable()
 export class OwnersService {
@@ -29,6 +32,9 @@ export class OwnersService {
 
     private readonly createOwnerProvider: CreateOwnerProvider,
     private readonly findOneOwnerByEmailProvider: FindOneOwnerByEmailProvider,
+    private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
+
+    private readonly createGoogleOwnerProvider: CreateGoogleOwnerProvider,
   ) {}
 
   public async findAll(limit: number, page: number) {
@@ -60,12 +66,20 @@ export class OwnersService {
     return this.findOneOwnerByEmailProvider.findOneByEmail(email);
   }
 
+  public async findOneByGoogleId(googleId: string) {
+    return this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
+  }
+
   public async create(createOwnerDto: CreateOwnerDto) {
     return this.createOwnerProvider.create(createOwnerDto);
   }
 
   public async createMany(createManyOwnersDto: CreateManyOwnersDto) {
     return await this.ownersCreateManyProvider.createMany(createManyOwnersDto);
+  }
+
+  public async createGoogleOwner(googleOwner: GoogleOwner) {
+    return await this.createGoogleOwnerProvider.createGoogleOwner(googleOwner);
   }
 
   public async update(patchOwnerDto: PatchOwnerDto) {

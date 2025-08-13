@@ -21,6 +21,9 @@ export class SignInProvider {
   public async signIn(signInDto: SignInDto) {
     const owner = await this.ownerService.findOneByEmail(signInDto.email);
     let isEqual: boolean = false;
+    if (!owner.password) {
+      throw new UnauthorizedException('Le mot de passe est obligatoire');
+    }
     try {
       isEqual = await this.hashingProvider.comparePassword(
         signInDto.password,
