@@ -12,4 +12,5 @@ export default Joi.object({
   JWT_REFRESH_TOKEN_TTL: Joi.number().required(),
   DATABASE_SYNC: Joi.boolean().required(),
   DATABASE_AUTOLOAD: Joi.boolean().required(),
+  API_VERSION: Joi.string().required(),
 });

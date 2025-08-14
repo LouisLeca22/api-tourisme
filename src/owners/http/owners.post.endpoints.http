@@ -2,10 +2,10 @@ POST http://localhost:3000/owners
 Content-Type: application/json
 
 {
-    "name": "user",
+    "name": "test",
     "phoneNumber": "+33479551234",
     "password": "Test1234!",
-    "email": "user@mail.fr",
+    "email": "test3@mail.fr",
     "websiteUrl": "https://user.fr"
 }
 

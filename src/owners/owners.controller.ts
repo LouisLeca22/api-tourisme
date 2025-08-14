@@ -9,6 +9,8 @@ import {
   Body,
   Patch,
   Delete,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { CreateOwnerDto } from './dtos/create-owner.dto';
 import { PatchOwnerDto } from './dtos/patch-owner.dto';
@@ -91,6 +93,7 @@ export class OwnersController {
   })
   @Post()
   @Auth(AuthType.None)
+  @UseInterceptors(ClassSerializerInterceptor)
   public createOwner(@Body() createOwnerDto: CreateOwnerDto) {
     return this.ownersService.create(createOwnerDto);
   }

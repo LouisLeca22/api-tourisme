@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Accommodation } from 'src/accommodations/accommodation.entity';
 import { Activity } from 'src/activities/activity.entity';
 import { RoleType } from 'src/auth/enums/role-types.enum';
@@ -34,11 +35,13 @@ export class Owner {
     length: 255,
     nullable: true,
   })
+  @Exclude()
   password?: string;
 
   @Column({
     nullable: true,
   })
+  @Exclude()
   googleId?: string;
 
   @Column({
@@ -59,6 +62,7 @@ export class Owner {
     nullable: false,
     default: RoleType.User,
   })
+  @Exclude()
   role: RoleType;
 
   @CreateDateColumn()
