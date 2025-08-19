@@ -1,0 +1,10 @@
+POST http://localhost:3000/uploads/file
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryXYZ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZC1lNjBkLTRjMGEtYWJiNS01OWNiYjgwMDE4ZTMiLCJlbWFpbCI6ImFkbWluQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTU2MzE3OTIsImV4cCI6MTc1NTYzNTM5MiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.eEILMGXMVeFULfUdz2GhNsDa9eqIWU-czlyTWIxupxQ
+
+------WebKitFormBoundaryXYZ
+Content-Disposition: form-data; name="file"; filename="test-image.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\Louis\Documents\programming\web\Back\Nodejs\nest\api-tourisme\src\uploads\http\test-image.jpg
+------WebKitFormBoundaryXYZ--

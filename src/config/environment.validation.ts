@@ -13,4 +13,7 @@ export default Joi.object({
   DATABASE_SYNC: Joi.boolean().required(),
   DATABASE_AUTOLOAD: Joi.boolean().required(),
   API_VERSION: Joi.string().required(),
+  CLOUDINARY_CLOUD_NAME: Joi.string().required(),
+  CLOUDINARY_API_KEY: Joi.string().required(),
+  CLOUDINARY_API_SECRET: Joi.string().required(),
 });

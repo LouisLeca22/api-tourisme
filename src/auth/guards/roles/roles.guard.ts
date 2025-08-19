@@ -30,7 +30,15 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    if (!roleTypes.includes(user.role)) {
+    const hierarchy = {
+      [RoleType.User]: 1,
+      [RoleType.Admin]: 2,
+    };
+
+    const minRequiredLevel = Math.min(...roleTypes.map((r) => hierarchy[r]));
+    const userLevel = hierarchy[user.role];
+
+    if (userLevel < minRequiredLevel) {
       throw new ForbiddenException("Vous n'avez pas les droits nécessaires");
     }
 
