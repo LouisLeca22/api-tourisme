@@ -1,9 +1,14 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  RequestTimeoutException,
+} from '@nestjs/common';
 import { CreateOwnerDto } from '../dtos/create-owner.dto';
 import { Repository } from 'typeorm';
 import { Owner } from '../owner.entity';
 import { HashingProvider } from 'src/auth/providers/hashing.provider';
 import { InjectRepository } from '@nestjs/typeorm';
+import { MailService } from 'src/mail/providers/mail.service';
 
 @Injectable()
 export class CreateOwnerProvider {
@@ -11,6 +16,7 @@ export class CreateOwnerProvider {
     @InjectRepository(Owner)
     private readonly ownerRepository: Repository<Owner>,
     private readonly hashingProvider: HashingProvider,
+    private readonly mailService: MailService,
   ) {}
   public async create(createOwnerDto: CreateOwnerDto) {
     const existingOwner = await this.ownerRepository.findOne({
@@ -27,6 +33,11 @@ export class CreateOwnerProvider {
     });
     newOwner = await this.ownerRepository.save(newOwner);
 
+    try {
+      await this.mailService.sendOwnerWelcome(newOwner);
+    } catch (error) {
+      throw new RequestTimeoutException(error);
+    }
     return newOwner;
   }
 }
