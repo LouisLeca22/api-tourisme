@@ -29,7 +29,9 @@ export class CreateOwnerProvider {
 
     let newOwner = this.ownerRepository.create({
       ...createOwnerDto,
-      password: await this.hashingProvider.hashPssword(createOwnerDto.password),
+      password: await this.hashingProvider.hashPassword(
+        createOwnerDto.password,
+      ),
     });
     newOwner = await this.ownerRepository.save(newOwner);
 

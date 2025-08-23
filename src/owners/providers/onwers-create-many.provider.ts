@@ -30,7 +30,7 @@ export class OnwersCreateManyProvider {
       for (const owner of createManyOwnersDto.owners) {
         const newOwner = queryRunner.manager.create(Owner, {
           ...owner,
-          password: await this.hasingProvider.hashPssword(owner.password),
+          password: await this.hasingProvider.hashPassword(owner.password),
         });
         const result = await queryRunner.manager.save(newOwner);
         newOwners.push(result);

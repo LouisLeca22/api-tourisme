@@ -39,12 +39,14 @@ const ENV = process.env.NODE_ENV;
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        autoLoadEntities: true,
-        synchronize: true,
-        url: configService.get('database.url'),
-      }),
+      useFactory: (configService: ConfigService) => {
+        return {
+          type: 'postgres',
+          url: configService.get('database.url'),
+          autoLoadEntities: configService.get('database.autoLoadEntities'),
+          synchronize: configService.get('database.synchronize'),
+        };
+      },
     }),
     ActivitiesModule,
     PlacesModule,

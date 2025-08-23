@@ -18,12 +18,13 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET) should return the HTML homepage', async () => {
     const response = await request(app.getHttpServer()).get('/');
-    console.log(process.env.NODE_ENV);
     expect(response.status).toBe(200);
     expect(response.type).toBe('text/html');
     expect(response.text).toContain('<title>api-tourisme</title>');
     expect(response.text).toContain('<h1>api-tourisme</h1>');
-    expect(response.text).toContain('<a href="/doc">Voir la documentation</a>');
+    expect(response.text).toContain(
+      '<a href="/doc" class="button">Voir la documentation</a>',
+    );
   });
 
   afterAll(async () => {
