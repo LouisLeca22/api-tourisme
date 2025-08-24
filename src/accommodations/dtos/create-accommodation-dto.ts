@@ -12,7 +12,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { WordCount } from 'src/common/validators/word-count.validator';
-
 import { IsPriceRange } from 'src/common/validators/price-range.validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { AccommodationType } from '../enums/accommodation-type.enum';
@@ -61,9 +60,9 @@ export class CreateAccommodationDto {
     example: 4,
   })
   @IsNotEmpty({ message: 'Le champ "stars"  est obligatoire' })
-  @IsNumber({}, { message: "Le nombre d'étoile doit être un nombre" })
-  @Min(0, { message: "Le nombre d'étoile  ne peut pas être négatif" })
-  @Max(5, { message: "Le nombre d'étoile ne peut pas dépasser 5" })
+  @IsNumber({}, { message: "Le nombre d'étoiles doit être un nombre" })
+  @Min(0, { message: "Le nombre d'étoiles ne peut pas être négatif" })
+  @Max(5, { message: "Le nombre d'étoiles ne peut pas dépasser 5" })
   stars: number;
 
   @ApiProperty({
@@ -110,7 +109,7 @@ export class CreateAccommodationDto {
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
   @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
+    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
   })
   @Max(6, {
     message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
@@ -119,7 +118,7 @@ export class CreateAccommodationDto {
 
   @ApiProperty({
     description:
-      'Jour de fin d’ouverture (0 = lundi, 6 = dimanche) Doit être ≥ from',
+      'Jour de fin d’ouverture (0 = lundi, 6 = dimanche). Doit être ≥ from',
     example: 6,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })
@@ -147,7 +146,7 @@ export class CreateAccommodationDto {
 
   @ApiProperty({
     description:
-      "Heure de fermeture de l'hébergement (format HH:mm, 24h). Doit être après l'heure d'ouverture",
+      "Heure de fermeture de l'hébergement (format HH:mm, 24h). Doit être après l'heure d'ouverture (open)",
     example: '22:00',
   })
   @IsNotEmpty({ message: 'Le champ "close" est obligatoire' })

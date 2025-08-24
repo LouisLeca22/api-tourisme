@@ -34,12 +34,11 @@ export class EventsService {
     eventsQuery: GetEventsDto,
     ownerId?: string,
   ): Promise<Paginated<Event>> {
-    if (ownerId) await this.ownersService.findOne(ownerId);
-
     const where: FindOptionsWhere<Event> = {};
 
     if (ownerId) {
-      where.owner = { id: ownerId };
+      const owner = await this.ownersService.findOne(ownerId);
+      where.owner = owner;
     }
 
     if (eventsQuery.startDate && eventsQuery.endDate) {
@@ -106,9 +105,9 @@ export class EventsService {
     return await this.eventsCreateManyProvider.createMany(createManyEventsDto);
   }
 
-  public async update(patchEventDto: PatchEventDto) {
+  public async update(eventId: string, patchEventDto: PatchEventDto) {
     const event = await this.eventRepository.findOneBy({
-      id: patchEventDto.id,
+      id: eventId,
     });
 
     if (!event) {

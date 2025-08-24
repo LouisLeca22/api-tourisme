@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -27,6 +28,8 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { OwnershipGuard } from 'src/auth/guards/ownership/ownership.guard';
+import { Accommodation } from './accommodation.entity';
 
 @Controller('accommodations')
 @ApiTags('Hébergements')
@@ -131,11 +134,19 @@ export class AccommodationsController {
     description: "Réponse 200 lorsque l'hébergement est modifié avec succès",
   })
   @ApiBearerAuth('bearerAuth')
-  @Patch()
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: "identifiant de l'hébergement",
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
+  @UseGuards(OwnershipGuard(Accommodation, 'owner'))
+  @Patch('/:id')
   public updateAccommodation(
+    @Param('id') id: string,
     @Body() patchAccommodationDto: PatchAccommodationDto,
   ) {
-    return this.accommodationsService.update(patchAccommodationDto);
+    return this.accommodationsService.update(id, patchAccommodationDto);
   }
 
   @ApiOperation({
@@ -146,16 +157,15 @@ export class AccommodationsController {
     description: "Réponse 200 lorsque l'hébergement est supprimé avec succès",
   })
   @ApiParam({
-    name: 'accommodationId',
+    name: 'id',
     required: true,
     description: "identifiant de l'hébergement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
-  @Delete('/:accommodationId')
-  public deleteAccommodation(
-    @Param('accommodationId') accommodationId: string,
-  ) {
-    return this.accommodationsService.delete(accommodationId);
+  @UseGuards(OwnershipGuard(Accommodation, 'owner'))
+  @Delete('/:id')
+  public deleteAccommodation(@Param('id') id: string) {
+    return this.accommodationsService.delete(id);
   }
 }

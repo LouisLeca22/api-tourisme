@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -27,6 +28,8 @@ import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { OwnershipGuard } from 'src/auth/guards/ownership/ownership.guard';
+import { Activity } from './activity.entity';
 
 @Controller('activities')
 @ApiTags('Activités')
@@ -106,6 +109,7 @@ export class ActivitiesController {
 
   @ApiOperation({
     summary: 'Crée plusieurs activités',
+    description: 'Cette route est réservée aux administrateurs',
   })
   @ApiResponse({
     status: 201,
@@ -127,10 +131,20 @@ export class ActivitiesController {
     status: 200,
     description: "Réponse 200 lorsque l'activité est modifiée avec succès",
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: "identifiant de l'activité",
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
   @ApiBearerAuth('bearerAuth')
-  @Patch()
-  public updateActivity(@Body() patchActivityDto: PatchActivityDto) {
-    return this.activitiesService.update(patchActivityDto);
+  @UseGuards(OwnershipGuard(Activity, 'owner'))
+  @Patch('/:id')
+  public updateActivity(
+    @Param('id') id: string,
+    @Body() patchActivityDto: PatchActivityDto,
+  ) {
+    return this.activitiesService.update(id, patchActivityDto);
   }
 
   @ApiOperation({
@@ -141,14 +155,15 @@ export class ActivitiesController {
     description: "Réponse 200 lorsque l'activité est supprimée avec succès",
   })
   @ApiParam({
-    name: 'activityId',
+    name: 'id',
     required: true,
     description: "identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
-  @Delete('/:activityId')
-  public deleteActivity(@Param('activityId') activityId: string) {
-    return this.activitiesService.delete(activityId);
+  @UseGuards(OwnershipGuard(Activity, 'owner'))
+  @Delete('/:id')
+  public deleteActivity(@Param('id') id: string) {
+    return this.activitiesService.delete(id);
   }
 }

@@ -13,7 +13,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { WordCount } from 'src/common/validators/word-count.validator';
-
 import { IsPriceRange } from 'src/common/validators/price-range.validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsToAfterFrom } from 'src/common/validators/is-to-after-from.validator';
@@ -36,7 +35,8 @@ export class CreateActivityDto {
 
   @ApiProperty({
     description: "Description de l'activité",
-    example: 'Charmante villa avec jardin et piscine.',
+    example:
+      'Glissez en paddle au cœur de la baie et profitez d’un moment de détente tout en découvrant le littoral sous un nouvel angle.',
   })
   @IsNotEmpty({ message: 'Le champ "description" est obligatoire' })
   @IsString({ message: 'La description doit être une chaîne de caractère' })
@@ -61,9 +61,9 @@ export class CreateActivityDto {
     description: "Durée de l'activité (nombre de minutes)",
     example: 120,
   })
-  @IsNotEmpty({ message: 'Le champ "duration"  est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "duration" est obligatoire' })
   @IsNumber({}, { message: 'Le nombre de minutes doit être un nombre' })
-  @Min(0, { message: 'Le nombre de minutes  ne peut pas être négatif' })
+  @Min(0, { message: 'Le nombre de minutes ne peut pas être négatif' })
   duration: number;
 
   @ApiProperty({
@@ -119,7 +119,7 @@ export class CreateActivityDto {
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
   @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
+    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
   })
   @Max(6, {
     message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
@@ -128,7 +128,7 @@ export class CreateActivityDto {
 
   @ApiProperty({
     description:
-      'Jour de fin d’ouverture (0 = lundi, 6 = dimanche) Doit être ≥ from',
+      'Jour de fin d’ouverture (0 = lundi, 6 = dimanche). Doit être ≥ from',
     example: 6,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })

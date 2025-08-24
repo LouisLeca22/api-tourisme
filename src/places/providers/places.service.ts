@@ -34,12 +34,11 @@ export class PlacesService {
     placesQuery: PaginationQueryDto,
     ownerId?: string,
   ): Promise<Paginated<Place>> {
-    if (ownerId) await this.ownersService.findOne(ownerId);
-
     const where: FindOptionsWhere<Place> = {};
 
     if (ownerId) {
-      where.owner = { id: ownerId };
+      const owner = await this.ownersService.findOne(ownerId);
+      where.owner = owner;
     }
 
     return this.paginationProvider.paginateQuey(
@@ -96,9 +95,9 @@ export class PlacesService {
     return await this.placesCreateManyProvider.createMany(createManyPlacesDto);
   }
 
-  public async update(patchPlaceDto: PatchPlaceDto) {
+  public async update(placeId: string, patchPlaceDto: PatchPlaceDto) {
     const place = await this.placeRepository.findOneBy({
-      id: patchPlaceDto.id,
+      id: placeId,
     });
 
     if (!place) {

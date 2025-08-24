@@ -1,7 +1,7 @@
 PATCH http://localhost:3000/owners
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOWYxMzA0Ny03MTI1LTRlOWYtYjVhNC0wYTE4Yzk5ODRhZTkiLCJlbWFpbCI6Implc3N5QG1haWwuZnIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1NjA2MjU0OCwiZXhwIjoxNzU2MDY2MTQ4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.W6blQXmME6Z92G4VA858mtlEl2SkpgaTsHkCSRznm8A
 {
-    "id": "614e0d8f-478a-4b07-8bf9-34decd750417",
+    "id": "d193c9eb-ce2e-491a-bcca-11090cc990a3",
     "websiteUrl": "http://new-url.fr"
 }

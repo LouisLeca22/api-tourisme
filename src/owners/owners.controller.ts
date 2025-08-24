@@ -28,6 +28,8 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { AuthType } from 'src/auth/enums/auth-type.enum';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
 
 @Controller('owners')
 @ApiTags('Propriétaires')
@@ -123,8 +125,11 @@ export class OwnersController {
   })
   @ApiBearerAuth('bearerAuth')
   @Patch()
-  public patchOwner(@Body() patchOwnerDto: PatchOwnerDto) {
-    return this.ownersService.update(patchOwnerDto);
+  public patchOwner(
+    @Body() patchOwnerDto: PatchOwnerDto,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.ownersService.update(patchOwnerDto, user);
   }
 
   @ApiOperation({
@@ -142,7 +147,10 @@ export class OwnersController {
   })
   @ApiBearerAuth('bearerAuth')
   @Delete('/:ownerId')
-  public deleteOwner(@Param('ownerId') ownerId: string) {
-    return this.ownersService.delete(ownerId);
+  public deleteOwner(
+    @Param('ownerId') ownerId: string,
+    @ActiveUser() user: ActiveUserData,
+  ) {
+    return this.ownersService.delete(ownerId, user);
   }
 }

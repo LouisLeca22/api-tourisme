@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -27,6 +28,8 @@ import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { OwnershipGuard } from 'src/auth/guards/ownership/ownership.guard';
+import { Restaurant } from './restaurant.entity';
 
 @Controller('restaurants')
 @ApiTags('Restaurants')
@@ -126,10 +129,20 @@ export class RestaurantsController {
     status: 200,
     description: 'Réponse 200 lorsque le restaurant est modifié avec succès',
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: 'identifiant du restaurant',
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
   @ApiBearerAuth('bearerAuth')
-  @Patch()
-  public updateRestaurant(@Body() patchRestaurantDto: PatchRestaurantDto) {
-    return this.restaurantsService.update(patchRestaurantDto);
+  @UseGuards(OwnershipGuard(Restaurant, 'owner'))
+  @Patch('/:id')
+  public updateRestaurant(
+    @Param('id') id: string,
+    @Body() patchRestaurantDto: PatchRestaurantDto,
+  ) {
+    return this.restaurantsService.update(id, patchRestaurantDto);
   }
 
   @ApiOperation({
@@ -140,14 +153,15 @@ export class RestaurantsController {
     description: 'Réponse 200 lorsque le restaurant est supprimé avec succès',
   })
   @ApiParam({
-    name: 'restaurantId',
+    name: 'id',
     required: true,
     description: 'identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
-  @Delete('/:restaurantId')
-  public deleteRestaurant(@Param('restaurantId') restaurantId: string) {
-    return this.restaurantsService.delete(restaurantId);
+  @UseGuards(OwnershipGuard(Restaurant, 'owner'))
+  @Delete('/:id')
+  public deleteRestaurant(@Param('id') id: string) {
+    return this.restaurantsService.delete(id);
   }
 }

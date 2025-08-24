@@ -34,12 +34,11 @@ export class RestaurantsService {
     restaurantsQuery: PaginationQueryDto,
     ownerId?: string,
   ): Promise<Paginated<Restaurant>> {
-    if (ownerId) await this.ownersService.findOne(ownerId);
-
     const where: FindOptionsWhere<Restaurant> = {};
 
     if (ownerId) {
-      where.owner = { id: ownerId };
+      const owner = await this.ownersService.findOne(ownerId);
+      where.owner = owner;
     }
 
     return this.paginationProvider.paginateQuey(
@@ -102,9 +101,12 @@ export class RestaurantsService {
     );
   }
 
-  public async update(patchRestaurantDto: PatchRestaurantDto) {
+  public async update(
+    restaurantId: string,
+    patchRestaurantDto: PatchRestaurantDto,
+  ) {
     const restaurant = await this.restaurantRepository.findOneBy({
-      id: patchRestaurantDto.id,
+      id: restaurantId,
     });
 
     if (!restaurant) {

@@ -1,9 +1,8 @@
-PATCH http://localhost:3000/activities
+PATCH http://localhost:3000/activities/1a17423f-5d3b-4adc-814a-c1e58e8ecfb4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MmFkYzVkNC03ZGVkLTQ5Y2UtYTI2NC0xMjBmMmZiYTNiZmEiLCJlbWFpbCI6InVzZXJAbWFpbC5mciIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0NzIxMDA3LCJleHAiOjE3NTQ3MjQ2MDcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.pte__xiG7CCsw8eqDMLDCoGXOzytkZEahqMww3AugMI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOWYxMzA0Ny03MTI1LTRlOWYtYjVhNC0wYTE4Yzk5ODRhZTkiLCJlbWFpbCI6Implc3N5QG1haWwuZnIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1NjA2Mzk1MSwiZXhwIjoxNzU2MDY3NTUxLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.ORFa6X0VMqmFVdMnk2qIdQgKZDhbYZ6ACl_YvQ3GI9c
 
 {
-    "id": "f00f6766-c4e6-4075-bd6d-4cfaadf71751",
     "languages": ["fr", "es"],
-    "address": "275 boulevard François 1er, 76600 Le Havre"
+    "address": "10 Quai de la Mégisserie, 75001 Paris"
 }

@@ -34,12 +34,11 @@ export class ActivitiesService {
     activitiesQuery: PaginationQueryDto,
     ownerId?: string,
   ): Promise<Paginated<Activity>> {
-    if (ownerId) await this.ownersService.findOne(ownerId);
-
     const where: FindOptionsWhere<Activity> = {};
 
     if (ownerId) {
-      where.owner = { id: ownerId };
+      const owner = await this.ownersService.findOne(ownerId);
+      where.owner = owner;
     }
 
     return this.paginationProvider.paginateQuey(
@@ -102,9 +101,9 @@ export class ActivitiesService {
     );
   }
 
-  public async update(patchActivityDto: PatchActivityDto) {
+  public async update(activityId: string, patchActivityDto: PatchActivityDto) {
     const activity = await this.activityRepository.findOneBy({
-      id: patchActivityDto.id,
+      id: activityId,
     });
 
     if (!activity) {
@@ -149,7 +148,7 @@ export class ActivitiesService {
     });
 
     if (!activity) {
-      throw new BadRequestException("Cet hébergement n'existe pas");
+      throw new BadRequestException("Cette activité n'existe pas");
     }
 
     await this.activityRepository.softRemove(activity);

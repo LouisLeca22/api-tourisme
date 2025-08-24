@@ -34,12 +34,11 @@ export class AccommodationsService {
     accommdationsQuery: PaginationQueryDto,
     ownerId?: string,
   ): Promise<Paginated<Accommodation>> {
-    if (ownerId) await this.ownersService.findOne(ownerId);
-
     const where: FindOptionsWhere<Accommodation> = {};
 
     if (ownerId) {
-      where.owner = { id: ownerId };
+      const owner = await this.ownersService.findOne(ownerId);
+      where.owner = owner;
     }
 
     return this.paginationProvider.paginateQuey(
@@ -105,9 +104,12 @@ export class AccommodationsService {
     );
   }
 
-  public async update(patchAccommodationDto: PatchAccommodationDto) {
+  public async update(
+    accommodationId: string,
+    patchAccommodationDto: PatchAccommodationDto,
+  ) {
     const accommodation = await this.accommodationRepository.findOneBy({
-      id: patchAccommodationDto.id,
+      id: accommodationId,
     });
 
     if (!accommodation) {

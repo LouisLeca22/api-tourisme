@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -27,6 +28,8 @@ import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { OwnershipGuard } from 'src/auth/guards/ownership/ownership.guard';
+import { Place } from './place.entity';
 
 @Controller('places')
 @ApiTags('Sites touristiques')
@@ -128,10 +131,20 @@ export class PlacesController {
     description:
       'Réponse 200 lorsque le site touristique est modifié avec succès',
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: "identifiant de l'activité",
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
   @ApiBearerAuth('bearerAuth')
-  @Patch()
-  public updatePlace(@Body() patchPlaceDto: PatchPlaceDto) {
-    return this.placesService.update(patchPlaceDto);
+  @UseGuards(OwnershipGuard(Place, 'owner'))
+  @Patch('/:id')
+  public updatePlace(
+    @Param('id') id: string,
+    @Body() patchPlaceDto: PatchPlaceDto,
+  ) {
+    return this.placesService.update(id, patchPlaceDto);
   }
 
   @ApiOperation({
@@ -143,14 +156,15 @@ export class PlacesController {
       'Réponse 200 lorsque le site touristique est supprimé avec succès',
   })
   @ApiParam({
-    name: 'placeId',
+    name: 'id',
     required: true,
     description: "identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
-  @Delete('/:placeId')
-  public deletePlace(@Param('placeId') placeId: string) {
-    return this.placesService.delete(placeId);
+  @UseGuards(OwnershipGuard(Place, 'owner'))
+  @Delete('/:id')
+  public deletePlace(@Param('id') id: string) {
+    return this.placesService.delete(id);
   }
 }

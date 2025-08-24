@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   forwardRef,
   Inject,
   Injectable,
@@ -18,6 +19,7 @@ import { FindOneOwnerByEmailProvider } from './find-one-owner-by-email.provider'
 import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
 import { CreateGoogleOwnerProvider } from './create-google-owner.provider';
 import { GoogleOwner } from '../interfaces/google-owner.interface';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class OwnersService {
@@ -82,13 +84,19 @@ export class OwnersService {
     return await this.createGoogleOwnerProvider.createGoogleOwner(googleOwner);
   }
 
-  public async update(patchOwnerDto: PatchOwnerDto) {
+  public async update(patchOwnerDto: PatchOwnerDto, user: ActiveUserData) {
     const owner = await this.ownerRepository.findOneBy({
       id: patchOwnerDto.id,
     });
 
     if (!owner) {
       throw new BadRequestException("Ce propriétaire n'existe pas");
+    }
+
+    if (owner.id !== user.sub) {
+      throw new ForbiddenException(
+        "Vous n'avez pas les droits pour modifier ce propriétaire",
+      );
     }
 
     owner.name = patchOwnerDto.name ?? owner.name;
@@ -111,7 +119,7 @@ export class OwnersService {
     return await this.ownerRepository.save(owner);
   }
 
-  public async delete(ownerId: string) {
+  public async delete(ownerId: string, user: ActiveUserData) {
     if (!isUuid(ownerId)) {
       throw new BadRequestException(
         "Format invalide pour l'identifiant du propriétaire (UUID)",
@@ -130,6 +138,12 @@ export class OwnersService {
 
     if (!owner) {
       throw new BadRequestException("Ce proprétaire n'existe pas");
+    }
+
+    if (owner.id !== user.sub) {
+      throw new ForbiddenException(
+        "Vous n'avez pas les droits pour modifier ce propriétaire",
+      );
     }
 
     await this.ownerRepository.softRemove(owner);

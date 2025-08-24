@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { EventsService } from './providers/events.service';
 import {
@@ -27,6 +28,8 @@ import { ActiveUser } from 'src/auth/decorators/active-user.decorator';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RoleType } from 'src/auth/enums/role-types.enum';
+import { OwnershipGuard } from 'src/auth/guards/ownership/ownership.guard';
+import { Event } from './event.entity';
 
 @Controller('events')
 @ApiTags('Événemments')
@@ -125,6 +128,12 @@ export class EventsController {
     status: 201,
     description: 'Réponse 201 lorsque les événements ont été créés avec succès',
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: "identifiant de l'évenement",
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
   @ApiBearerAuth('bearerAuth')
   @Roles(RoleType.Admin)
   @Post('create-many')
@@ -139,10 +148,20 @@ export class EventsController {
     status: 200,
     description: "Réponse 200 lorsque l'événement est modifié avec succès",
   })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: "identifiant de l'évenement",
+    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+  })
   @ApiBearerAuth('bearerAuth')
-  @Patch()
-  public updateEvent(@Body() patchEventDto: PatchEventDto) {
-    return this.eventsService.update(patchEventDto);
+  @UseGuards(OwnershipGuard(Event, 'owner'))
+  @Patch('/:id')
+  public updateEvent(
+    @Param('id') id: string,
+    @Body() patchEventDto: PatchEventDto,
+  ) {
+    return this.eventsService.update(id, patchEventDto);
   }
 
   @ApiOperation({
@@ -153,14 +172,15 @@ export class EventsController {
     description: "Réponse 200 lorsque l'événement est supprimé avec succès",
   })
   @ApiParam({
-    name: 'eventId',
+    name: 'id',
     required: true,
     description: "identifiant de l'évenement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
-  @Delete('/:eventId')
-  public deleteEvent(@Param('eventId') eventId: string) {
-    return this.eventsService.delete(eventId);
+  @UseGuards(OwnershipGuard(Event, 'owner'))
+  @Delete('/:id')
+  public deleteEvent(@Param('id') id: string) {
+    return this.eventsService.delete(id);
   }
 }
