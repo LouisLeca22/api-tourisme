@@ -25,7 +25,7 @@ export class IsCloseAfterOpenConstraint
   }
 
   defaultMessage(): string {
-    return '`close` doit être après `open`';
+    return "L'heure de fermeture (close) doit être après l'heure d'ouverture (open).";
   }
 }
 

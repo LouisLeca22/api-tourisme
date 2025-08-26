@@ -53,7 +53,7 @@ export class AccommodationsCreateManyProvider {
       await queryRunner.commitTransaction();
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new ConflictException("la transaction n'a pas pu être effectuée", {
+      throw new ConflictException("La transaction n'a pas pu être effectuée", {
         description: String(error),
       });
     } finally {

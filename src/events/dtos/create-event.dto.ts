@@ -62,7 +62,7 @@ export class CreateEventDto {
       "Addresse de l'événement - validée par api-adresse.data.gouv.fr",
     example: 'Place du village, Patrimonio (20253)',
   })
-  @IsNotEmpty({ message: 'le champ "address" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
   address: string;
 
@@ -79,7 +79,7 @@ export class CreateEventDto {
       "Date de fin de l'événement- ISO8601 - Date de fin > Date de début",
     example: '2025-07-20T21:00:30+02:00',
   })
-  @IsNotEmpty({ message: 'le champ "endDate" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "endDate" est obligatoire' })
   @IsISO8601({}, { message: 'La date de fin doit être une date valide' })
   @IsEndDateAfterStartDate({
     message: 'La date de fin doit être après la date de début',
@@ -115,10 +115,10 @@ export class CreateEventDto {
   languages: Language[];
 
   @ApiProperty({
-    description: "âge minimum pour participer à l'événement (0 = tout public)",
+    description: "Âge minimum pour participer à l'événement (0 = tout public)",
     example: 12,
   })
-  @IsNotEmpty({ message: 'le champ "requiredAge" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })
   @Min(0, { message: "L'âge requis ne peut pas être négatif" })
   requiredAge: number;

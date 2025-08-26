@@ -107,7 +107,7 @@ export class CreateActivityDto {
     description: "âge minimum pour participer à l'activité (0 = tout public)",
     example: 12,
   })
-  @IsNotEmpty({ message: 'le champ "requiredAge" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })
   @Min(0, { message: "L'âge requis ne peut pas être négatif" })
   requiredAge: number;
@@ -117,12 +117,12 @@ export class CreateActivityDto {
     example: 1,
   })
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
-  @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
+  @IsNumber({}, { message: 'Le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
+    message: 'Le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   from: number;
 
@@ -132,12 +132,12 @@ export class CreateActivityDto {
     example: 6,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })
-  @IsNumber({}, { message: "le jour de fin d'ouverture doit être un nombre" })
+  @IsNumber({}, { message: "Le jour de fin d'ouverture doit être un nombre" })
   @Min(0, {
     message: 'Le jour de la semaine ne peut pas être inférieur à 0 (lundi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   @IsToAfterFrom({
     message: '`to` doit être supérieur ou égal à `from`',

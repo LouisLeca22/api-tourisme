@@ -27,6 +27,12 @@ export class UploadsService {
         throw new BadRequestException("Ce format n'est pas supporté");
       }
 
+      if (file.size > 1 * 1024 * 1024) {
+        throw new BadRequestException(
+          'Le fichier est trop volumineux (max 1MB)',
+        );
+      }
+
       const { path, name } =
         await this.uploadToCloudinaryProvider.fileUpload(file);
 

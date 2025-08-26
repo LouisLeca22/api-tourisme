@@ -75,7 +75,7 @@ export class CreatePlaceDto {
       'Addresse du site touristique - validée par api-adresse.data.gouv.fr',
     example: '8 Bd Maréchal Joffre, Céret (66400)',
   })
-  @IsNotEmpty({ message: 'le champ "address" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
   address: string;
 
@@ -97,10 +97,10 @@ export class CreatePlaceDto {
 
   @ApiProperty({
     description:
-      'âge minimum pour entrer dans le site touristique (0 = tout public)',
+      'Âge minimum pour entrer dans le site touristique (0 = tout public)',
     example: 0,
   })
-  @IsNotEmpty({ message: 'le champ "requiredAge" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })
   @Min(0, { message: "L'âge requis ne peut pas être négatif" })
   requiredAge: number;
@@ -110,12 +110,12 @@ export class CreatePlaceDto {
     example: 1,
   })
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
-  @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
+  @IsNumber({}, { message: 'Le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
+    message: 'Le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   from: number;
 
@@ -125,12 +125,12 @@ export class CreatePlaceDto {
     example: 6,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })
-  @IsNumber({}, { message: "le jour de fin d'ouverture doit être un nombre" })
+  @IsNumber({}, { message: "Le jour de fin d'ouverture doit être un nombre" })
   @Min(0, {
     message: 'Le jour de la semaine ne peut pas être inférieur à 0 (lundi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   @IsToAfterFrom({
     message: '`to` doit être supérieur ou égal à `from`',

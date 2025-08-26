@@ -43,7 +43,7 @@ export function IsOpenCloseTimePair(validationOptions?: ValidationOptions) {
           return true;
         },
         defaultMessage() {
-          return `openTwo et closeTwo forment une paire. Si l'un présent, l'autre aussi`;
+          return `Les champs openTwo et closeTwo doivent être renseignés ensemble, et closeTwo doit être après openTwo.`;
         },
       },
     });

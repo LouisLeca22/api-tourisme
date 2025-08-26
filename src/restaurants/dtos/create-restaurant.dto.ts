@@ -13,7 +13,6 @@ import {
   MinLength,
 } from 'class-validator';
 import { WordCount } from 'src/common/validators/word-count.validator';
-
 import { IsPriceRange } from 'src/common/validators/price-range.validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsToAfterFrom } from 'src/common/validators/is-to-after-from.validator';
@@ -89,7 +88,7 @@ export class CreateRestaurantDto {
   @IsArray({ message: 'Les cuisines doivent être comprises dans un tableau' })
   @IsIn(CUISINES, {
     each: true,
-    message: ({ value }) => `cuisine non supportée :  ${value}`,
+    message: ({ value }) => `Cuisine non supportée :  ${value}`,
   })
   cuisines: Cuisine[];
 
@@ -111,12 +110,12 @@ export class CreateRestaurantDto {
     example: 1,
   })
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
-  @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
+  @IsNumber({}, { message: 'Le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
+    message: 'Le jour de de la smeinae ne peut pas être intérieur à 0 (lindi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   from: number;
 
@@ -126,12 +125,12 @@ export class CreateRestaurantDto {
     example: 6,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })
-  @IsNumber({}, { message: "le jour de fin d'ouverture doit être un nombre" })
+  @IsNumber({}, { message: "Le jour de fin d'ouverture doit être un nombre" })
   @Min(0, {
     message: 'Le jour de la semaine ne peut pas être inférieur à 0 (lundi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   @IsToAfterFrom({
     message: '`to` doit être supérieur ou égal à `from`',
@@ -170,7 +169,7 @@ export class CreateRestaurantDto {
   @IsOptional()
   @IsOpenCloseTimePair({
     message:
-      'le champ closeTwo doit être également renseigné openTwo ≤ closeTwo',
+      'Le champ closeTwo doit être également renseigné, openTwo ≤ closeTwo',
   })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
     message: 'L’heure d’ouverture (openTwo) doit être au format HH:mm',
@@ -184,7 +183,7 @@ export class CreateRestaurantDto {
   })
   @IsOpenCloseTimePair({
     message:
-      'le champ openTwo doit être également renseigné, openTwo ≤ closeTwo',
+      'Le champ openTwo doit être également renseigné, openTwo ≤ closeTwo',
   })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
     message: 'L’heure de fermeture (closeTwo) doit être au format HH:mm',

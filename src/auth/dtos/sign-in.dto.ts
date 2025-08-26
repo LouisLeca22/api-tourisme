@@ -7,7 +7,7 @@ export class SignInDto {
     example: 'contact@aventurescevenoles.fr',
   })
   @IsEmail({}, { message: 'Adresse e-mail invalide' })
-  @IsNotEmpty({ message: "l'adresse e-mail est obligatoire" })
+  @IsNotEmpty({ message: "L'adresse e-mail est obligatoire" })
   email: string;
 
   @ApiProperty({

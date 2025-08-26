@@ -107,12 +107,12 @@ export class CreateAccommodationDto {
     example: 1,
   })
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
-  @IsNumber({}, { message: 'le jour de la semaine doit être un nombre' })
+  @IsNumber({}, { message: 'Le jour de la semaine doit être un nombre' })
   @Min(0, {
-    message: 'le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
+    message: 'Le jour de de la smeinae ne peut pas être intérieur à 0 (lundi)',
   })
   @Max(6, {
-    message: 'le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
+    message: 'Le jour de la semaine ne peut pas être supérieur à 6 (dimanche)',
   })
   from: number;
 

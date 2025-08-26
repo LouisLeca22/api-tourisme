@@ -52,14 +52,14 @@ export class RestaurantsController {
     name: 'limit',
     type: 'number',
     required: false,
-    description: "nombre d'entrées retournées par requête",
+    description: "Nombre d'entrées retournées par requête",
     example: 10,
   })
   @ApiQuery({
     name: 'page',
     type: 'number',
     required: false,
-    description: "position de la page retournée par l'API",
+    description: 'Position de la page retournée',
     example: 1,
   })
   @Auth(AuthType.None)
@@ -108,6 +108,7 @@ export class RestaurantsController {
 
   @ApiOperation({
     summary: 'Crée plusieurs restaurants',
+    description: 'Cette route est réservée aux administrateurs',
   })
   @ApiResponse({
     status: 201,

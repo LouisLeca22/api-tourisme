@@ -17,7 +17,7 @@ export class IsEndDateAfterStartDateConstraint
   }
 
   defaultMessage() {
-    return `La date de fin doit être postérieure à la date de début`;
+    return `La date de fin (endDate) doit être postérieure à la date de début (startDate)`;
   }
 }
 

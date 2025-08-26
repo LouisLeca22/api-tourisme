@@ -18,7 +18,7 @@ export class IsToAfterFromConstraint implements ValidatorConstraintInterface {
   }
 
   defaultMessage(): string {
-    return '`to` doit être supérieur ou égal à `from`';
+    return 'La valeur du champ `to` doit être supérieure ou égal à la valeur du champ `from`';
   }
 }
 

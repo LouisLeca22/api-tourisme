@@ -5,7 +5,7 @@ import { getCloudinary } from 'src/config/cloudinary.config';
 
 @Injectable()
 export class UploadToCloudinaryProvider {
-  private cloudinary = getCloudinary(); // configure here, after env is loaded
+  private cloudinary = getCloudinary();
 
   public async fileUpload(
     file: Express.Multer.File,
@@ -21,7 +21,7 @@ export class UploadToCloudinaryProvider {
             return reject(new Error(error.message));
           }
           if (!result) {
-            return reject(new Error('Cloudinary did not return a result'));
+            return reject(new Error("Cloudinary n'a pas retourné de résultat"));
           }
           resolve({
             path: result.secure_url,

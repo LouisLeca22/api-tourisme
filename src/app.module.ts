@@ -22,6 +22,8 @@ import { RolesGuard } from './auth/guards/roles/roles.guard';
 import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
 import { UploadsModule } from './uploads/uploads.module';
 import { MailModule } from './mail/mail.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -56,6 +58,9 @@ const ENV = process.env.NODE_ENV;
     JwtModule.registerAsync(jwtConfig.asProvider()),
     UploadsModule,
     MailModule,
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, '..', 'public'),
+    }),
   ],
   controllers: [AppController],
   providers: [

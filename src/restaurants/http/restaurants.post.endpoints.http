@@ -16,7 +16,7 @@ Content-Type: application/json
     "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
 }
 
-
+# Route réservée aux administrateurss
 POST http://localhost:3000/restaurants/create-many
 Content-Type: application/json
 

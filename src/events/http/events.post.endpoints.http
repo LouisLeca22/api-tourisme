@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 
-
+# Route réservée aux administrateurs
 POST http://localhost:3000/events/create-many
 Content-Type: application/json
 
