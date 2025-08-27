@@ -18,7 +18,7 @@ export function appCreate(app: INestApplication) {
     .setTitle('Api-Tourisme')
     .setDescription('Votre passerelle vers les données touristiques')
     .setVersion('1.0')
-    .addServer('http://api-tourisme.onrender.com')
+    .addServer('https://api-tourisme.onrender.com')
     .addBearerAuth(
       {
         type: 'http',
