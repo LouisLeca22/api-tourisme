@@ -22,7 +22,7 @@ export class FindOneOwnerByEmailProvider {
       });
     } catch (error) {
       throw new RequestTimeoutException(error, {
-        description: 'impossible de récupérer le propriétaire',
+        description: 'Impossible de récupérer le propriétaire',
       });
     }
 

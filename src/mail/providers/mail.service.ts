@@ -15,8 +15,7 @@ export class MailService {
       context: {
         name: owner.name,
         email: owner.email,
-        // TODO change URL
-        loginUrl: 'http://localhost:3000/',
+        loginUrl: 'http://api-tourisme.onrender.com',
       },
     });
   }

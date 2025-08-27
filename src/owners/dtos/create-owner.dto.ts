@@ -56,7 +56,7 @@ export class CreateOwnerDto {
   @ApiPropertyOptional({
     description:
       'Numéro de téléphone du propriétaire - (06XXXXXXXX ou +336XXXXXXXX)',
-    example: '+33 4 79 55 12 34',
+    example: '+33479551234',
   })
   @IsString({
     message: 'Le numéro de téléphone doit être une chaîne de caractère',
@@ -72,8 +72,8 @@ export class CreateOwnerDto {
   phoneNumber?: string;
 
   @ApiPropertyOptional({
-    description: 'https://montagneaventure.fr',
-    example: '+33 4 79 55 12 34',
+    description: 'URL du site web du propriétaire',
+    example: 'https://montagneaventure.fr',
   })
   @IsOptional()
   @MaxLength(2083, {

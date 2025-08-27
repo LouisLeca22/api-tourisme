@@ -21,7 +21,7 @@ import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
           },
         },
         default: {
-          from: `Api Tourisme <no-reply@api-tourisme.com>`,
+          from: `Api Tourisme | <no-reply@api-tourisme.com>`,
         },
         template: {
           dir: join(__dirname, 'templates'),

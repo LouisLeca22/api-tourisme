@@ -18,7 +18,6 @@ export class AppController {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Votre passerelle vers les données touristiques" />
   <link rel="canonical" href="https://api-tourisme.onrender.com/" />
-
   <meta property="og:title" content="API Tourisme – Données et services touristiques" />
   <meta property="og:description" content="Votre passerelle vers les données touristiques" />
   <meta property="og:url" content="https://api-tourisme.onrender.com/" />
@@ -26,12 +25,10 @@ export class AppController {
   <meta property="og:image" content="https://api-tourisme.onrender.com/images/preview.png" />
   <meta property="og:site_name" content="API Tourisme" />
   <meta property="og:locale" content="fr_FR" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="API Tourisme – Données et services touristiques" />
   <meta name="twitter:description" content="Votre passerelle vers les données touristiques" />
   <meta name="twitter:image" content="https://api-tourisme.onrender.com/images/preview.png" />
-
   <style>
     body {
       font-family: system-ui, sans-serif;

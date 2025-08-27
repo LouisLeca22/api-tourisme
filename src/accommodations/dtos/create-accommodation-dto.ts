@@ -59,7 +59,7 @@ export class CreateAccommodationDto {
     description: "Nombre d'étoiles de l'hébergement",
     example: 4,
   })
-  @IsNotEmpty({ message: 'Le champ "stars"  est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "stars" est obligatoire' })
   @IsNumber({}, { message: "Le nombre d'étoiles doit être un nombre" })
   @Min(0, { message: "Le nombre d'étoiles ne peut pas être négatif" })
   @Max(5, { message: "Le nombre d'étoiles ne peut pas dépasser 5" })

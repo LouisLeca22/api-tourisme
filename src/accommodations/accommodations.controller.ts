@@ -42,7 +42,7 @@ export class AccommodationsController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Hébergements récupérés avec succès selon la requête.',
+    description: 'Hébergements récupérés avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
@@ -83,7 +83,7 @@ export class AccommodationsController {
   @ApiParam({
     name: 'accommodationId',
     required: true,
-    description: "identifiant de l'hébergement",
+    description: "Identifiant de l'hébergement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Get('/single/:accommodationId')
@@ -137,7 +137,7 @@ export class AccommodationsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'hébergement",
+    description: "Isdentifiant de l'hébergement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @UseGuards(OwnershipGuard(Accommodation, 'owner'))
@@ -159,7 +159,7 @@ export class AccommodationsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'hébergement",
+    description: "Identifiant de l'hébergement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')

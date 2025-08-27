@@ -41,7 +41,7 @@ export class ActivitiesController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Activités récupérées avec succès selon la requête.',
+    description: 'Activités récupérées avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
@@ -77,12 +77,12 @@ export class ActivitiesController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Activité récupérée avec succès selon la requête.',
+    description: 'Activité récupérée avec succès selon la requête',
   })
   @ApiParam({
     name: 'activityId',
     required: true,
-    description: "identifiant de l'activité",
+    description: "Identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Auth(AuthType.None)
@@ -134,7 +134,7 @@ export class ActivitiesController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'activité",
+    description: "Identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
@@ -157,7 +157,7 @@ export class ActivitiesController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'activité",
+    description: "Identifiant de l'activité",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')

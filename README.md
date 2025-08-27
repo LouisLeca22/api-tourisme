@@ -84,6 +84,7 @@ npm run start:dev
 | `/restaurants`    | CRUD sur les restaurants |
 | `/accommodations` | CRUD sur les hébergements |
 | `/places`            | CRUD sur les points d’intérêts |
+| `/uploads`            | Téléverser des imagess |
 
 *(Les endpoints sont préfixés par `/api/v1` selon la variable `API_VERSION`.)*
 

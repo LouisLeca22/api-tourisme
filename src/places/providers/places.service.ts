@@ -62,7 +62,7 @@ export class PlacesService {
     });
 
     if (!place) {
-      throw new BadRequestException("Cet hébergement n'existe pas");
+      throw new BadRequestException("Cet site touristique n'existe pas");
     }
     return place;
   }

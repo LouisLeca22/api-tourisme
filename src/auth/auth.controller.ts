@@ -30,7 +30,7 @@ export class AuthController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Retourne  200 lorsque les tokens sont générés avec succès',
+    description: 'Retourne 200 lorsque les tokens sont générés avec succès',
   })
   @Post('refresh-tokens')
   @Auth(AuthType.None)

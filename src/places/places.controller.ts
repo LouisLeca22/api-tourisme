@@ -42,7 +42,7 @@ export class PlacesController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Sites touristiques récupérés avec succès selon la requête.',
+    description: 'Sites touristiques récupérés avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
@@ -78,12 +78,12 @@ export class PlacesController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Site touristique récupérée avec succès selon la requête.',
+    description: 'Site touristique récupérée avec succès selon la requête',
   })
   @ApiParam({
     name: 'placeId',
     required: true,
-    description: 'identifiant du site touristique',
+    description: 'Identifiant du site touristique',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Auth(AuthType.None)

@@ -37,11 +37,11 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @ApiOperation({
-    summary: "Recupère la liste des événements enregistrées dans l'application",
+    summary: "Recupère la liste des événements enregistrés dans l'application",
   })
   @ApiResponse({
     status: 200,
-    description: 'Évènements récupérés avec succès selon la requête.',
+    description: 'Évènements récupérés avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
@@ -67,15 +67,15 @@ export class EventsController {
     name: 'startDate',
     type: 'string',
     required: false,
-    description: "date de début de l'évenemen",
-    example: 'Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)',
+    description: "date de début de l'événement",
+    example: 'Mon May 12 2025 18:00:30',
   })
   @ApiQuery({
     name: 'endDate',
     type: 'string',
     required: false,
-    description: "date de début de l'évenemen",
-    example: 'Tue Aug 05 2025 20:30:00 GMT+0200 (Central European Summer Time)',
+    description: "date de début de l'événement",
+    example: 'Mon May 12 2025 22:00:00',
   })
   @Auth(AuthType.None)
   @Get('{/:ownerId}')
@@ -91,12 +91,12 @@ export class EventsController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Évènement récupéré avec succès selon la requête.',
+    description: 'Évènement récupéré avec succès selon la requête',
   })
   @ApiParam({
     name: 'eventId',
     required: true,
-    description: "identifiant de l'événement",
+    description: "Identifiant de l'événement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Auth(AuthType.None)
@@ -132,7 +132,7 @@ export class EventsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'évenement",
+    description: "Identifiant de l'événement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
@@ -152,7 +152,7 @@ export class EventsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'évenement",
+    description: "Identifiant de l'événement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
@@ -175,7 +175,7 @@ export class EventsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: "identifiant de l'évenement",
+    description: "Identifiant de l'événement",
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')

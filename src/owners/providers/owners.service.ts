@@ -21,6 +21,7 @@ import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
 import { CreateGoogleOwnerProvider } from './create-google-owner.provider';
 import { GoogleOwner } from '../interfaces/google-owner.interface';
 import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
+import { RoleType } from 'src/auth/enums/role-types.enum';
 
 @Injectable()
 export class OwnersService {
@@ -94,7 +95,7 @@ export class OwnersService {
       throw new BadRequestException("Ce propriétaire n'existe pas");
     }
 
-    if (owner.id !== user.sub) {
+    if (user.role !== RoleType.Admin && owner.id !== user.sub) {
       throw new ForbiddenException(
         "Vous n'avez pas les droits pour modifier ce propriétaire",
       );
@@ -145,9 +146,9 @@ export class OwnersService {
       throw new BadRequestException("Ce proprétaire n'existe pas");
     }
 
-    if (owner.id !== user.sub) {
+    if (user.role !== RoleType.Admin && owner.id !== user.sub) {
       throw new ForbiddenException(
-        "Vous n'avez pas les droits pour modifier ce propriétaire",
+        "Vous n'avez pas les droits pour supprimer ce propriétaire",
       );
     }
 

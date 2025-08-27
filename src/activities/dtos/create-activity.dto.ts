@@ -84,7 +84,7 @@ export class CreateActivityDto {
       "Addresse de l'événement - validée par api-adresse.data.gouv.fr",
     example: 'Place du village, Patrimonio (20253)',
   })
-  @IsNotEmpty({ message: 'le champ "address" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
   address: string;
 

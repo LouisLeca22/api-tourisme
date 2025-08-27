@@ -40,7 +40,7 @@ export class RestaurantsController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Restaurants récupérés avec succès selon la requête.',
+    description: 'Restaurants récupérés avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
@@ -76,12 +76,12 @@ export class RestaurantsController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Restaurant récupéré avec succès selon la requête.',
+    description: 'Restaurant récupéré avec succès selon la requête',
   })
   @ApiParam({
     name: 'restaurantId',
     required: true,
-    description: 'identifiant du restaurant',
+    description: 'Identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Auth(AuthType.None)
@@ -133,7 +133,7 @@ export class RestaurantsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: 'identifiant du restaurant',
+    description: 'Identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
@@ -156,7 +156,7 @@ export class RestaurantsController {
   @ApiParam({
     name: 'id',
     required: true,
-    description: 'identifiant du restaurant',
+    description: 'Identifiant du restaurant',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')

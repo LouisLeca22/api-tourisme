@@ -7,5 +7,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyM2M1MzUyM
 Content-Disposition: form-data; name="file"; filename="test-image.jpg"
 Content-Type: image/jpeg
 
-< C:\Users\Louis\Documents\programming\web\Back\Nodejs\nest\api-tourisme\src\uploads\http\test-image.jpg
+# Absolute path on windows machine for file sending
+< test-image.jpg
 ------WebKitFormBoundaryXYZ--

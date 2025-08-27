@@ -3,11 +3,11 @@ import { IntersectionType } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/common/pagination/dtos/pagination-query.dto';
 
 class GetEventsBaseDto {
-  @IsDate({ message: 'startDate doit être de type Date' })
+  @IsDate({ message: "Le champ 'startDate' doit être de type Date" })
   @IsOptional()
   startDate?: Date;
 
-  @IsDate({ message: 'endDate doit être de type Date' })
+  @IsDate({ message: "Le champ 'endDate' doit être de type Date" })
   @IsOptional()
   endDate?: Date;
 }

@@ -39,7 +39,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "08:00",
     "close": "16:00",
     "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
-
 },
   {
     "name": "Cours de cuisine catalane",
@@ -70,7 +69,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "10:00",
     "close": "18:00",
     "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
-
   },
   {
     "name": "Initiation au kite surf",
@@ -86,7 +84,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "09:00",
     "close": "17:00",
     "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
-
   },
   {
     "name": "Atelier de poterie artisanale",
@@ -149,5 +146,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   }
 ]
-
 }

@@ -67,8 +67,8 @@ export class CreateEventDto {
   address: string;
 
   @ApiProperty({
-    description: "Date de début de l'évenement - ISO8601",
-    example: '2025-07-20T21:00:00+02:00',
+    description: "Date de début de l'évenement",
+    example: '2025-07-20T21:00:00',
   })
   @IsDate({ message: 'La date de fin doit être une date valide' })
   @IsNotEmpty({ message: 'La champ "startDate" est obligatoire' })
@@ -76,7 +76,7 @@ export class CreateEventDto {
 
   @ApiProperty({
     description: "Date de fin de l'événement - Date de fin > Date de début",
-    example: '2025-07-20T21:00:30+02:00',
+    example: '2025-07-20T21:00:30',
   })
   @IsNotEmpty({ message: 'le champ "endDate" est obligatoire' })
   @IsDate({ message: 'La date de fin doit être une date valide' })
@@ -117,7 +117,7 @@ export class CreateEventDto {
     description: "âge minimum pour participer à l'événement (0 = tout public)",
     example: 12,
   })
-  @IsNotEmpty({ message: 'le champ "requiredAge" est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })
   @Min(0, { message: "L'âge requis ne peut pas être négatif" })
   requiredAge: number;

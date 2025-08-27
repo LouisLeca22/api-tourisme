@@ -2,7 +2,6 @@ POST http://localhost:3000/places
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
-
 {
     "name": "Musée d'Art Moderne de Céret",
     "description": "Un musée emblématique dédié aux artistes du XXe siècle.",
@@ -37,7 +36,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "08:00",
     "close": "18:30",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Plage de l’Ouille",
@@ -52,7 +50,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "07:00",
     "close": "21:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Parc de Valmy",
@@ -67,7 +64,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "08:00",
     "close": "20:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Fort Saint-Elme",
@@ -82,7 +78,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "10:30",
     "close": "18:30",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Théâtre de l’Archipel",
@@ -97,7 +92,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "14:00",
     "close": "22:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Bibliothèque Louis Nucéra",
@@ -112,7 +106,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "09:00",
     "close": "19:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Monument aux Morts du Plateau de Glières",
@@ -127,7 +120,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "09:00",
     "close": "17:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Zoo de la Barben",
@@ -142,7 +134,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "09:30",
     "close": "18:00",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   },
   {
     "name": "Marché couvert de Narbonne",
@@ -157,8 +148,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1N
     "open": "07:00",
     "close": "13:30",
     "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
-
   }
 ]
-
 }

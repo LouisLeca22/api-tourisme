@@ -45,10 +45,6 @@ export class EventsService {
       where.startDate = LessThanOrEqual(new Date(eventsQuery.endDate));
       where.endDate = MoreThanOrEqual(new Date(eventsQuery.startDate));
     } else if (eventsQuery.startDate) {
-      console.log('query', eventsQuery.startDate);
-      console.log('query date', new Date(eventsQuery.startDate));
-      const events = await this.eventRepository.find();
-      console.log('event', events[0].startDate);
       where.endDate = LessThanOrEqual(new Date(eventsQuery.startDate));
     } else if (eventsQuery.endDate) {
       where.startDate = MoreThanOrEqual(new Date(eventsQuery.endDate));
@@ -151,17 +147,12 @@ export class EventsService {
   }
 
   public async delete(eventId: string) {
-    if (!isUuid(eventId)) {
-      throw new BadRequestException(
-        "Format invalide pour l'identifiant du propriétaire (UUID)",
-      );
-    }
     const event = await this.eventRepository.findOneBy({
       id: eventId,
     });
 
     if (!event) {
-      throw new BadRequestException("Cet hébergement n'existe pas");
+      throw new BadRequestException("Cet événement n'existe pas");
     }
 
     try {

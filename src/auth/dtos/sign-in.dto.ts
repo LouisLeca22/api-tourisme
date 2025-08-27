@@ -12,7 +12,7 @@ export class SignInDto {
 
   @ApiProperty({
     description: 'Mot de passe de connexion',
-    example: 'MotDePasse1234!',
+    example: 'Aventurescevenoles1234!',
   })
   @IsString({ message: 'Le mot de passe doit être une chaîne de caractères' })
   @IsNotEmpty({ message: 'Le mot de passe est obligatoire' })

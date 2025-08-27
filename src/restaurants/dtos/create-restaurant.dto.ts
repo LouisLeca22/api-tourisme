@@ -62,9 +62,9 @@ export class CreateRestaurantDto {
     description: "Nombre d'étoiles du restaurant",
     example: 4,
   })
-  @IsNotEmpty({ message: 'Le champ "stars"  est obligatoire' })
+  @IsNotEmpty({ message: 'Le champ "stars" est obligatoire' })
   @IsNumber({}, { message: "Le nombre d'étoile doit être un nombre" })
-  @Min(0, { message: "Le nombre d'étoile  ne peut pas être négatif" })
+  @Min(0, { message: "Le nombre d'étoile ne peut pas être négatif" })
   @Max(5, { message: "Le nombre d'étoile ne peut pas dépasser 5" })
   stars: number;
 
@@ -169,7 +169,7 @@ export class CreateRestaurantDto {
   @IsOptional()
   @IsOpenCloseTimePair({
     message:
-      'Le champ closeTwo doit être également renseigné, openTwo ≤ closeTwo',
+      "Le champ 'closeTwo' doit être également renseigné, openTwo ≤ closeTwo",
   })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
     message: 'L’heure d’ouverture (openTwo) doit être au format HH:mm',
@@ -183,7 +183,7 @@ export class CreateRestaurantDto {
   })
   @IsOpenCloseTimePair({
     message:
-      'Le champ openTwo doit être également renseigné, openTwo ≤ closeTwo',
+      "Le champ 'openTwo' doit être également renseigné, openTwo ≤ closeTwo",
   })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
     message: 'L’heure de fermeture (closeTwo) doit être au format HH:mm',

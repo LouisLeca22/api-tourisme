@@ -38,24 +38,24 @@ export class OwnersController {
 
   @ApiOperation({
     summary:
-      "Recupère une liste de propriétéaires enregistrés par l'application",
+      "Recupère la liste des propriétaires enregistrés par l'application",
   })
   @ApiResponse({
     status: 200,
-    description: 'Utilisateurs récupérés avec succès selon la requête.',
+    description: 'Propriétaires récupérés avec succès selon la requête',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
-    description: "nombre d'entrées retournées par requête",
+    description: "Nombre d'entrées retournées par requête",
     example: 10,
   })
   @ApiQuery({
     name: 'page',
     type: 'number',
     required: false,
-    description: "position de la page retournée par l'API",
+    description: "Position de la page retournée par l'API",
     example: 1,
   })
   @Auth(AuthType.None)
@@ -72,12 +72,12 @@ export class OwnersController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Propriétaire récupéré avec succès selon la requête.',
+    description: 'Propriétaire récupéré avec succès selon la requête',
   })
   @ApiParam({
     name: 'ownerId',
     required: true,
-    description: 'identifiant du propriétaire',
+    description: 'Identifiant du propriétaire',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @Auth(AuthType.None)
@@ -102,6 +102,7 @@ export class OwnersController {
 
   @ApiOperation({
     summary: 'Crée plusieurs propriétaires',
+    description: 'Cette route est réservée aux administrateurs',
   })
   @ApiResponse({
     status: 201,
@@ -142,7 +143,7 @@ export class OwnersController {
   @ApiParam({
     name: 'ownerId',
     required: true,
-    description: 'identifiant du propriétaire',
+    description: 'Identifiant du propriétaire',
     example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
   })
   @ApiBearerAuth('bearerAuth')
