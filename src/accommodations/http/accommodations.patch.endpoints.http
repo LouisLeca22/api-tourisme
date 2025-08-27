@@ -1,6 +1,7 @@
-PATCH http://localhost:3000/accommodations/1a17423f-5d3b-4adc-814a-c1e58e8ecfb4
+PATCH http://localhost:3000/accommodations/fdfed024-48de-48ef-970d-1bd7d4893042
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMTkzYzllYi1jZTJlLTQ5MWEtYmNjYS0xMTA5MGNjOTkwYTMiLCJlbWFpbCI6InRvbUBtYWlsLmZyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTYwNjQ4MDIsImV4cCI6MTc1NjA2ODQwMiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.u5-14RR2B1UJpHnlnLYYJQhekxWdWyHTJw_XM7Ggh-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
+
 {
-    "name": "Le Refuge des Dunes"
+    "stars": 2
 }

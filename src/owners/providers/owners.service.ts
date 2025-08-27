@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   ForbiddenException,
   forwardRef,
   Inject,
@@ -116,7 +117,11 @@ export class OwnersService {
       }
     }
 
-    return await this.ownerRepository.save(owner);
+    try {
+      return await this.ownerRepository.save(owner);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(ownerId: string, user: ActiveUserData) {
@@ -146,7 +151,11 @@ export class OwnersService {
       );
     }
 
-    await this.ownerRepository.softRemove(owner);
-    return { deleted: true, ownerId };
+    try {
+      await this.ownerRepository.softRemove(owner);
+      return { deleted: true, ownerId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

@@ -16,7 +16,7 @@ export class Accommodation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 96 })
+  @Column({ length: 96, unique: true })
   name: string;
 
   @Column({ type: 'text' })

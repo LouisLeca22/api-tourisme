@@ -1,5 +1,7 @@
 POST http://localhost:3000/places
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
+
 
 {
     "name": "Musée d'Art Moderne de Céret",
@@ -12,30 +14,16 @@ Content-Type: application/json
     "from": 2,
     "to": 6,
     "open": "10:00",
-    "close": "18:00",
-    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+    "close": "18:00"
 }
 
 
 # Route réservée aux administrateurs
 POST http://localhost:3000/places/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {"places" : [
-  {
-    "name": "Musée d'Art Moderne de Céret",
-    "description": "Un musée emblématique dédié aux artistes du XXe siècle.",
-    "type": "museum",
-    "address": "8 Bd Maréchal Joffre, Céret (66400)",
-    "priceRange": "0-0",
-    "languages": ["fr", "en", "es"],
-    "requiredAge": 0,
-    "from": 2,
-    "to": 6,
-    "open": "10:00",
-    "close": "18:00",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
-  },
   {
     "name": "Jardin des Plantes de Montpellier",
     "description": "Un jardin botanique historique fondé au XVIe siècle.",
@@ -48,7 +36,8 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "18:30",
-    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Plage de l’Ouille",
@@ -62,7 +51,8 @@ Content-Type: application/json
     "to": 6,
     "open": "07:00",
     "close": "21:00",
-    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Parc de Valmy",
@@ -76,7 +66,8 @@ Content-Type: application/json
     "to": 6,
     "open": "08:00",
     "close": "20:00",
-    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Fort Saint-Elme",
@@ -90,7 +81,8 @@ Content-Type: application/json
     "to": 6,
     "open": "10:30",
     "close": "18:30",
-    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Théâtre de l’Archipel",
@@ -104,7 +96,8 @@ Content-Type: application/json
     "to": 6,
     "open": "14:00",
     "close": "22:00",
-    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Bibliothèque Louis Nucéra",
@@ -118,7 +111,8 @@ Content-Type: application/json
     "to": 6,
     "open": "09:00",
     "close": "19:00",
-    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Monument aux Morts du Plateau de Glières",
@@ -132,7 +126,8 @@ Content-Type: application/json
     "to": 6,
     "open": "09:00",
     "close": "17:00",
-    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Zoo de la Barben",
@@ -146,7 +141,8 @@ Content-Type: application/json
     "to": 6,
     "open": "09:30",
     "close": "18:00",
-    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   },
   {
     "name": "Marché couvert de Narbonne",
@@ -160,7 +156,8 @@ Content-Type: application/json
     "to": 6,
     "open": "07:00",
     "close": "13:30",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
+
   }
 ]
 

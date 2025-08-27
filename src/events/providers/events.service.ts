@@ -38,16 +38,20 @@ export class EventsService {
 
     if (ownerId) {
       const owner = await this.ownersService.findOne(ownerId);
-      where.owner = owner;
+      where.owner = { id: owner.id };
     }
 
     if (eventsQuery.startDate && eventsQuery.endDate) {
       where.startDate = LessThanOrEqual(new Date(eventsQuery.endDate));
       where.endDate = MoreThanOrEqual(new Date(eventsQuery.startDate));
     } else if (eventsQuery.startDate) {
-      where.endDate = MoreThanOrEqual(new Date(eventsQuery.startDate));
+      console.log('query', eventsQuery.startDate);
+      console.log('query date', new Date(eventsQuery.startDate));
+      const events = await this.eventRepository.find();
+      console.log('event', events[0].startDate);
+      where.endDate = LessThanOrEqual(new Date(eventsQuery.startDate));
     } else if (eventsQuery.endDate) {
-      where.startDate = LessThanOrEqual(new Date(eventsQuery.endDate));
+      where.startDate = MoreThanOrEqual(new Date(eventsQuery.endDate));
     }
 
     return this.paginationProvider.paginateQuey(
@@ -97,8 +101,12 @@ export class EventsService {
       longitude: validdAddress.longitude,
       owner: owner,
     });
-    await this.eventRepository.save(newEvent);
-    return newEvent;
+    try {
+      await this.eventRepository.save(newEvent);
+      return newEvent;
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async createMany(createManyEventsDto: CreateManyEventsDto) {
@@ -135,7 +143,11 @@ export class EventsService {
       event.longitude = validdAddress.longitude;
     }
 
-    return await this.eventRepository.save(event);
+    try {
+      return await this.eventRepository.save(event);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(eventId: string) {
@@ -152,7 +164,11 @@ export class EventsService {
       throw new BadRequestException("Cet hébergement n'existe pas");
     }
 
-    await this.eventRepository.softRemove(event);
-    return { deleted: true, eventId };
+    try {
+      await this.eventRepository.softRemove(event);
+      return { deleted: true, eventId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

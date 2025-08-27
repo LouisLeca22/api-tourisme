@@ -38,7 +38,7 @@ export class ActivitiesService {
 
     if (ownerId) {
       const owner = await this.ownersService.findOne(ownerId);
-      where.owner = owner;
+      where.owner = { id: owner.id };
     }
 
     return this.paginationProvider.paginateQuey(
@@ -91,8 +91,13 @@ export class ActivitiesService {
       longitude: validdAddress.longitude,
       owner: owner,
     });
-    await this.activityRepository.save(newActivity);
-    return newActivity;
+
+    try {
+      await this.activityRepository.save(newActivity);
+      return newActivity;
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async createMany(createManyActivitiesDto: CreateManyActivitiesDto) {
@@ -134,7 +139,11 @@ export class ActivitiesService {
       activity.longitude = validdAddress.longitude;
     }
 
-    return await this.activityRepository.save(activity);
+    try {
+      return await this.activityRepository.save(activity);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(activityId: string) {
@@ -151,7 +160,11 @@ export class ActivitiesService {
       throw new BadRequestException("Cette activité n'existe pas");
     }
 
-    await this.activityRepository.softRemove(activity);
-    return { deleted: true, activityId };
+    try {
+      await this.activityRepository.softRemove(activity);
+      return { deleted: true, activityId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

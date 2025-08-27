@@ -38,7 +38,7 @@ export class AccommodationsService {
 
     if (ownerId) {
       const owner = await this.ownersService.findOne(ownerId);
-      where.owner = owner;
+      where.owner = { id: owner.id };
     }
 
     return this.paginationProvider.paginateQuey(
@@ -91,9 +91,13 @@ export class AccommodationsService {
       longitude: validdAddress.longitude,
       owner: owner,
     });
-    await this.accommodationRepository.save(newAccommodation);
 
-    return newAccommodation;
+    try {
+      await this.accommodationRepository.save(newAccommodation);
+      return newAccommodation;
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async createMany(
@@ -142,15 +146,14 @@ export class AccommodationsService {
       accommodation.longitude = validdAddress.longitude;
     }
 
-    return await this.accommodationRepository.save(accommodation);
+    try {
+      return await this.accommodationRepository.save(accommodation);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(accommodationId: string) {
-    if (!isUuid(accommodationId)) {
-      throw new BadRequestException(
-        "Format invalide pour l'identifiant du propriétaire (UUID)",
-      );
-    }
     const accommodation = await this.accommodationRepository.findOneBy({
       id: accommodationId,
     });
@@ -159,7 +162,11 @@ export class AccommodationsService {
       throw new BadRequestException("Cet hébergement n'existe pas");
     }
 
-    await this.accommodationRepository.softRemove(accommodation);
-    return { deleted: true, accommodationId };
+    try {
+      await this.accommodationRepository.softRemove(accommodation);
+      return { deleted: true, accommodationId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

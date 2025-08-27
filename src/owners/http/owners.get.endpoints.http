@@ -6,6 +6,6 @@ GET http://localhost:3000/owners?limit=2&page=1
 
 
 # Récupère un propriétaire par son identifiant
-GET http://localhost:3000/owners/single/614e0d8f-478a-4b07-8bf9-34decd750417
+GET http://localhost:3000/owners/single/23c53520-dee4-40f6-9dcd-63ed818b51a4
 
 

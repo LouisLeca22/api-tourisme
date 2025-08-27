@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ConflictException,
   Injectable,
   RequestTimeoutException,
 } from '@nestjs/common';
@@ -33,7 +34,12 @@ export class CreateOwnerProvider {
         createOwnerDto.password,
       ),
     });
-    newOwner = await this.ownerRepository.save(newOwner);
+
+    try {
+      newOwner = await this.ownerRepository.save(newOwner);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
 
     try {
       await this.mailService.sendOwnerWelcome(newOwner);

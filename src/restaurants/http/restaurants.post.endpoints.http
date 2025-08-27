@@ -1,5 +1,6 @@
 POST http://localhost:3000/restaurants
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {
     "name": "Le Bistrot Artistique",
@@ -12,29 +13,15 @@ Content-Type: application/json
     "from": 1,
     "to": 5,
     "open": "12:00",
-    "close": "14:30",
-    "ownerId": "614e0d8f-478a-4b07-8bf9-34decd750417"
+    "close": "14:30"
 }
 
 # Route réservée aux administrateurss
 POST http://localhost:3000/restaurants/create-many
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {"restaurants" : [
-  {
-    "name": "Le Bistrot Artistique",
-    "description": "Bistrot chaleureux proposant une cuisine locale et des vins naturels.",
-    "type": "bistro",
-    "address": "12 Place Sainte-Catherine, Honfleur (14600)",
-    "priceRange": "25-45",
-    "stars": 3,
-    "cuisines": ["french", "local", "vegetarian"],
-    "from": 1,
-    "to": 5,
-    "open": "12:00",
-    "close": "14:30",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
-  },
   {
     "name": "La Cantine du Port",
     "description": "Cuisine fraîche et locale dans un cadre portuaire convivial.",
@@ -47,7 +34,7 @@ Content-Type: application/json
     "to": 5,
     "open": "12:00",
     "close": "15:00",
-    "ownerId": "d8183396-a4c7-4c0e-8024-0827e878184f"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Café des Arts",
@@ -61,7 +48,7 @@ Content-Type: application/json
     "to": 5,
     "open": "09:00",
     "close": "17:00",
-    "ownerId": "c4c08c7c-4f21-485c-830a-864414df840c"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "La Crêperie du Marché",
@@ -75,7 +62,7 @@ Content-Type: application/json
     "to": 5,
     "open": "11:30",
     "close": "15:00",
-    "ownerId": "a7f61222-9b29-44c3-bfbf-ea73f93755ed"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Pizza Bella Notte",
@@ -89,7 +76,7 @@ Content-Type: application/json
     "to": 6,
     "open": "19:00",
     "close": "22:30",
-    "ownerId": "646a0f0a-7fcd-4a18-b901-793ac12b6094"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Le Food Truck Nomade",
@@ -103,7 +90,7 @@ Content-Type: application/json
     "to": 6,
     "open": "11:30",
     "close": "14:00",
-    "ownerId": "627ca80e-0a58-4d30-941c-1eb45b53e011"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Les Délices du Maroc",
@@ -117,7 +104,7 @@ Content-Type: application/json
     "to": 5,
     "open": "19:00",
     "close": "23:00",
-    "ownerId": "5cacd3b3-9f3c-489c-8bfa-1004983cb7e0"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Le Bar à Vins de la Plage",
@@ -131,7 +118,7 @@ Content-Type: application/json
     "to": 6,
     "open": "17:00",
     "close": "23:00",
-    "ownerId": "5caab2de-0969-49ac-b9e9-8c8f3eccdfa0"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Buffet du Canal",
@@ -145,7 +132,7 @@ Content-Type: application/json
     "to": 5,
     "open": "12:00",
     "close": "15:00",
-    "ownerId": "11aa2a70-d409-4961-8f14-ddb84a225ddf"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Gastropub La Civette",
@@ -159,7 +146,7 @@ Content-Type: application/json
     "to": 5,
     "open": "12:00",
     "close": "15:00",
-    "ownerId": "d9afdbb5-1c2a-493e-8a03-eafc42d47be1"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   }
 ]
 

@@ -1,9 +1,9 @@
 POST http://localhost:3000/activities
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MmFkYzVkNC03ZGVkLTQ5Y2UtYTI2NC0xMjBmMmZiYTNiZmEiLCJlbWFpbCI6InVzZXJAbWFpbC5mciIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0NzIxMDA3LCJleHAiOjE3NTQ3MjQ2MDcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.pte__xiG7CCsw8eqDMLDCoGXOzytkZEahqMww3AugMI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {
-    "name": "Balade en paddle dans la baie",
+    "name": "Balade paddle dans la baie",
     "description": "Découvrez les criques en paddle encadré par un moniteur diplômé.",
     "type": "nautical_sport",
     "address": "10 Rue de la Paix, 75002 Paris, France",
@@ -21,24 +21,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MmFkYzVkN
 # Route réservée aux administrateurs
 POST http://localhost:3000/activities/create-many
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZC1lNjBkLTRjMGEtYWJiNS01OWNiYjgwMDE4ZTMiLCJlbWFpbCI6ImFkbWluQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTQ3MjEyMDAsImV4cCI6MTc1NDcyNDgwMCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.fMjRscDrIZvnCtuEW5w4wZ8-9IXLZuapebqLPVaVCJM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
+
 
 {"activities" : [
-  {
-    "name": "Balade en paddle dans la baie",
-    "description": "Découvrez les criques en paddle encadré par un moniteur diplômé.",
-    "type": "nautical_sport",
-    "duration": 2,
-    "priceRange": "50-80",
-    "address": "Plage des Coussoules Basses, 11370 Leucate",
-    "languages": ["fr", "en"],
-    "requiredAge": 10,
-    "from": 2,
-    "to": 5,
-    "open": "10:00",
-    "close": "18:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
-  },
   {
     "name": "Randonnée guidée en montagne",
     "description": "Explorez les sentiers avec un guide local passionné.",
@@ -52,7 +38,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 5,
     "open": "08:00",
     "close": "16:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
+
 },
   {
     "name": "Cours de cuisine catalane",
@@ -67,7 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "14:00",
     "close": "17:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   },
   {
     "name": "Visite historique du centre-ville",
@@ -82,7 +69,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
+
   },
   {
     "name": "Initiation au kite surf",
@@ -97,7 +85,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "09:00",
     "close": "17:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
+
   },
   {
     "name": "Atelier de poterie artisanale",
@@ -112,7 +101,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "10:00",
     "close": "16:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   },
   {
     "name": "Découverte de la faune marine en snorkeling",
@@ -127,7 +116,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   },
   {
     "name": "Dégustation de vins locaux",
@@ -142,7 +131,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "14:00",
     "close": "19:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   },
   {
     "name": "Balade à vélo le long de la côte",
@@ -157,7 +146,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 5,
     "open": "09:00",
     "close": "15:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "0bffd256-14ca-444c-9957-f5c52471735f"
   }
 ]
 

@@ -1,8 +1,8 @@
-PATCH http://localhost:3000/places
+PATCH http://localhost:3000/places/83319e79-15a5-4732-b116-51557236e2cb
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {
-    "id": "76482ca5-6288-4568-b069-72a5ea2cab2b",
-    "type": "museum",
+    "type": "garden",
     "address": "12 Rue de la République, 13001 Marseille"
 }

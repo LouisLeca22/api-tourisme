@@ -38,7 +38,7 @@ export class PlacesService {
 
     if (ownerId) {
       const owner = await this.ownersService.findOne(ownerId);
-      where.owner = owner;
+      where.owner = { id: owner.id };
     }
 
     return this.paginationProvider.paginateQuey(
@@ -87,8 +87,13 @@ export class PlacesService {
       longitude: validdAddress.longitude,
       owner: owner,
     });
-    await this.placeRepository.save(newPlace);
-    return newPlace;
+
+    try {
+      await this.placeRepository.save(newPlace);
+      return newPlace;
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async createMany(createManyPlacesDto: CreateManyPlacesDto) {
@@ -127,15 +132,14 @@ export class PlacesService {
       place.longitude = validdAddress.longitude;
     }
 
-    return await this.placeRepository.save(place);
+    try {
+      return await this.placeRepository.save(place);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(placeId: string) {
-    if (!isUuid(placeId)) {
-      throw new BadRequestException(
-        "Format invalide pour l'identifiant du propriétaire (UUID)",
-      );
-    }
     const place = await this.placeRepository.findOneBy({
       id: placeId,
     });
@@ -144,7 +148,11 @@ export class PlacesService {
       throw new BadRequestException("Ce site touristique n'existe pas");
     }
 
-    await this.placeRepository.softRemove(place);
-    return { deleted: true, placeId };
+    try {
+      await this.placeRepository.softRemove(place);
+      return { deleted: true, placeId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

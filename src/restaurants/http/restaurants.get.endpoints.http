@@ -5,9 +5,9 @@ GET http://localhost:3000/restaurants
 GET http://localhost:3000/restaurants?limit=2&page=1
 
 # Récupère les restaurants associés à un propriétaire
-GET http://localhost:3000/restaurants/11aa2a70-d409-4961-8f14-ddb84a225ddf
+GET http://localhost:3000/restaurants/23c53520-dee4-40f6-9dcd-63ed818b51a4
 
 # Récupère un restaurant par son identifiant
-GET http://localhost:3000/restaurants/single/1ad71fb6-da59-42d2-85c8-45d4e136f8a2
+GET http://localhost:3000/restaurants/single/ea9284b9-92ef-46ef-ad02-7c6c5f886c71
 
 

@@ -38,7 +38,7 @@ export class RestaurantsService {
 
     if (ownerId) {
       const owner = await this.ownersService.findOne(ownerId);
-      where.owner = owner;
+      where.owner = { id: owner.id };
     }
 
     return this.paginationProvider.paginateQuey(
@@ -91,8 +91,12 @@ export class RestaurantsService {
       longitude: validdAddress.longitude,
       owner: owner,
     });
-    await this.restaurantRepository.save(newRestaurant);
-    return newRestaurant;
+    try {
+      await this.restaurantRepository.save(newRestaurant);
+      return newRestaurant;
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async createMany(createManyRestaurantsDto: CreateManyRestaurantsDto) {
@@ -140,15 +144,14 @@ export class RestaurantsService {
       restaurant.longitude = validdAddress.longitude;
     }
 
-    return await this.restaurantRepository.save(restaurant);
+    try {
+      return await this.restaurantRepository.save(restaurant);
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 
   public async delete(restaurantId: string) {
-    if (!isUuid(restaurantId)) {
-      throw new BadRequestException(
-        "Format invalide pour l'identifiant du propriétaire (UUID)",
-      );
-    }
     const restaurant = await this.restaurantRepository.findOneBy({
       id: restaurantId,
     });
@@ -157,7 +160,11 @@ export class RestaurantsService {
       throw new BadRequestException("Ce restaurant n'existe pas");
     }
 
-    await this.restaurantRepository.softRemove(restaurant);
-    return { deleted: true, restaurantId };
+    try {
+      await this.restaurantRepository.softRemove(restaurant);
+      return { deleted: true, restaurantId };
+    } catch (error) {
+      throw new ConflictException(error);
+    }
   }
 }

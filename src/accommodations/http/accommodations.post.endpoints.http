@@ -1,10 +1,10 @@
 POST http://localhost:3000/accommodations
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMTkzYzllYi1jZTJlLTQ5MWEtYmNjYS0xMTA5MGNjOTkwYTMiLCJlbWFpbCI6InRvbUBtYWlsLmZyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTYwNjI0NDcsImV4cCI6MTc1NjA2NjA0NywiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.C2IJE1cNNg53xRYVUjNfI10RJwsUdD8HEAPsFKfAE4I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {
-    "name": "Test",
-    "description": "Test de la description avec cinq mots",
+    "name": "Hôtel test Bleu",
+    "description": "Un havre de paix en bord de mer avec vue panoramique sur l’océan.",
     "type": "hotel",
     "address": "5 quai Saint-Pierre, Marseille (13001)",
     "priceRange": "70-130",
@@ -20,7 +20,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkMTkzYzllY
 
 POST http://localhost:3000/accommodations/create-many
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZC1lNjBkLTRjMGEtYWJiNS01OWNiYjgwMDE4ZTMiLCJlbWFpbCI6ImFkbWluQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTQ3MjEyMDAsImV4cCI6MTc1NDcyNDgwMCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.fMjRscDrIZvnCtuEW5w4wZ8-9IXLZuapebqLPVaVCJM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
+
 
 {"accommodations" : [
      {
@@ -35,7 +36,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "09:00",
     "close": "20:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Auberge du Mont",
@@ -49,7 +50,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "08:00",
     "close": "17:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Hôtel Belle Étoile",
@@ -63,7 +64,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 5,
     "open" : "07:00",
     "close": "22:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Chalet des Neiges",
@@ -77,7 +78,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 5,
     "open": "08:00",
     "close": "21:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Résidence La Mer",
@@ -91,7 +92,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "09:00",
     "close": "19:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Hôtel du Vieux Port",
@@ -105,7 +106,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "08:00",
     "close": "20:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Maison du Lac",
@@ -119,7 +120,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "10:00",
     "close": "18:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Hôtel du Parc",
@@ -133,7 +134,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 4,
     "open": "07:00",
     "close": "22:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Chambres d'hôtes La Lavande",
@@ -147,7 +148,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "08:00",
     "close": "19:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   },
   {
     "name": "Hôtel La Côte d'Azur",
@@ -161,7 +162,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNzcxNTIyZ
     "to": 6,
     "open": "08:00",
     "close": "22:00",
-    "ownerId": "82adc5d4-7ded-49ce-a264-120f2fba3bfa"
+    "ownerId": "4758e828-489b-495d-9c02-8d897565a702"
   }
 ]
 }

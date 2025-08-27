@@ -1,8 +1,7 @@
-PATCH http://localhost:3000/restaurants
-Content-Type: application/json
+PATCH http://localhost:3000/restaurants/380ecd7f-c74c-4fcb-9f82-db8161b872f4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYmZmZDI1Ni0xNGNhLTQ0NGMtOTk1Ny1mNWM1MjQ3MTczNWYiLCJlbWFpbCI6ImxvdWlzQG1haWwuZnIiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTYzMTMzNTYsImV4cCI6MTc1NjMxNjk1NiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.LTHKYVNFppsa7-NLKE9AdtQ_n-rSOWr-gnb30QjRVy0
 
 {
-    "id": "d611fa2c-581e-4cb8-b38d-894486d7909c",
     "type": "bistro",
     "address": "12 Rue de la République, 13001 Marseille"
 }

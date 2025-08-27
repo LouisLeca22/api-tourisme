@@ -21,6 +21,7 @@ export class Owner {
   id: string;
   @Column({
     length: 96,
+    unique: true,
   })
   name: string;
 
