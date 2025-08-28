@@ -21,7 +21,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateEventDto {
   @ApiProperty({
     description: "Nom de l'événement",
-    example: 'Nuits de la Guitare',
+    example: 'Marché des créateurs de Collioure',
   })
   @IsNotEmpty({ message: 'Le champ "name" est obligatoire' })
   @IsString({
@@ -35,8 +35,7 @@ export class CreateEventDto {
 
   @ApiProperty({
     description: "Description de l'événement",
-    example:
-      'Concerts de guitare dans un cadre intimiste au cœur de Patrimonio.',
+    example: 'Créateurs et artisans locaux réunis sur le front de mer.',
   })
   @IsNotEmpty({ message: 'Le champ "description" est obligatoire' })
   @IsString({ message: 'La description doit être une chaîne de caractère' })
@@ -49,7 +48,7 @@ export class CreateEventDto {
     enum: EventType,
     description:
       "Type de l'événement (concert, festival, theatre, exhibition, workshop, market, sporting_event, film_festival, wine_tasting, community_meeting)",
-    example: 'concert',
+    example: 'market',
   })
   @IsNotEmpty({ message: 'Le champ "type" est obligatoire' })
   @IsEnum(EventType, {
@@ -60,7 +59,7 @@ export class CreateEventDto {
   @ApiProperty({
     description:
       "Addresse de l'événement - validée par api-adresse.data.gouv.fr",
-    example: 'Place du village, Patrimonio (20253)',
+    example: 'Rue de la Democratie 66190 Collioure',
   })
   @IsNotEmpty({ message: 'le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
@@ -68,7 +67,7 @@ export class CreateEventDto {
 
   @ApiProperty({
     description: "Date de début de l'évenement",
-    example: '2025-07-20T21:00:00',
+    example: '2025-08-12 10:00:00',
   })
   @IsDate({ message: 'La date de fin doit être une date valide' })
   @IsNotEmpty({ message: 'La champ "startDate" est obligatoire' })
@@ -76,7 +75,7 @@ export class CreateEventDto {
 
   @ApiProperty({
     description: "Date de fin de l'événement - Date de fin > Date de début",
-    example: '2025-07-20T21:00:30',
+    example: '2025-08-12 18:00:00',
   })
   @IsNotEmpty({ message: 'le champ "endDate" est obligatoire' })
   @IsDate({ message: 'La date de fin doit être une date valide' })
@@ -88,7 +87,7 @@ export class CreateEventDto {
   @ApiProperty({
     description:
       "Fourchette de prix de l'événement - format 'min-max' avec min ≤ max",
-    example: '30-50',
+    example: '0-0',
   })
   @IsNotEmpty({ message: 'Le champ "priceRange" est obligatoire' })
   @IsString()
@@ -102,7 +101,7 @@ export class CreateEventDto {
     type: 'array',
     items: { type: 'string' },
     description: "Langue parlée pour l'événement (fr, en, de, pt, it...)",
-    example: '["fr", "it"]',
+    example: '["fr"]',
   })
   @IsNotEmpty({ message: 'Le champ "languages" est obligatoire' })
   @IsArray({ message: 'Les langues doivent être comprises dans un tableau' })
@@ -115,7 +114,7 @@ export class CreateEventDto {
 
   @ApiProperty({
     description: "âge minimum pour participer à l'événement (0 = tout public)",
-    example: 12,
+    example: 0,
   })
   @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })

@@ -47,7 +47,7 @@ export class CreateAccommodationDto {
     enum: AccommodationType,
     description:
       "Type de l'hébergement (hotel, auberge, guest_house, residence, vacation_rental, bed_and_breakfast, camping)",
-    example: 'vacantion_rental',
+    example: 'guest_house',
   })
   @IsNotEmpty({ message: 'Le champ "type" est obligatoire' })
   @IsEnum(AccommodationType, {
@@ -68,7 +68,7 @@ export class CreateAccommodationDto {
   @ApiProperty({
     description:
       "Addresse de l'hébergement - validée par api-adresse.data.gouv.fr",
-    example: '45 avenue des Fleurs, Cannes (06400)',
+    example: 'Avenue des Fleurs 06400 Cannes',
   })
   @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
@@ -79,7 +79,7 @@ export class CreateAccommodationDto {
     items: { type: 'string' },
     description:
       "Équipements fournis avec l'hébergement (pool, wifi, sea_view, parking...)",
-    example: '["wifi", "pool", "parking", "air_conditioning"]',
+    example: '["wifi","pool","parking","air_conditioning"]',
   })
   @IsNotEmpty({ message: 'Le champ "amenities" est obligatoire' })
   @IsArray({ message: 'Les équipements doivent être compris dans un tableau' })
@@ -92,7 +92,7 @@ export class CreateAccommodationDto {
   @ApiProperty({
     description:
       "Fourchette de prix de l'hébergement (nuitée) - format 'min-max' avec min ≤ max",
-    example: '30-50',
+    example: '120-250',
   })
   @IsNotEmpty({ message: 'Le champ "priceRange" est obligatoire' })
   @IsString()
@@ -136,7 +136,7 @@ export class CreateAccommodationDto {
 
   @ApiProperty({
     description: "Heure d'ouverture de l'hébergement (format HH:mm, 24h)",
-    example: '07:00',
+    example: '09:00',
   })
   @IsNotEmpty({ message: 'Le champ "open" est obligatoire' })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
@@ -147,7 +147,7 @@ export class CreateAccommodationDto {
   @ApiProperty({
     description:
       "Heure de fermeture de l'hébergement (format HH:mm, 24h). Doit être après l'heure d'ouverture (open)",
-    example: '22:00',
+    example: '20:00',
   })
   @IsNotEmpty({ message: 'Le champ "close" est obligatoire' })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {

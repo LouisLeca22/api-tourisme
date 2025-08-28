@@ -48,21 +48,21 @@ export class PlacesController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les sites touristiques associés à un propriétaire',
-    example: '06f54380-4636-4aed-8953-def85d70f1f5',
+    example: '10d0b9f0-a690-4df0-9c56-fd09f18c0dc6',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
     type: 'number',
     required: false,
     description: 'Position de la page retournée',
-    example: 1,
+    example: 2,
   })
   @Auth(AuthType.None)
   @Get('{/:ownerId}')
@@ -84,7 +84,7 @@ export class PlacesController {
     name: 'placeId',
     required: true,
     description: 'Identifiant du site touristique',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '91146068-402a-4eab-83e8-6067f3fb271c',
   })
   @Auth(AuthType.None)
   @Get('/single/:placeId')
@@ -136,7 +136,7 @@ export class PlacesController {
     name: 'id',
     required: true,
     description: "identifiant de l'activité",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: 'd20082c8-1dad-4164-95c2-af0ac0ab608c',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Place, 'owner'))
@@ -160,7 +160,7 @@ export class PlacesController {
     name: 'id',
     required: true,
     description: "identifiant de l'activité",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Place, 'owner'))

@@ -6,7 +6,7 @@ import { CreateAccommodationDto } from './create-accommodation-dto';
 class CreateAccommodationWithOwnerDto extends CreateAccommodationDto {
   @ApiProperty({
     description: 'Identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+    example: '8c5d8e9e-39b0-4fc2-910a-dae63e334fd3',
   })
   @IsNotEmpty()
   @IsUUID()

@@ -47,14 +47,14 @@ export class ActivitiesController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les activités associées à un propriétaire',
-    example: '06f54380-4636-4aed-8953-def85d70f1f5',
+    example: 'cb6b22e9-803d-45cf-b8f0-7deddea9f2f3',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
@@ -83,7 +83,7 @@ export class ActivitiesController {
     name: 'activityId',
     required: true,
     description: "Identifiant de l'activité",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: 'c906186e-681c-4046-84ab-939da11bb34a',
   })
   @Auth(AuthType.None)
   @Get('/single/:activityId')
@@ -135,7 +135,7 @@ export class ActivitiesController {
     name: 'id',
     required: true,
     description: "Identifiant de l'activité",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: 'c906186e-681c-4046-84ab-939da11bb34a',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Activity, 'owner'))
@@ -158,7 +158,7 @@ export class ActivitiesController {
     name: 'id',
     required: true,
     description: "Identifiant de l'activité",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Activity, 'owner'))

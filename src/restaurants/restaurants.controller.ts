@@ -46,14 +46,14 @@ export class RestaurantsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les restaurants associés à un propriétaire',
-    example: '06f54380-4636-4aed-8953-def85d70f1f5',
+    example: 'f1b0c4f0-c10d-408c-a913-2c5eb5066f87',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
@@ -82,7 +82,7 @@ export class RestaurantsController {
     name: 'restaurantId',
     required: true,
     description: 'Identifiant du restaurant',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '1f77b4d5-8c7f-4c10-a1e1-882bd05c237b',
   })
   @Auth(AuthType.None)
   @Get('/single/:restaurantId')
@@ -134,7 +134,7 @@ export class RestaurantsController {
     name: 'id',
     required: true,
     description: 'Identifiant du restaurant',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '7fb33988-3e1f-4f8a-ad0e-c778d935024c',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Restaurant, 'owner'))
@@ -157,7 +157,7 @@ export class RestaurantsController {
     name: 'id',
     required: true,
     description: 'Identifiant du restaurant',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Restaurant, 'owner'))

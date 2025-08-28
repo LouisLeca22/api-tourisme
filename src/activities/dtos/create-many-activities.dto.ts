@@ -6,7 +6,7 @@ import { CreateActivityDto } from './create-activity.dto';
 class CreateActivityWithOwnerDto extends CreateActivityDto {
   @ApiProperty({
     description: 'Identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+    example: '10d0b9f0-a690-4df0-9c56-fd09f18c0dc6',
   })
   @IsNotEmpty()
   @IsUUID()

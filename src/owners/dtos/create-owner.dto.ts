@@ -13,7 +13,7 @@ import {
 export class CreateOwnerDto {
   @ApiProperty({
     description: 'Nom du propriétaire',
-    example: 'Montagne Aventur',
+    example: 'Musée d’Art Moderne de Lille',
   })
   @IsString({ message: 'Le nom doit être une chaîne de caractère' })
   @IsNotEmpty({ message: 'Le nom est obligatoire' })
@@ -25,7 +25,7 @@ export class CreateOwnerDto {
 
   @ApiProperty({
     description: 'Adresse e-mail du propriétaire',
-    example: 'info@montagneaventure.fr',
+    example: 'info@mamlille.fr',
   })
   @MaxLength(96, {
     message: "L'email doit contenir au maximum 96 caractères",
@@ -37,7 +37,7 @@ export class CreateOwnerDto {
   @ApiProperty({
     description:
       'Mot de passe du propriétaire - (8 caractères, 1 majuscule, 1 chiffre, 1 caractère spécial)',
-    example: 'Montagne1234!',
+    example: 'Museedartmodernedelille1234!',
   })
   @IsString({ message: 'Le mot de passe doit être une chaîne de caractère' })
   @IsNotEmpty({ message: 'Le mot de passe est obligatoire ' })
@@ -56,7 +56,7 @@ export class CreateOwnerDto {
   @ApiPropertyOptional({
     description:
       'Numéro de téléphone du propriétaire - (06XXXXXXXX ou +336XXXXXXXX)',
-    example: '+33479551234',
+    example: '+33320067890',
   })
   @IsString({
     message: 'Le numéro de téléphone doit être une chaîne de caractère',
@@ -73,7 +73,7 @@ export class CreateOwnerDto {
 
   @ApiPropertyOptional({
     description: 'URL du site web du propriétaire',
-    example: 'https://montagneaventure.fr',
+    example: 'https://www.mamlille.fr',
   })
   @IsOptional()
   @MaxLength(2083, {

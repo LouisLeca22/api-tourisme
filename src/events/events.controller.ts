@@ -47,14 +47,14 @@ export class EventsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les événements associés à un propriétaire',
-    example: '06f54380-4636-4aed-8953-def85d70f1f5',
+    example: 'b39c9cc9-02c7-487e-ace0-15e86b7fedb9',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
@@ -75,7 +75,7 @@ export class EventsController {
     type: 'string',
     required: false,
     description: "date de début de l'événement",
-    example: 'Mon May 12 2025 22:00:00',
+    example: 'Sun Sep 28 2025 02:00:00',
   })
   @Auth(AuthType.None)
   @Get('{/:ownerId}')
@@ -97,7 +97,7 @@ export class EventsController {
     name: 'eventId',
     required: true,
     description: "Identifiant de l'événement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: 'd4ddcfd6-87e2-4ef1-849d-1e8cee2d5252',
   })
   @Auth(AuthType.None)
   @Get('/single/:eventId')
@@ -133,7 +133,7 @@ export class EventsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'événement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3bc631c7-02a6-4cf0-a59c-695315b5c361',
   })
   @ApiBearerAuth('bearerAuth')
   @Roles(RoleType.Admin)
@@ -153,7 +153,7 @@ export class EventsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'événement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3bc631c7-02a6-4cf0-a59c-695315b5c361',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Event, 'owner'))
@@ -176,7 +176,7 @@ export class EventsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'événement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Event, 'owner'))

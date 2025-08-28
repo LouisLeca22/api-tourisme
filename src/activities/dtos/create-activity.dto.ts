@@ -23,7 +23,7 @@ import { Language, LANGUAGES } from 'src/common/constants/languages.constants';
 export class CreateActivityDto {
   @ApiProperty({
     description: "Nom de l'activité",
-    example: 'Balade en paddle dans la baie',
+    example: 'Séance Spa & Détente',
   })
   @IsNotEmpty({ message: 'Le champ "name" est obligatoire' })
   @IsString({ message: 'Le nom doit être une chaîne de caractère' })
@@ -36,7 +36,7 @@ export class CreateActivityDto {
   @ApiProperty({
     description: "Description de l'activité",
     example:
-      'Glissez en paddle au cœur de la baie et profitez d’un moment de détente tout en découvrant le littoral sous un nouvel angle.',
+      'Profitez d’un moment de relaxation avec sauna, hammam et massage au choix.',
   })
   @IsNotEmpty({ message: 'Le champ "description" est obligatoire' })
   @IsString({ message: 'La description doit être une chaîne de caractère' })
@@ -49,7 +49,7 @@ export class CreateActivityDto {
     enum: ActivityType,
     description:
       "Type d'activité (nautical_sport, hiking, cooking_class, cultural_tour, cycling, art_craft, food_and_drink, bird_watching, photography_tour, wellness)",
-    example: 'nautical_sport',
+    example: 'wellness',
   })
   @IsNotEmpty({ message: 'Le champ "type" est obligatoire' })
   @IsEnum(ActivityType, {
@@ -69,7 +69,7 @@ export class CreateActivityDto {
   @ApiProperty({
     description:
       "Fourchette de prix de l'activité - format 'min-max' avec min ≤ max",
-    example: '30-50',
+    example: '70-120',
   })
   @IsNotEmpty({ message: 'Le champ "priceRange" est obligatoire' })
   @IsString()
@@ -82,7 +82,7 @@ export class CreateActivityDto {
   @ApiProperty({
     description:
       "Addresse de l'événement - validée par api-adresse.data.gouv.fr",
-    example: 'Place du village, Patrimonio (20253)',
+    example: 'Quai des belges 13001 Marseille',
   })
   @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
@@ -92,7 +92,7 @@ export class CreateActivityDto {
     type: 'array',
     items: { type: 'string' },
     description: "Langue parlée pour l'activité (fr, en, de, pt, it...)",
-    example: '["fr", "it"]',
+    example: '["fr", "en"]',
   })
   @IsNotEmpty({ message: 'Le champ "languages" est obligatoire' })
   @IsArray({ message: 'Les langues doivent être comprises dans un tableau' })
@@ -105,7 +105,7 @@ export class CreateActivityDto {
 
   @ApiProperty({
     description: "âge minimum pour participer à l'activité (0 = tout public)",
-    example: 12,
+    example: 16,
   })
   @IsNotEmpty({ message: 'Le champ "requiredAge" est obligatoire' })
   @IsNumber({}, { message: "L'âge requis doit être un nombre" })
@@ -129,7 +129,7 @@ export class CreateActivityDto {
   @ApiProperty({
     description:
       'Jour de fin d’ouverture (0 = lundi, 6 = dimanche). Doit être ≥ from',
-    example: 6,
+    example: 4,
   })
   @IsNotEmpty({ message: 'Le champ "to" est obligatoire' })
   @IsNumber({}, { message: "Le jour de fin d'ouverture doit être un nombre" })
@@ -146,7 +146,7 @@ export class CreateActivityDto {
 
   @ApiProperty({
     description: "Heure d'ouverture de l'hébergement (format HH:mm, 24h)",
-    example: '07:00',
+    example: '09:00',
   })
   @IsNotEmpty({ message: 'Le champ "open" est obligatoire' })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {
@@ -157,7 +157,7 @@ export class CreateActivityDto {
   @ApiProperty({
     description:
       "Heure de fermeture de l'hébergement (format HH:mm, 24h). Doit être après l'heure d'ouverture",
-    example: '22:00',
+    example: '21:00',
   })
   @IsNotEmpty({ message: 'Le champ "close" est obligatoire' })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {

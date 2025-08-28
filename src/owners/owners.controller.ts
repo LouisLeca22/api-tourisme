@@ -49,14 +49,14 @@ export class OwnersController {
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
     type: 'number',
     required: false,
     description: "Position de la page retournée par l'API",
-    example: 1,
+    example: 2,
   })
   @Auth(AuthType.None)
   @Get()
@@ -78,7 +78,7 @@ export class OwnersController {
     name: 'ownerId',
     required: true,
     description: 'Identifiant du propriétaire',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '60a6969d-21e7-4b77-8fae-381ca45332bd',
   })
   @Auth(AuthType.None)
   @Get('/single/:ownerId')
@@ -144,7 +144,7 @@ export class OwnersController {
     name: 'ownerId',
     required: true,
     description: 'Identifiant du propriétaire',
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '10d0b9f0-a690-4df0-9c56-fd09f18c0dc6',
   })
   @ApiBearerAuth('bearerAuth')
   @Delete('/:ownerId')

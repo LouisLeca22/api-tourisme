@@ -24,7 +24,7 @@ import { IsOpenCloseTimePair } from 'src/common/validators/is-open-close-time-pa
 export class CreateRestaurantDto {
   @ApiProperty({
     description: 'Nom du restaurant',
-    example: 'Le Bistrot Artistiqu',
+    example: 'Le Bar à Vins de la Plage',
   })
   @IsNotEmpty({ message: 'Le champ "name" est obligatoire' })
   @IsString({ message: 'Le nom doit être une chaîne de caractère' })
@@ -36,8 +36,7 @@ export class CreateRestaurantDto {
 
   @ApiProperty({
     description: 'Description du restaurant',
-    example:
-      'Bistrot chaleureux proposant une cuisine locale et des vins naturels.',
+    example: 'Sélection de vins bio, tapas et coucher de soleil.',
   })
   @IsNotEmpty({ message: 'Le champ "description" est obligatoire' })
   @IsString({ message: 'La description doit être une chaîne de caractère' })
@@ -50,7 +49,7 @@ export class CreateRestaurantDto {
     enum: RestaurantType,
     description:
       'Type du restaurant (bistro, brewery, pizzeria, cafe, food_truck, caterer, snack_bar, canteen, tea_room, wine_bar, creperie, inn, buffet, gastropub)',
-    example: 'bistro',
+    example: 'wine_bar',
   })
   @IsNotEmpty({ message: 'Le champ "type" est obligatoire' })
   @IsEnum(RestaurantType, {
@@ -60,7 +59,7 @@ export class CreateRestaurantDto {
 
   @ApiProperty({
     description: "Nombre d'étoiles du restaurant",
-    example: 4,
+    example: 3,
   })
   @IsNotEmpty({ message: 'Le champ "stars" est obligatoire' })
   @IsNumber({}, { message: "Le nombre d'étoile doit être un nombre" })
@@ -71,7 +70,7 @@ export class CreateRestaurantDto {
   @ApiProperty({
     description:
       'Addresse du restaurant - validée par api-adresse.data.gouv.fr',
-    example: '45 avenue des Fleurs, Cannes (06400)',
+    example: '2 Avenue de la Plage 40600 Biscarrosse',
   })
   @IsNotEmpty({ message: 'Le champ "address" est obligatoire' })
   @IsString({ message: "L'adresse doit être une chaîne de caractères" })
@@ -82,7 +81,7 @@ export class CreateRestaurantDto {
     items: { type: 'string' },
     description:
       'Cuisines servies (seafood, organic, vegan, japanese, italian...)',
-    example: '["french", "local", "vegetarian"]',
+    example: '["french", "seafood", "bistro"]',
   })
   @IsNotEmpty({ message: 'Le champ "cuisine" est obligatoire' })
   @IsArray({ message: 'Les cuisines doivent être comprises dans un tableau' })
@@ -107,7 +106,7 @@ export class CreateRestaurantDto {
 
   @ApiProperty({
     description: 'Jour de début d’ouverture (0 = lundi, 6 = dimanche)',
-    example: 1,
+    example: 2,
   })
   @IsNotEmpty({ message: 'Le champ "from" est obligatoire' })
   @IsNumber({}, { message: 'Le jour de la semaine doit être un nombre' })
@@ -139,7 +138,7 @@ export class CreateRestaurantDto {
 
   @ApiProperty({
     description: "Heure d'ouverture du restaurant (format HH:mm, 24h)",
-    example: '12:00',
+    example: '11:00',
   })
   @IsNotEmpty({ message: 'Le champ "open" est obligatoire' })
   @Matches(/^[0-2][0-9]:[0-5][0-9]$/, {

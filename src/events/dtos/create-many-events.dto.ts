@@ -6,7 +6,7 @@ import { CreateEventDto } from './create-event.dto';
 class CreateEventWithOwnerDto extends CreateEventDto {
   @ApiProperty({
     description: 'Identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+    example: 'cb6b22e9-803d-45cf-b8f0-7deddea9f2f3',
   })
   @IsNotEmpty()
   @IsUUID()

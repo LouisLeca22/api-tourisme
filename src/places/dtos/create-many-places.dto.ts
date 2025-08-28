@@ -6,7 +6,7 @@ import { CreatePlaceDto } from './create-place.dto';
 class CreatePlaceWithOwnerDto extends CreatePlaceDto {
   @ApiProperty({
     description: 'Identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+    example: 'b39c9cc9-02c7-487e-ace0-15e86b7fedb9',
   })
   @IsNotEmpty()
   @IsUUID()

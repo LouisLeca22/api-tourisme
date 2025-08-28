@@ -48,14 +48,14 @@ export class AccommodationsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les hébergements associés à un propriétaire',
-    example: '06f54380-4636-4aed-8953-def85d70f1f5',
+    example: 'b39c9cc9-02c7-487e-ace0-15e86b7fedb9',
   })
   @ApiQuery({
     name: 'limit',
     type: 'number',
     required: false,
     description: "Nombre d'entrées retournées par requête",
-    example: 10,
+    example: 4,
   })
   @ApiQuery({
     name: 'page',
@@ -84,7 +84,7 @@ export class AccommodationsController {
     name: 'accommodationId',
     required: true,
     description: "Identifiant de l'hébergement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '2012ea51-a884-4206-b7db-e29335180886',
   })
   @Get('/single/:accommodationId')
   @Auth(AuthType.None)
@@ -138,7 +138,7 @@ export class AccommodationsController {
     name: 'id',
     required: true,
     description: "Isdentifiant de l'hébergement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '2012ea51-a884-4206-b7db-e29335180886',
   })
   @UseGuards(OwnershipGuard(Accommodation, 'owner'))
   @Patch('/:id')
@@ -160,7 +160,7 @@ export class AccommodationsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'hébergement",
-    example: 'c3919b85-e125-46b6-aee2-0d6a795e365e',
+    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Accommodation, 'owner'))

@@ -4,7 +4,7 @@ import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 export class SignInDto {
   @ApiProperty({
     description: 'Email de connexion',
-    example: 'contact@aventurescevenoles.fr',
+    example: 'reservation@hotelbellevue.fr',
   })
   @IsEmail({}, { message: 'Adresse e-mail invalide' })
   @IsNotEmpty({ message: "L'adresse e-mail est obligatoire" })
@@ -12,7 +12,7 @@ export class SignInDto {
 
   @ApiProperty({
     description: 'Mot de passe de connexion',
-    example: 'Aventurescevenoles1234!',
+    example: 'Hotelbellevue1234!',
   })
   @IsString({ message: 'Le mot de passe doit être une chaîne de caractères' })
   @IsNotEmpty({ message: 'Le mot de passe est obligatoire' })

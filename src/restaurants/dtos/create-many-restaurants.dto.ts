@@ -6,7 +6,7 @@ import { CreateRestaurantDto } from './create-restaurant.dto';
 class CreateRestaurantWithOwnerDto extends CreateRestaurantDto {
   @ApiProperty({
     description: 'Identifiant du propriétaire (UUID)',
-    example: '11926678-5ef5-4ea7-bda9-759e64ee29e3',
+    example: '15d6adae-4c27-4f4b-9f4a-446e8b772b7f',
   })
   @IsNotEmpty()
   @IsUUID()
