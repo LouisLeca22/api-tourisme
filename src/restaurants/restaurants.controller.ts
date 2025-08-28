@@ -46,7 +46,6 @@ export class RestaurantsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les restaurants associés à un propriétaire',
-    example: 'f1b0c4f0-c10d-408c-a913-2c5eb5066f87',
   })
   @ApiQuery({
     name: 'limit',

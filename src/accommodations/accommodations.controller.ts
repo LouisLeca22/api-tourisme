@@ -48,7 +48,6 @@ export class AccommodationsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les hébergements associés à un propriétaire',
-    example: 'b39c9cc9-02c7-487e-ace0-15e86b7fedb9',
   })
   @ApiQuery({
     name: 'limit',
