@@ -47,6 +47,7 @@ export class EventsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les événements associés à un propriétaire',
+    example: '60a6969d-21e7-4b77-8fae-381ca45332bd',
   })
   @ApiQuery({
     name: 'limit',

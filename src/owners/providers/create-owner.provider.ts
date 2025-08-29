@@ -38,6 +38,11 @@ export class CreateOwnerProvider {
     try {
       newOwner = await this.ownerRepository.save(newOwner);
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException("Ce nom d'utilisateur est déjà pris");
+        }
+      }
       throw new ConflictException(error);
     }
 

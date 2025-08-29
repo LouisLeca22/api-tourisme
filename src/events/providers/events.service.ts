@@ -101,6 +101,11 @@ export class EventsService {
       await this.eventRepository.save(newEvent);
       return newEvent;
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException("Ce nom d'événement est déjà pris");
+        }
+      }
       throw new ConflictException(error);
     }
   }

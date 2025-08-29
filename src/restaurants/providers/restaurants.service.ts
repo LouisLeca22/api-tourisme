@@ -95,6 +95,11 @@ export class RestaurantsService {
       await this.restaurantRepository.save(newRestaurant);
       return newRestaurant;
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException('Ce nom de restaurant est déjà pris');
+        }
+      }
       throw new ConflictException(error);
     }
   }

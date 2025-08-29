@@ -96,6 +96,11 @@ export class ActivitiesService {
       await this.activityRepository.save(newActivity);
       return newActivity;
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException("Ce nom d'activité est déjà pris");
+        }
+      }
       throw new ConflictException(error);
     }
   }

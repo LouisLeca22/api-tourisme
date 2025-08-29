@@ -96,6 +96,11 @@ export class AccommodationsService {
       await this.accommodationRepository.save(newAccommodation);
       return newAccommodation;
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException("Ce nom d'hébergement est déjà pris");
+        }
+      }
       throw new ConflictException(error);
     }
   }

@@ -46,6 +46,7 @@ export class RestaurantsController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les restaurants associés à un propriétaire',
+    example: 'b39c9cc9-02c7-487e-ace0-15e86b7fedb9',
   })
   @ApiQuery({
     name: 'limit',
@@ -114,6 +115,7 @@ export class RestaurantsController {
     description:
       'Réponse 201 lorsque les restaurants ont été créés avec succès',
   })
+  @ApiBearerAuth('bearerAuth')
   @Roles(RoleType.Admin)
   @Post('create-many')
   public createManyRestaurants(

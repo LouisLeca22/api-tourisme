@@ -92,6 +92,13 @@ export class PlacesService {
       await this.placeRepository.save(newPlace);
       return newPlace;
     } catch (error) {
+      if (error instanceof Error) {
+        if ('code' in error && error.code === '23505') {
+          throw new ConflictException(
+            'Ce nom de site touristique est déjà pris',
+          );
+        }
+      }
       throw new ConflictException(error);
     }
   }

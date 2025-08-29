@@ -48,6 +48,7 @@ export class PlacesController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les sites touristiques associés à un propriétaire',
+    example: '8c5d8e9e-39b0-4fc2-910a-dae63e334fd3',
   })
   @ApiQuery({
     name: 'limit',
@@ -61,7 +62,7 @@ export class PlacesController {
     type: 'number',
     required: false,
     description: 'Position de la page retournée',
-    example: 2,
+    example: 1,
   })
   @Auth(AuthType.None)
   @Get('{/:ownerId}')

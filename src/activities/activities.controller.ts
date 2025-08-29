@@ -47,6 +47,7 @@ export class ActivitiesController {
     name: 'ownerId',
     required: false,
     description: 'Récupére les activités associées à un propriétaire',
+    example: '15d6adae-4c27-4f4b-9f4a-446e8b772b7f',
   })
   @ApiQuery({
     name: 'limit',
