@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiConsumes,
   ApiHeaders,
@@ -65,6 +66,7 @@ export class UploadsController {
     },
   })
   @UseInterceptors(FileInterceptor('file'))
+  @ApiBearerAuth('bearerAuth')
   @Post('file')
   public uploadFile(@UploadedFile() file: Express.Multer.File) {
     return this.uploadService.uploadFile(file);
