@@ -24,7 +24,6 @@ API REST construite avec **NestJS** pour la diffusion et le partage de données 
 | **PostgreSQL** | Base de données relationnelle |
 | **Neon**     | Hébergement de la base de données |
 | **Multer + Cloudinary** | Gestion et stockage des fichiers |
-| **Nodemailer + MailTrap** | Envoi d'e-mails |
 | **Render**   | Hébergement de l’API |
 | **Nodemailer + Mailtrap** | Envoi d’e-mails |
 | **JWT / Google OAuth** | Authentification |
