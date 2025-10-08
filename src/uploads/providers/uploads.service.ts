@@ -19,6 +19,9 @@ export class UploadsService {
   ) {}
   public async uploadFile(file: Express.Multer.File) {
     try {
+      if (!file) {
+        throw new BadRequestException('Aucun fichier envoyé');
+      }
       if (
         !['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(
           file.mimetype,
@@ -50,7 +53,11 @@ export class UploadsService {
       if (error instanceof BadRequestException) {
         throw error;
       }
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(
+          error.message || 'Impossible de téléverser le fichier',
+        );
+      }
     }
   }
 }

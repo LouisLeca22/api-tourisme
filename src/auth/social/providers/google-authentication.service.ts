@@ -1,7 +1,6 @@
 import {
   ForbiddenException,
   forwardRef,
-  HttpException,
   Inject,
   Injectable,
   OnModuleInit,
@@ -72,10 +71,15 @@ export class GoogleAuthenticationService implements OnModuleInit {
 
       return this.generateTokensProvider.generateTokens(newOwner);
     } catch (error) {
-      if (error instanceof HttpException) {
+      if (error instanceof ForbiddenException) {
         throw error;
       }
-      throw new UnauthorizedException(error);
+
+      if (error instanceof Error) {
+        throw new UnauthorizedException(
+          error.message || 'La connexion via Google a échoué',
+        );
+      }
     }
   }
 }
