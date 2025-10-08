@@ -158,7 +158,7 @@ export class ActivitiesController {
     name: 'id',
     required: true,
     description: "Identifiant de l'activité",
-    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
+    example: 'c906186e-681c-4046-84ab-939da11bb34a',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Activity, 'owner'))

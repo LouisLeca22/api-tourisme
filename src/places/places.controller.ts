@@ -160,7 +160,7 @@ export class PlacesController {
     name: 'id',
     required: true,
     description: "identifiant de l'activité",
-    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
+    example: 'e3284d26-4354-4799-8bbb-f694e41d3e4e',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Place, 'owner'))

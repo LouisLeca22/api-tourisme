@@ -1,6 +1,7 @@
-import { INestApplication } from '@nestjs/common';
+import { ClassSerializerInterceptor, INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 
 export function appCreate(app: INestApplication) {
   app.useGlobalPipes(
@@ -13,6 +14,8 @@ export function appCreate(app: INestApplication) {
       },
     }),
   );
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
     .setTitle('Api-Tourisme')

@@ -160,7 +160,7 @@ export class AccommodationsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'hébergement",
-    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
+    example: '20ee7a01-5dac-4902-8e04-2721d539b826',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Accommodation, 'owner'))

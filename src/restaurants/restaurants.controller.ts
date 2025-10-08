@@ -158,7 +158,7 @@ export class RestaurantsController {
     name: 'id',
     required: true,
     description: 'Identifiant du restaurant',
-    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
+    example: 'f5b1ad5e-fd33-492a-b45e-6365e7b426e9',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Restaurant, 'owner'))

@@ -47,7 +47,9 @@ export class UploadsService {
       const upload = this.uploadRepository.create(uploadFile);
       return await this.uploadRepository.save(upload);
     } catch (error) {
-      console.log(error);
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
       throw new ConflictException(error);
     }
   }

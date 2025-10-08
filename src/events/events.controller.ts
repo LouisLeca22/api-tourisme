@@ -176,7 +176,7 @@ export class EventsController {
     name: 'id',
     required: true,
     description: "Identifiant de l'événement",
-    example: '3a5c0f87-7e19-4a62-aec9-8f2b2f92e94f',
+    example: 'd4ddcfd6-87e2-4ef1-849d-1e8cee2d5252',
   })
   @ApiBearerAuth('bearerAuth')
   @UseGuards(OwnershipGuard(Event, 'owner'))
