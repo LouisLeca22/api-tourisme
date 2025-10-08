@@ -36,7 +36,11 @@ export class RefreshTokensProvider {
 
       return await this.generateTokensProvider.generateTokens(owner);
     } catch (error) {
-      throw new UnauthorizedException(error);
+      if (error instanceof Error) {
+        throw new UnauthorizedException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
   }
 }

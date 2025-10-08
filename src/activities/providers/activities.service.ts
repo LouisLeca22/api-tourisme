@@ -75,7 +75,11 @@ export class ActivitiesService {
     try {
       owner = await this.ownersService.findOne(user.sub);
     } catch (error) {
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
 
     const validdAddress = await this.geocodingService.lookupAddress(
@@ -100,8 +104,10 @@ export class ActivitiesService {
         if ('code' in error && error.code === '23505') {
           throw new ConflictException("Ce nom d'activité est déjà pris");
         }
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
       }
-      throw new ConflictException(error);
     }
   }
 

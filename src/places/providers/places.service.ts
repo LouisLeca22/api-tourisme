@@ -142,7 +142,11 @@ export class PlacesService {
     try {
       return await this.placeRepository.save(place);
     } catch (error) {
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
   }
 
@@ -159,7 +163,11 @@ export class PlacesService {
       await this.placeRepository.softRemove(place);
       return { deleted: true, placeId };
     } catch (error) {
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
   }
 }

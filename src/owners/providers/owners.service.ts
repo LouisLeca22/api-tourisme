@@ -121,7 +121,11 @@ export class OwnersService {
     try {
       return await this.ownerRepository.save(owner);
     } catch (error) {
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
   }
 

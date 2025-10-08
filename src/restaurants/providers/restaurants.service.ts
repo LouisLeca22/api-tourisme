@@ -75,7 +75,9 @@ export class RestaurantsService {
     try {
       owner = await this.ownersService.findOne(user.sub);
     } catch (error) {
-      throw new ConflictException(error);
+      if (error instanceof Error) {
+        throw new ConflictException(error.message);
+      }
     }
 
     const validdAddress = await this.geocodingService.lookupAddress(
@@ -99,8 +101,10 @@ export class RestaurantsService {
         if ('code' in error && error.code === '23505') {
           throw new ConflictException('Ce nom de restaurant est déjà pris');
         }
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
       }
-      throw new ConflictException(error);
     }
   }
 

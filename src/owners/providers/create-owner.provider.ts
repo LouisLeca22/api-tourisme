@@ -42,14 +42,20 @@ export class CreateOwnerProvider {
         if ('code' in error && error.code === '23505') {
           throw new ConflictException("Ce nom d'utilisateur est déjà pris");
         }
+        throw new ConflictException(
+          error.message || "Une erreur s'est produite",
+        );
       }
-      throw new ConflictException(error);
     }
 
     try {
       await this.mailService.sendOwnerWelcome(newOwner);
     } catch (error) {
-      throw new RequestTimeoutException(error);
+      if (error instanceof Error) {
+        throw new RequestTimeoutException(
+          error.message || "Une erreur s'est produite",
+        );
+      }
     }
     return newOwner;
   }
