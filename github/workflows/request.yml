@@ -1,0 +1,17 @@
+name: Keep API Awake
+
+on:
+  schedule:
+    # Exécute toutes les 15 minutes
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping API to keep it awake
+        run: |
+          echo "Pinging API to prevent hibernation..."
+          curl -X GET "https://api-tourisme.onrender.com/" -L -s -o /dev/null -w "%{http_code}\n"
