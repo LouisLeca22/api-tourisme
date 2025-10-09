@@ -76,9 +76,7 @@ export class GoogleAuthenticationService implements OnModuleInit {
       }
 
       if (error instanceof Error) {
-        throw new UnauthorizedException(
-          error.message || 'La connexion via Google a échoué',
-        );
+        throw new UnauthorizedException('Google Id Token invalide');
       }
     }
   }

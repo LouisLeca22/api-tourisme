@@ -52,7 +52,7 @@ export function OwnershipGuard<T extends ObjectLiteral>(
       const owner = resource[relation];
       if (!owner || owner.id !== user.sub) {
         throw new ForbiddenException(
-          'Seul le propriétaire peut modifier la ressoruce',
+          'Seul le propriétaire peut effectuer cette action',
         );
       }
 
