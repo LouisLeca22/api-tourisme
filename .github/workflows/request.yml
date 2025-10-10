@@ -2,7 +2,6 @@ name: Keep API Awake
 
 on:
   schedule:
-    # Exécute toutes les 15 minutes
     - cron: "*/20 * * * *"
   workflow_dispatch:
 
@@ -14,4 +13,13 @@ jobs:
       - name: Ping API to keep it awake
         run: |
           echo "Pinging API to prevent hibernation..."
-          curl -X GET "https://api-tourisme.onrender.com/" -L -s -o /dev/null -w "%{http_code}\n"
+          urls=(
+            "https://api-tourisme.onrender.com/"
+            "https://api-tourisme.onrender.com/doc"
+            "https://api-tourisme.onrender.com/restaurants"
+          )
+
+          for url in "${urls[@]}"; do
+            echo "Pinging $url ..."
+            curl -X GET "$url" -L -s -o /dev/null -w "%{http_code}\n"
+          done
