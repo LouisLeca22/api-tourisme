@@ -15,8 +15,6 @@ jobs:
           echo "Pinging API to prevent hibernation..."
           urls=(
             "https://api-tourisme.onrender.com/"
-            "https://api-tourisme.onrender.com/doc"
-            "https://api-tourisme.onrender.com/restaurants"
           )
 
           for url in "${urls[@]}"; do
